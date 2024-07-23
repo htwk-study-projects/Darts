@@ -22,7 +22,7 @@ public class MenuBar extends JPanel{
             if (i == position) {
                 parent.add(this);
             } else {
-                parent.add(new JPanel());
+                parent.add(new TransparentPanel());
             }
         }
 	}

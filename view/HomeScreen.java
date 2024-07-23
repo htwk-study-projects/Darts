@@ -18,7 +18,7 @@ public class HomeScreen extends JPanel {
 	public HomeScreen() {
 		
 		this.setLayout(new GridLayout(3,3));
-
+		this.setBackground(Color.blue);
 		playButton = new JButton("Spielen");
 		settingsButton = new JButton("Einstellungen");
 		loadButton = new JButton("Spiel laden");

@@ -5,15 +5,18 @@ import javax.swing.JFrame;
 
 public class DartsGUI extends JFrame {
 	
+	private model.DartsData data;
 	
 	private CardLayout cardLayout;  // Instanzvariable für CardLayout
 	
-	public DartsGUI(){
+	public DartsGUI(model.DartsData gameData){
+		
+		this.data = gameData;
 		
 		cardLayout = new CardLayout();
 		this.setLayout(cardLayout);
-		this.setTitle("DARTS");
-		this.setSize( 1200, 820);
+		this.setTitle("DARTS");	
+		this.setSize(1200, 820);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
