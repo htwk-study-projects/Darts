@@ -1,28 +1,25 @@
 package controller;
 
-import model.DartsData;
-import view.DartsGUI;
+
 
 public class Darts {
 	
-	private DartsGUI view;
-	private DartsData data;
+	private view.DartsGUI userView;
+	private model.DartsData data;
 	
 	
 	
 	public Darts() {
-		data = new DartsData();
-		view = new DartsGUI(data);
+		data = new model.DartsData();
+		userView = new view.DartsGUI();
 		
 	}
-	
 	
 	
 	public static void main(String[] args) {
 		
 		Darts dartsGame = new Darts();
-		System.out.println("Das wird ein Darts-Spiel");
-		dartsGame.view.setVisible(true);
+		dartsGame.userView.setVisible(true);
 	}
 
 }
