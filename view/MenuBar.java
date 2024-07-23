@@ -4,17 +4,16 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 public class MenuBar extends JPanel{
 	
-	public MenuBar(JButton[] buttons, int rows, int columns) {
-		
+	public MenuBar(JComponent[] elements, int rows, int columns) {	
 		this.setLayout(new GridLayout(rows, columns, 10, 10));
-		//this.setBorder(new LineBorder(Color.black));
-		for(JButton b : buttons) {
-			this.add(b);
+		for(JComponent element : elements) {
+			this.add(element);
 		}
 	}
 	
