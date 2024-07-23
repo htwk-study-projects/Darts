@@ -11,7 +11,6 @@ public class GameScreen extends JPanel {
 	
 	public GameScreen() {
 		
-		this.setSize(WIDTH, HEIGHT);
 		this.setBackground(Color.red);
 		
 		backButton = new JButton("Zurück");

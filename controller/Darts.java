@@ -11,16 +11,14 @@ public class Darts {
 	
 	public Darts() {
 		data = new model.DartsData();
-		userView = new view.DartsGUI(data);
+		userView = new view.DartsGUI();
 		
 	}
-	
 	
 	
 	public static void main(String[] args) {
 		
 		Darts dartsGame = new Darts();
-		System.out.println("Das wird ein Darts-Spiel");
 		dartsGame.userView.setVisible(true);
 	}
 
