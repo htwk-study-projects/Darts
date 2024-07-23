@@ -8,9 +8,11 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
 
 public class SetupScreen extends JPanel {
 	
+	private JLabel title;
 	
 	private SetupLine startBreakLine;
 	protected JButton startButton;
@@ -27,11 +29,18 @@ public class SetupScreen extends JPanel {
 	private JRadioButton players3;
 	private JRadioButton players4; 
 	
-	private MenuBar setupPanel;
+	private Bar setupMenuBar;
 	
 	public SetupScreen() {
 		
-		this.setLayout(new GridLayout(1,3));	
+		this.setLayout(new GridLayout(3,3));	
+		DartsGUI.gridLayoutFill(this, 3, 3);
+		
+		title = new JLabel("Spielerstellung");
+		title.setFont(DartsGUI.FONT_TITLE);
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		this.remove(1);
+		this.add(title, 1);
 		
 		modeLabel = new JLabel("Spielmodus:");	
 		mode301 = new JRadioButton("301 Punkte");
@@ -61,8 +70,8 @@ public class SetupScreen extends JPanel {
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
 		startBreakLine = new SetupLine(setupButtons);
 		
-		JComponent[] setup = {modeLine, playerNumberLine, startBreakLine};
-		setupPanel = new MenuBar(setup, 3, 1);
-		setupPanel.menuPlacement(this, 1, 1, 3);
+		JComponent[] setupMenu = {modeLine, playerNumberLine, startBreakLine};
+		setupMenuBar = new Bar(setupMenu, 3, 1);
+		setupMenuBar.barPlacement(this, 4);
 	}
 }

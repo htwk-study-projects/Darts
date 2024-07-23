@@ -13,6 +13,7 @@ public class DartsGUI extends JFrame {
 	
 	private CardLayout cardLayout;  // Instanzvariable für CardLayout
 	
+	protected final static Font FONT_TITLE = new Font("Arial", Font.BOLD, 32);
 	protected final static Font FONT_BIG = new Font("Arial", Font.BOLD, 22);
 	protected final static Font FONT_NORMAL = new Font("Arial", Font.PLAIN, 14);
 	protected final static Font FONT_SMALL = new Font("Arial", Font.PLAIN, 10);
@@ -50,6 +51,13 @@ public class DartsGUI extends JFrame {
 	public static void fontAdjust(Font font, JComponent[] elements) {
 		for(JComponent element : elements) {
 			element.setFont(font);
+		}
+	}
+	
+	public static void gridLayoutFill(JComponent gridElement, int rows, int columns) {
+		int areas = rows * columns;
+		for(int i = 0; i < areas; i++) {
+			gridElement.add(new TransparentPanel());
 		}
 	}
 
