@@ -1,6 +1,10 @@
 package view;
 
 import java.awt.CardLayout;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 public class DartsGUI extends JFrame {
@@ -8,6 +12,10 @@ public class DartsGUI extends JFrame {
 	private model.DartsData data;
 	
 	private CardLayout cardLayout;  // Instanzvariable für CardLayout
+	
+	protected final static Font FONT_BIG = new Font("Arial", Font.BOLD, 22);
+	protected final static Font FONT_NORMAL = new Font("Arial", Font.PLAIN, 14);
+	protected final static Font FONT_SMALL = new Font("Arial", Font.PLAIN, 10);
 	
 	public DartsGUI(model.DartsData gameData){
 		
@@ -37,6 +45,12 @@ public class DartsGUI extends JFrame {
 		
 		game.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
 		
+	}
+	
+	public static void fontAdjust(Font font, JComponent[] elements) {
+		for(JComponent element : elements) {
+			element.setFont(font);
+		}
 	}
 
 }

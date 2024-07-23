@@ -18,9 +18,9 @@ public class SetupScreen extends JPanel {
 		
 		homeButton = new JButton("Abbrechen");
 		
-		JButton[] setupButtons = {startButton, homeButton};
-		buttonPanel = new MenuBar(setupButtons, 2, 1);
-		
+		JButton[] setupButtons = {homeButton, startButton};
+		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
+		buttonPanel = new MenuBar(setupButtons, 1, 2);
 		buttonPanel.menuPlacement(this, 4, 3, 3);
 	}
 }
