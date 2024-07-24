@@ -1,6 +1,6 @@
 package model;
 
-public class Spieler {
+public class Player {
 	private String name;
 	private Farbe color;
 	private int wuerfeZahl;
