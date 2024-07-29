@@ -1,33 +1,42 @@
 package view;
 
-import java.awt.Color;
-import java.awt.GridLayout;
 
+import java.awt.GridLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class HomeScreen extends JPanel {
 
+	private JLabel title;
+	
+	private Bar homeMenu;
 	protected JButton playButton;
-	protected JButton settingsButton;
 	protected JButton loadButton;
 	protected JButton exitButton;
 	
-	private MenuBar homeMenu;
-
 	public HomeScreen() {
 		
 		this.setLayout(new GridLayout(3,3));
-
+		DartsGUI.gridLayoutFill(this, 3, 3);
+		
+		title = new JLabel("Darts");
+		title.setFont(DartsGUI.FONT_TITLE);
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		this.remove(1);
+		this.add(title, 1);
+		
 		playButton = new JButton("Spielen");
-		settingsButton = new JButton("Einstellungen");
 		loadButton = new JButton("Spiel laden");
 		exitButton = new JButton("Beenden");
 		
-		JButton[] setupButtons = {playButton, settingsButton, loadButton, exitButton};
-		homeMenu = new MenuBar(setupButtons, 4, 1);
+		JButton[] homeButtons = {playButton, loadButton, exitButton};
+		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, homeButtons);
 		
-		homeMenu.menuPlacement(this, 4, 3, 3);
+		homeMenu = new Bar(homeButtons, 3, 1);
+		homeMenu.barPlacement(this, 4);
 
 	}
 }
