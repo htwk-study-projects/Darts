@@ -19,4 +19,10 @@ public class DartsController {
 		return userView;
 	}
 
+	public model.DartsData getData() {
+		return data;
+	}
+	
+	
+
 }

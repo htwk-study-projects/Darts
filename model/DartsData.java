@@ -9,4 +9,9 @@ public class DartsData {
 		board = new DartboardMathModel();
 		
 	}
+
+	public DartboardMathModel getBoard() {
+		return board;
+	}
+	
 }
