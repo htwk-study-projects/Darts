@@ -78,8 +78,13 @@ public class DartboardMathModel {
 	
 	public Integer determineSector(Integer angle) {
 		Integer hitSector;
-		Integer degreePerSector = 18;
-		hitSector = (int) (angle/degreePerSector + 0.5);	
+		Random random = new Random();
+		double hitSectorTemp;
+		final double degreePerSector = 18.0;
+		hitSectorTemp = angle/degreePerSector + 0.5;
+		hitSector = (int)(angle/degreePerSector + 0.5);
+		boolean isWireHit = (hitSectorTemp - hitSector) == 0;
+		if(isWireHit) return angleSectorRelation.get(hitSector - random.nextInt(2));
 		return angleSectorRelation.get(hitSector);
 	}
 	
