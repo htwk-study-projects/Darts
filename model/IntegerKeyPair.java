@@ -14,7 +14,7 @@ public class IntegerKeyPair {
 	
 	@Override
 	public String toString() {
-		return "[firstKey=" + firstKey + ", secondKey=" + secondKey + "]";
+		return "[" + firstKey + "," + secondKey + "]";
 	}
 
 	@Override

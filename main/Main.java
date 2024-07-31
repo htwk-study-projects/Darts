@@ -1,7 +1,5 @@
 package main;
 
-import java.util.Map;
-
 import controller.DartsController;
 
 public class Main {
@@ -11,8 +9,10 @@ public class Main {
 		DartsController dartsGame = new DartsController();
 		dartsGame.getUserView().setVisible(true);
 		model.DartboardMathModel test = dartsGame.getData().getBoard();
-		
-		Integer points = test.determinePoints(20, 3);
+		//test.printFieldValueRelations();
+		Integer sector = test.determineSector(90);
+		Integer multiplier = test.determineMultiplier(104.0);
+		Integer points = test.determinePoints(sector, multiplier);
 		System.out.println(points);
 	}
 
