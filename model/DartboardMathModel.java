@@ -68,7 +68,9 @@ public class DartboardMathModel {
         }
 	}
 	
-	public Integer determinePoints(Integer sector, Integer multiplier) {
+	public Integer determinePoints(Integer angle, Double distance) {
+		Integer sector = determineSector(angle);
+		Integer multiplier = determineMultiplier(distance);
 		Integer points;
 		IntegerKeyPair keyPair = new IntegerKeyPair(sector, multiplier);
 		points = fieldValueRelations.get(keyPair);
@@ -77,10 +79,11 @@ public class DartboardMathModel {
 	}
 	
 	public Integer determineSector(Integer angle) {
-		Integer hitSector;
 		Random random = new Random();
+		Integer hitSector;
 		double hitSectorTemp;
 		final double degreePerSector = 18.0;
+		
 		hitSectorTemp = angle/degreePerSector + 0.5;
 		hitSector = (int)(angle/degreePerSector + 0.5);
 		boolean isWireHit = (hitSectorTemp - hitSector) == 0;
