@@ -18,8 +18,6 @@ public class DartsGUI extends JFrame {
 	
 	public DartsGUI(model.DartsData gameData){
 		
-		this.data = gameData;
-		
 		cardLayout = new CardLayout();
 		this.setLayout(cardLayout);
 		this.setTitle("DARTS");	
