@@ -9,8 +9,6 @@ import javax.swing.JFrame;
 
 public class DartsGUI extends JFrame {
 	
-	private model.DartsData data;
-	
 	private CardLayout cardLayout;  // Instanzvariable für CardLayout
 	
 	protected final static Font FONT_TITLE = new Font("Arial", Font.BOLD, 32);
