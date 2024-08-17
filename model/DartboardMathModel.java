@@ -15,7 +15,7 @@ public class DartboardMathModel {
 	private final static Map<Integer, Integer> angleSectorRelation = new HashMap<>();
 	
 	static {
-		sectors = sectorGenerator(20);
+		sectors = sectorGenerator();
 		fieldValueRelationsGenerator();
 		angleSectorRelationGenerator();
 	}
@@ -43,9 +43,9 @@ public class DartboardMathModel {
 		return values;
 	}
 	
-	private static Integer[] sectorGenerator(int endNumber) {
-		Integer[] sectors = new Integer[endNumber];
-		for(int i = 1; i <= endNumber; i++) sectors[i-1] = i;
+	private static Integer[] sectorGenerator() {
+		Integer[] sectors = new Integer[20];
+		for(int i = 1; i <= 20; i++) sectors[i-1] = i;
 		return sectors;
 	}
 	
