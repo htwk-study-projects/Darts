@@ -7,11 +7,13 @@ import java.util.Map;
 import java.util.Random;
 
 public class DartboardMathModel {
-
-	private final static Map<IntegerKeyPair, Integer> fieldValueRelations = new HashMap<>();
-	private final static Integer[] sectors;
+	
+	private final static Integer SECTORNUMBER = 20;
 	private final static Integer[] MULTIPLIERS = {-1,0,1,2,3};
 	private final static Double[] DISTANCES = {6.35, 15.9, 99.0, 107.0, 162.0, 170.0};
+	
+	private final static Integer[] sectors;
+	private final static Map<IntegerKeyPair, Integer> fieldValueRelations = new HashMap<>();
 	private final static Map<Integer, Integer> angleSectorRelation = new HashMap<>();
 	
 	static {
@@ -44,8 +46,8 @@ public class DartboardMathModel {
 	}
 	
 	private static Integer[] sectorGenerator() {
-		Integer[] sectors = new Integer[20];
-		for(int i = 1; i <= 20; i++) sectors[i-1] = i;
+		Integer[] sectors = new Integer[SECTORNUMBER];
+		for(int i = 1; i <= SECTORNUMBER; i++) sectors[i-1] = i;
 		return sectors;
 	}
 	
