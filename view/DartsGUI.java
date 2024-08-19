@@ -23,7 +23,7 @@ public class DartsGUI extends JFrame {
 		cardLayout = new CardLayout();
 		this.setLayout(cardLayout);
 		this.setTitle("DARTS");	
-		this.setSize(1200, 820);
+		this.setSize(1400, 920);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
@@ -37,18 +37,13 @@ public class DartsGUI extends JFrame {
 		GameScreen game = new GameScreen();
 		this.add(game, "game");
 		
-		DartBoardGraphic board = new DartBoardGraphic();
-		this.add(board, "board");
-		
-		
 		home.playButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "setup"));
 		home.exitButton.addActionListener(e -> System.exit(0));
 		
 		setup.homeButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
 		setup.startButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "game"));
 		
-		game.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
-		game.boardButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "board"));
+		//game.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
 		
 	}
 	
