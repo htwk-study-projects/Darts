@@ -15,12 +15,12 @@ public class GameScreen extends JPanel {
 		 this.setLayout(new GridBagLayout());
 			
 		 board = new DartBoardGraphic();
-	     this.setScreenDivisionConstrains(0, 0, 2, 2, 3, 3, GridBagConstraints.BOTH); // Position und Größe des Dartboards
-	     this.add(board, screenDivisionConstraints); // Dartboard hinzufügen
+	     this.setScreenDivisionConstrains(0, 0, 2, 2, 3, 3, GridBagConstraints.BOTH);
+	     this.add(board, screenDivisionConstraints);
 	        
 	     sideBar = new JPanel();
-	     this.setScreenDivisionConstrains(2, 0, 1, 1, 1, 1, GridBagConstraints.BOTH); // Position und Größe des Buttons
-	     this.add(sideBar, screenDivisionConstraints); // Button hinzufügen
+	     this.setScreenDivisionConstrains(2, 0, 1, 1, 1, 1, GridBagConstraints.BOTH);
+	     this.add(sideBar, screenDivisionConstraints);
 
 	        
 	}
