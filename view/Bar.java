@@ -6,8 +6,8 @@ import javax.swing.JPanel;
 
 public class Bar extends JPanel{
 	
-	public Bar(JComponent[] elements, int rows, int columns) {	
-		this.setLayout(new GridLayout(rows, columns, 8, 8));
+	public Bar(JComponent[] elements) {	
+		this.setLayout(new GridLayout(elements.length, 1));
 		for(JComponent element : elements) {
 			this.add(element);
 		}

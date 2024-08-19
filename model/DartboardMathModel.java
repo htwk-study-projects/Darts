@@ -7,15 +7,17 @@ import java.util.Map;
 import java.util.Random;
 
 public class DartboardMathModel {
-
-	private final static Map<IntegerKeyPair, Integer> fieldValueRelations = new HashMap<>();
-	private final static Integer[] sectors;
+	
+	private final static Integer SECTORNUMBER = 20;
 	private final static Integer[] MULTIPLIERS = {-1,0,1,2,3};
 	private final static Double[] DISTANCES = {6.35, 15.9, 99.0, 107.0, 162.0, 170.0};
+	
+	private final static Integer[] sectors;
+	private final static Map<IntegerKeyPair, Integer> fieldValueRelations = new HashMap<>();
 	private final static Map<Integer, Integer> angleSectorRelation = new HashMap<>();
 	
 	static {
-		sectors = sectorGenerator(20);
+		sectors = sectorGenerator();
 		fieldValueRelationsGenerator();
 		angleSectorRelationGenerator();
 	}
@@ -43,9 +45,9 @@ public class DartboardMathModel {
 		return values;
 	}
 	
-	private static Integer[] sectorGenerator(int endNumber) {
-		Integer[] sectors = new Integer[endNumber];
-		for(int i = 1; i <= endNumber; i++) sectors[i-1] = i;
+	private static Integer[] sectorGenerator() {
+		Integer[] sectors = new Integer[SECTORNUMBER];
+		for(int i = 1; i <= SECTORNUMBER; i++) sectors[i-1] = i;
 		return sectors;
 	}
 	
@@ -68,7 +70,9 @@ public class DartboardMathModel {
         }
 	}
 	
-	public Integer determinePoints(Integer sector, Integer multiplier) {
+	public Integer determinePoints(Integer angle, Double distance) {
+		Integer sector = determineSector(angle);
+		Integer multiplier = determineMultiplier(distance);
 		Integer points;
 		IntegerKeyPair keyPair = new IntegerKeyPair(sector, multiplier);
 		points = fieldValueRelations.get(keyPair);
@@ -77,10 +81,11 @@ public class DartboardMathModel {
 	}
 	
 	public Integer determineSector(Integer angle) {
-		Integer hitSector;
 		Random random = new Random();
+		Integer hitSector;
 		double hitSectorTemp;
 		final double degreePerSector = 18.0;
+		
 		hitSectorTemp = angle/degreePerSector + 0.5;
 		hitSector = (int)(angle/degreePerSector + 0.5);
 		boolean isWireHit = (hitSectorTemp - hitSector) == 0;
