@@ -19,6 +19,9 @@ public class HomeScreen extends JPanel {
 	
 	public HomeScreen() {
 		
+		DartBoardGraphic dartBoardGraphic = new DartBoardGraphic();
+		dartBoardGraphic.setOpaque(false); // Damit der Hintergrund transparent bleibt
+		
 		this.setLayout(new GridLayout(3,3));
 		DartsGUI.gridLayoutFill(this, 3, 3);
 		
@@ -37,6 +40,7 @@ public class HomeScreen extends JPanel {
 		
 		homeMenu = new Bar(homeButtons, 3, 1);
 		homeMenu.barPlacement(this, 4);
+		
 
 	}
 }

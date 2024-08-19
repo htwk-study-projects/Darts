@@ -1,7 +1,9 @@
 package view;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -25,6 +27,7 @@ public class DartsGUI extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
+		
 		HomeScreen home = new HomeScreen();
 		this.add(home, "home");
 		
@@ -34,6 +37,10 @@ public class DartsGUI extends JFrame {
 		GameScreen game = new GameScreen();
 		this.add(game, "game");
 		
+		DartBoardGraphic board = new DartBoardGraphic();
+		this.add(board, "board");
+		
+		
 		home.playButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "setup"));
 		home.exitButton.addActionListener(e -> System.exit(0));
 		
@@ -41,6 +48,7 @@ public class DartsGUI extends JFrame {
 		setup.startButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "game"));
 		
 		game.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
+		game.boardButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "board"));
 		
 	}
 	
