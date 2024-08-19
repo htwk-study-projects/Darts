@@ -14,16 +14,16 @@ public class SetupScreen extends JPanel {
 	
 	private JLabel title;
 	
-	private SetupLine startBreakLine;
+	private Line startBreakLine;
 	protected JButton startButton;
 	protected JButton homeButton;
 	
-	private SetupLine modeLine;
+	private Line modeLine;
 	private JLabel modeLabel;
 	private JRadioButton mode301; 
 	private JRadioButton mode501; 
 	
-	private SetupLine playerNumberLine;
+	private Line playerNumberLine;
 	private JLabel playerNumberLabel;
 	private JRadioButton players2; 
 	private JRadioButton players3;
@@ -50,7 +50,7 @@ public class SetupScreen extends JPanel {
 		modeGroup.add(mode301);
 		modeGroup.add(mode501);		
 		JComponent[] modeSetup = {modeLabel, mode301, mode501};
-		modeLine = new SetupLine(modeSetup);
+		modeLine = new Line(modeSetup);
 		
 		playerNumberLabel = new JLabel("Spieleranzahl:");	
 		players2 = new JRadioButton("2 Spieler");
@@ -62,16 +62,16 @@ public class SetupScreen extends JPanel {
 		playersGroup.add(players3);
 		playersGroup.add(players4);	
 		JComponent[] playerNumberSetup = {playerNumberLabel, players2, players3, players4};
-		playerNumberLine = new SetupLine(playerNumberSetup);
+		playerNumberLine = new Line(playerNumberSetup);
 		
 		startButton = new JButton("Start");		
 		homeButton = new JButton("Abbrechen");
 		JButton[] setupButtons = {homeButton, startButton};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
-		startBreakLine = new SetupLine(setupButtons);
+		startBreakLine = new Line(setupButtons);
 		
 		JComponent[] setupMenu = {modeLine, playerNumberLine, startBreakLine};
-		setupMenuBar = new Bar(setupMenu, 3, 1);
+		setupMenuBar = new Bar(setupMenu);
 		setupMenuBar.barPlacement(this, 4);
 	}
 }

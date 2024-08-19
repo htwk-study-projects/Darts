@@ -38,7 +38,7 @@ public class HomeScreen extends JPanel {
 		JButton[] homeButtons = {playButton, loadButton, exitButton};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, homeButtons);
 		
-		homeMenu = new Bar(homeButtons, 3, 1);
+		homeMenu = new Bar(homeButtons);
 		homeMenu.barPlacement(this, 4);
 		
 
