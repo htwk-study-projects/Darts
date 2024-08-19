@@ -9,95 +9,125 @@ import javax.swing.JPanel;
 
 public class DartBoardGraphic extends JPanel {
 
-    float strokeWidth = 3;
-    int[] diameters = {750, 740, 640, 600, 390, 350, 50, 20};
-    double AngleLines = 2 * Math.PI / 20;
-    String[] numbers = {"20", "1", "18", "4", "13", "6", "10", "15", "2", "17", "3", "19", "7", "16", "8", "11", "14", "9", "12", "5"};
+    private final static int[] DIAMETERS = {760, 750, 640, 600, 390, 350, 50, 20};
+    private final static double ANGLELINES = 2 * Math.PI / 20;
+    private final static String[] NUMBERS = {"20", "1", "18", "4", "13", "6", "10", "15", "2", "17", "3", "19", "7", "16", "8", "11", "14", "9", "12", "5"};
+    private final static double BOARDSIZEPANELSIZERELATION = 3.0/4.0;
+    private final static Color BLACK = Color.BLACK;
+    private final static Color GREY = new Color(77, 77, 77);
+    private final static Color WHITE = new Color(230, 230, 230);
+    private final static Color GREEN = new Color(39, 200, 89);
+    private final static Color RED = new Color(228, 30, 37);
+    private final static float STROKEWIDTH = 2.6f;
+    
+    private Font dartBoardNumbersFont;
+    private int panelWidth;
+    private int panelHeight;
+    private int CenterX;
+    private int CenterY;
+    private int adjustedMAXBoardDiameter;
+    private int[] adjustedBoardDiameters;
+    private int fontSize;
+    
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g); // Ruft die Basisklassenmethode auf, um den Hintergrund zu zeichnen
+        super.paintComponent(g);
+        Graphics2D dartBoardTwoD = (Graphics2D) g;
 
-        Graphics2D g2d = (Graphics2D) g;
+        widthHeightInit();
+        adjustedMAXBoardDiameter = (int) (Math.min(panelWidth, panelHeight) * (BOARDSIZEPANELSIZERELATION)); // Board-Durchmesser relativ zur Panelgröße // bestimmt boarddurchmesser, anhand ob x oder y-wert kleiner ist, da sonst das board mit Rand überlappen würde 
+        adjustedBoardDiameters = diameterScaling();
+        
+        dartBoardNumbersFont = textScaling();
+        dartBoardTwoD.setFont(dartBoardNumbersFont);
 
-        int panelWidth = getWidth();
-        int panelHeight = getHeight();
-        int CenterX = panelWidth / 2;
-        int CenterY = panelHeight / 2;
-        double board_size_panel = 3.0/4.0; // Entscheidet wie groß das Board auf dem Panel angezeigt werden soll, wenn 1 dann ist es auf Standart für 1200 x 800.
-        int boardDiameter =(int) (Math.min(panelWidth, panelHeight) * (board_size_panel)); // Board-Durchmesser relativ zur Panelgröße // bestimmt boarddurchmesser, anhand ob x oder y-wert kleiner ist, da sonst das board mit Rand überlappen würde 
-
-        // Skaliere die Durchmesser relativ zum Board-Durchmesser
-        int[] scaledDiameters = new int[diameters.length]; // legt neuen Array ScaledDiameter an, der genau so groß ist wie Durchmesser für 1200 x 800.
-        for (int i = 0; i < diameters.length; i++) {		//Itiert solange durch, bis alle Durchmesser für die angepasste Fenstergröße berechnet worden
-            scaledDiameters[i] = (int) (diameters[i] * (boardDiameter / 750.0));
+        drawBackgroundAreas(dartBoardTwoD);
+        drawSectorColors(dartBoardTwoD);
+        drawBoundaryLinesAndLabels(dartBoardTwoD);
+        drawBullseye(dartBoardTwoD);
+        drawBoundaryCircles(dartBoardTwoD);
+    }
+    
+    private void widthHeightInit() {
+    	panelWidth = this.getWidth();
+        panelHeight = this.getHeight();
+        CenterX = panelWidth / 2;
+        CenterY = panelHeight / 2;
+    }
+    
+    private int[] diameterScaling() {
+    	int[] scaledDiameters = new int[DIAMETERS.length];
+    	double basisDiameter = (double) DIAMETERS[0];
+        for (int i = 0; i < DIAMETERS.length; i++) {
+            scaledDiameters[i] = (int) (DIAMETERS[i] * (adjustedMAXBoardDiameter / basisDiameter));
         }
+        return scaledDiameters;
+    }
+    
+    private Font textScaling() {
+    	fontSize = Math.max(10, adjustedMAXBoardDiameter / 20); 
+    	return dartBoardNumbersFont = new Font("Impact", Font.BOLD, fontSize);
+    }
+    
+    private void drawBackgroundAreas(Graphics2D targetPlace) {
+    	targetPlace.setColor(GREY);
+    	targetPlace.fillOval(CenterX - adjustedBoardDiameters[0] / 2, CenterY - adjustedBoardDiameters[0] / 2, adjustedBoardDiameters[0], adjustedBoardDiameters[0]);
+    	targetPlace.setColor(BLACK);
+    	targetPlace.fillOval(CenterX - adjustedBoardDiameters[1] / 2, CenterY - adjustedBoardDiameters[1] / 2, adjustedBoardDiameters[1], adjustedBoardDiameters[1]);
+        targetPlace.setColor(WHITE);
+        targetPlace.fillOval(CenterX - adjustedBoardDiameters[3] / 2, CenterY - adjustedBoardDiameters[3] / 2, adjustedBoardDiameters[3], adjustedBoardDiameters[3]);
+    }
+    
+    private void drawSectorColors(Graphics2D targetPlace) {
+    	for (int i = 0; i < 20; i++) {
+    		double angle = (1.5 + i) * ANGLELINES;
+    		targetPlace.setColor(i % 2 == 0 ? GREEN : RED);
+    		targetPlace.fillArc(CenterX - adjustedBoardDiameters[2] / 2, CenterY - adjustedBoardDiameters[2] / 2, adjustedBoardDiameters[2], adjustedBoardDiameters[2], (int) Math.toDegrees(angle), (int) Math.toDegrees(ANGLELINES));
+    		targetPlace.setColor(i % 2 == 0 ? BLACK : WHITE);
+    		targetPlace.fillArc(CenterX - adjustedBoardDiameters[3] / 2, CenterY - adjustedBoardDiameters[3] / 2, adjustedBoardDiameters[3], adjustedBoardDiameters[3], (int) Math.toDegrees(angle), (int) Math.toDegrees(ANGLELINES));
+    		targetPlace.setColor(i % 2 == 0 ? GREEN : RED);
+    		targetPlace.fillArc(CenterX - adjustedBoardDiameters[4] / 2, CenterY - adjustedBoardDiameters[4] / 2, adjustedBoardDiameters[4], adjustedBoardDiameters[4], (int) Math.toDegrees(angle), (int) Math.toDegrees(ANGLELINES));
+    		targetPlace.setColor(i % 2 == 0 ? BLACK : WHITE);
+    		targetPlace.fillArc(CenterX - adjustedBoardDiameters[5] / 2, CenterY - adjustedBoardDiameters[5] / 2, adjustedBoardDiameters[5], adjustedBoardDiameters[5], (int) Math.toDegrees(angle), (int) Math.toDegrees(ANGLELINES));
+    	}
+    }
+    
+    private void drawBullseye(Graphics2D targetPlace) {
+    	targetPlace.setColor(GREEN);
+    	targetPlace.fillOval(CenterX - adjustedBoardDiameters[6] / 2, CenterY - adjustedBoardDiameters[6] / 2, adjustedBoardDiameters[6], adjustedBoardDiameters[6]);
+    	targetPlace.setColor(RED);
+    	targetPlace.fillOval(CenterX - adjustedBoardDiameters[7] / 2, CenterY - adjustedBoardDiameters[7] / 2, adjustedBoardDiameters[7], adjustedBoardDiameters[7]);
 
-        // Schriftgröße dynamisch anpassen
-        int fontSize = Math.max(10, boardDiameter / 20); // Beispiel: Schriftgröße proportional zum Board-Durchmesser
-        Font boldFont = new Font("Impact", Font.BOLD, fontSize);
-        g2d.setFont(boldFont);
+    }
+    
+    private void drawBoundaryLinesAndLabels(Graphics2D targetPlace) {
+    	for (int i = 0; i < 20; i++) {
+    		targetPlace.setStroke(new BasicStroke(STROKEWIDTH));
+    		double angle = (1.5 + i) * ANGLELINES;
+    		int x_inner_circle = CenterX + (int) (Math.cos(angle) * adjustedBoardDiameters[6] / 2); 
+    		int y_inner_circle = CenterY + (int) (Math.sin(angle) * adjustedBoardDiameters[6] / 2);
+    		int x_line = CenterX + (int) (Math.cos(angle) * adjustedBoardDiameters[2] / 2);
+    		int y_line = CenterY + (int) (Math.sin(angle) * adjustedBoardDiameters[2] / 2);
 
-        // Fläche Färbung
-        g2d.setColor(new Color(77, 77, 77)); // Grauer Ring
-        g2d.fillOval(CenterX - scaledDiameters[0] / 2, CenterY - scaledDiameters[0] / 2, scaledDiameters[0], scaledDiameters[0]);
+    		targetPlace.setColor(WHITE);
+    		targetPlace.drawLine(x_inner_circle, y_inner_circle, x_line, y_line);
 
-        g2d.setColor(Color.BLACK); // Schwarzer Ring
-        g2d.fillOval(CenterX - scaledDiameters[1] / 2, CenterY - scaledDiameters[1] / 2, scaledDiameters[1], scaledDiameters[1]);
+    		double angle_number = i * ANGLELINES - Math.PI / 2;
+    		int x_number = CenterX + (int) (Math.cos(angle_number) * adjustedBoardDiameters[5]);
+    		int y_number = CenterY + (int) (Math.sin(angle_number) * adjustedBoardDiameters[5]);
+    		
+    		int textWidth = targetPlace.getFontMetrics().stringWidth(NUMBERS[i]);
+    		int textHeight = targetPlace.getFontMetrics().getHeight();
 
-        g2d.setColor(new Color(230, 230, 230)); // Weiße Fläche
-        g2d.fillOval(CenterX - scaledDiameters[3] / 2, CenterY - scaledDiameters[3] / 2, scaledDiameters[3], scaledDiameters[3]);
-
-        g2d.setColor(new Color(235, 231, 162)); // Gelb
-        for (int j = 0; j < 20; j++) {
-            double angle = (1.5 + j) * AngleLines;
-            g2d.setColor(j % 2 == 0 ? new Color(39, 200, 89) : new Color(228, 30, 37));
-            g2d.fillArc(CenterX - scaledDiameters[2] / 2, CenterY - scaledDiameters[2] / 2, scaledDiameters[2], scaledDiameters[2], (int) Math.toDegrees(angle), (int) Math.toDegrees(AngleLines));
-            g2d.setColor(j % 2 == 0 ? Color.BLACK : Color.WHITE);
-            g2d.fillArc(CenterX - scaledDiameters[3] / 2, CenterY - scaledDiameters[3] / 2, scaledDiameters[3], scaledDiameters[3], (int) Math.toDegrees(angle), (int) Math.toDegrees(AngleLines));
-            g2d.setColor(j % 2 == 0 ? new Color(39, 200, 89) : new Color(228, 30, 37));
-            g2d.fillArc(CenterX - scaledDiameters[4] / 2, CenterY - scaledDiameters[4] / 2, scaledDiameters[4], scaledDiameters[4], (int) Math.toDegrees(angle), (int) Math.toDegrees(AngleLines));
-            g2d.setColor(j % 2 == 0 ? Color.BLACK : Color.WHITE);
-            g2d.fillArc(CenterX - scaledDiameters[5] / 2, CenterY - scaledDiameters[5] / 2, scaledDiameters[5], scaledDiameters[5], (int) Math.toDegrees(angle), (int) Math.toDegrees(AngleLines));
-        }
-
-        // Zeichnen der Konzentrierten Kreise
-        g2d.setColor(new Color(39, 200, 89)); // 25 Punkte
-        g2d.fillOval(CenterX - scaledDiameters[6] / 2, CenterY - scaledDiameters[6] / 2, scaledDiameters[6], scaledDiameters[6]);
-
-        g2d.setColor(new Color(229, 29, 36)); // 50 Punkte
-        g2d.fillOval(CenterX - scaledDiameters[7] / 2, CenterY - scaledDiameters[7] / 2, scaledDiameters[7], scaledDiameters[7]);
-
-        g2d.setColor(Color.WHITE);
-
-        // Zeichnen der Ringe
-        g2d.setStroke(new BasicStroke(strokeWidth));
-        for (int diameter : scaledDiameters) {
-            g2d.drawOval(CenterX - diameter / 2, CenterY - diameter / 2, diameter, diameter);
-        }
-
-        // Zeichnen der Linien und Nummern
-        for (int i = 0; i < 20; i++) {
-            double angle = (1.5 + i) * AngleLines;
-            int x_inner_circle = CenterX + (int) (Math.cos(angle) * scaledDiameters[6] / 2); // Grenze vom Bullseye
-            int y_inner_circle = CenterY + (int) (Math.sin(angle) * scaledDiameters[6] / 2); // Grenze vom Bullseye
-            int x_line = CenterX + (int) (Math.cos(angle) * scaledDiameters[2] / 2);
-            int y_line = CenterY + (int) (Math.sin(angle) * scaledDiameters[2] / 2);
-
-            g2d.setColor(Color.WHITE);
-            g2d.drawLine(x_inner_circle, y_inner_circle, x_line, y_line);
-
-            double angle_number = i * AngleLines - Math.PI / 2; // Winkel der Zahlen
-            int x_number = CenterX + (int) (Math.cos(angle_number) * scaledDiameters[5]);
-            int y_number = CenterY + (int) (Math.sin(angle_number) * scaledDiameters[5]);
-
-            // Zentrieren
-            int textWidth = g2d.getFontMetrics().stringWidth(numbers[i]);
-            int textHeight = g2d.getFontMetrics().getHeight();
-
-            // Zeichne die Nummern
-            g2d.setColor(Color.WHITE);
-            g2d.drawString(numbers[i], x_number - textWidth / 2, y_number + textHeight / 4);
+    		targetPlace.drawString(NUMBERS[i], x_number - textWidth / 2, y_number + textHeight / 3); 
+    	}
+    }
+    
+    private void drawBoundaryCircles(Graphics2D targetPlace) {
+    	targetPlace.setColor(WHITE);
+        for (int diameter : adjustedBoardDiameters) {
+        	targetPlace.drawOval(CenterX - diameter / 2, CenterY - diameter / 2, diameter, diameter);
         }
     }
 }
