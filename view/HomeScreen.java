@@ -3,7 +3,6 @@ package view;
 
 import java.awt.GridLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -20,7 +19,7 @@ public class HomeScreen extends JPanel {
 	
 	public HomeScreen() {
 		
-		 backgroundBoard = new DartBoardGraphic();
+		 backgroundBoard = new DartBoardGraphic(0.2);
 		 this.add(backgroundBoard);
 		
 		this.setLayout(new GridLayout(3,3));
