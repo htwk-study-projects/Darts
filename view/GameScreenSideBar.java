@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -19,7 +20,8 @@ import javax.swing.table.TableCellRenderer;
 public class GameScreenSideBar extends JPanel {
 
     public GameScreenSideBar() {
-
+    	
+    	
         this.setLayout(new BorderLayout());
 
         // Tabelle erstellen mit Spalten: Farbe (als Kästchen), Spieler, Punktzahl (ohne Kopfzeilen)
@@ -50,15 +52,15 @@ public class GameScreenSideBar extends JPanel {
         table.setRowHeight(40);
 
         JScrollPane scrollPane = new JScrollPane(table);
-        this.add(scrollPane, BorderLayout.CENTER);
 
         JButton saveButton = new JButton("Speichern");
         JButton backButton = new JButton("Zurück");
         JButton[] buttons = {saveButton, backButton};
         JPanel buttonLine = new Line(buttons);
         
-        this.add(buttonLine, BorderLayout.SOUTH);
+        JComponent[] test = {new JPanel(),scrollPane, new JPanel(),buttonLine};
+        Bar Table = new Bar(test);
+        this.add(Table,BorderLayout.CENTER);
     }
 
-  
 }

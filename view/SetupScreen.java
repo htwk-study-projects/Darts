@@ -45,6 +45,7 @@ public class SetupScreen extends JPanel {
 		modeLabel = new JLabel("Spielmodus:");	
 		mode301 = new JRadioButton("301 Punkte");
 		mode301.setSelected(true);
+		mode301.
 		mode501 = new JRadioButton("501 Punkte");	
 		ButtonGroup modeGroup = new ButtonGroup();
 		modeGroup.add(mode301);

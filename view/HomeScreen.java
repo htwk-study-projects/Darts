@@ -12,6 +12,7 @@ public class HomeScreen extends JPanel {
 
 	private JLabel title;
 	
+	private DartBoardGraphic backgroundBoard;
 	private Bar homeMenu;
 	protected JButton playButton;
 	protected JButton loadButton;
@@ -19,8 +20,8 @@ public class HomeScreen extends JPanel {
 	
 	public HomeScreen() {
 		
-		DartBoardGraphic dartBoardGraphic = new DartBoardGraphic();
-		dartBoardGraphic.setOpaque(false); // Damit der Hintergrund transparent bleibt
+		 backgroundBoard = new DartBoardGraphic();
+		 this.add(backgroundBoard);
 		
 		this.setLayout(new GridLayout(3,3));
 		DartsGUI.gridLayoutFill(this, 3, 3);
