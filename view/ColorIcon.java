@@ -7,8 +7,8 @@ public class ColorIcon implements Icon {
     private final Color color;
     private static final int SIZE = 15;
 
-    public ColorIcon(Color color) {
-        this.color = color;
+    public ColorIcon(Color value) {
+        this.color = value;
     }
 
     public void paintIcon(Component c, Graphics g, int x, int y) {
