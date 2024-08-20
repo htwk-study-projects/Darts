@@ -8,17 +8,17 @@ public class GameScreen extends JPanel {
 	
 	private GridBagConstraints screenDivisionConstraints = new GridBagConstraints();
 	private DartBoardGraphic board;
-	private JPanel sideBar;
+	private GameScreenSideBar sideBar;
 	
 	public GameScreen() {
 		
 		 this.setLayout(new GridBagLayout());
 			
 		 board = new DartBoardGraphic();
-	     this.setScreenDivisionConstrains(0, 0, 2, 2, 3, 3, GridBagConstraints.BOTH);
+	     this.setScreenDivisionConstrains(0, 0, 2, 2, 200, 200, GridBagConstraints.BOTH);
 	     this.add(board, screenDivisionConstraints);
 	        
-	     sideBar = new JPanel();
+	     sideBar = new GameScreenSideBar();
 	     this.setScreenDivisionConstrains(2, 0, 1, 1, 1, 1, GridBagConstraints.BOTH);
 	     this.add(sideBar, screenDivisionConstraints);
 
