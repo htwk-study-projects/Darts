@@ -26,10 +26,10 @@ public class GameScreenSideBar extends JPanel {
 
         // Tabelle erstellen mit Spalten: Farbe (als Kästchen), Spieler, Punktzahl (ohne Kopfzeilen)
         Object[][] data = {
-            {Color.RED, "Spieler 1", "501"},
-            {Color.BLUE, "Spieler 2", "501"},
-            {Color.GREEN, "Spieler 3", "501"},
-            {Color.YELLOW, "Spieler 4", "501"},
+             {Color.RED, "501", "Spieler 1"},
+             {Color.BLUE, "501", "Spieler 2"},
+             {Color.GREEN, "501", "Spieler 3"},
+             {Color.YELLOW, "501", "Spieler 4"},
         };
 
         // Custom TableModel, um die Bearbeitung zu verhindern
@@ -47,6 +47,8 @@ public class GameScreenSideBar extends JPanel {
                 return super.getCellRenderer(row, column);
             }
         };
+        
+        table.removeColumn(table.getColumnModel().getColumn(2));
 
         table.setFont(DartsGUI.FONT_NORMAL);
         table.setRowHeight(40);
