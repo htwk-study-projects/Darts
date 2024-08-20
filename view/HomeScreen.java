@@ -19,7 +19,7 @@ public class HomeScreen extends JPanel {
 	
 	public HomeScreen() {
 		
-		 backgroundBoard = new DartBoardGraphic(0.2);
+		 backgroundBoard = new DartBoardGraphic(0.85);
 		 this.add(backgroundBoard);
 		
 		this.setLayout(new GridLayout(3,3));
