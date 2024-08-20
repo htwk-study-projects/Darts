@@ -19,6 +19,9 @@ import javax.swing.table.TableCellRenderer;
 
 public class GameScreenSideBar extends JPanel {
 
+	protected JButton saveButton;
+	protected JButton backButton;
+	
     public GameScreenSideBar() {
     	
     	
@@ -55,8 +58,8 @@ public class GameScreenSideBar extends JPanel {
 
         JScrollPane scrollPane = new JScrollPane(table);
 
-        JButton saveButton = new JButton("Speichern");
-        JButton backButton = new JButton("Zurück");
+        saveButton = new JButton("Speichern");
+        backButton = new JButton("Zurück");
         JButton[] buttons = {saveButton, backButton};
         JPanel buttonLine = new Line(buttons);
         
