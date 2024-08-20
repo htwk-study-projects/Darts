@@ -56,7 +56,6 @@ public class SetupScreen extends JPanel {
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JComponent[] Buttons = {players2, players3, players4};
-		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, Buttons);
 		
 		playerNumberLabel = new JLabel("Spieleranzahl:");	
 		players2 = new JRadioButton("2 Spieler");

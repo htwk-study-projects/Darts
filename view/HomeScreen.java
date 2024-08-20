@@ -16,42 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 public class HomeScreen extends JPanel {
 
-<<<<<<< HEAD
-	private JLabel title;
-	
-	private DartBoardGraphic backgroundBoard;
-	private Bar homeMenu;
-	protected JButton playButton;
-	protected JButton loadButton;
-	protected JButton exitButton;
-	
-	public HomeScreen() {
-		
-		 backgroundBoard = new DartBoardGraphic(0.85);
-		 this.add(backgroundBoard);
-		
-		this.setLayout(new GridLayout(3,3));
-		DartsGUI.gridLayoutFill(this, 3, 3);
-		
-		title = new JLabel("Darts");
-		title.setFont(DartsGUI.FONT_TITLE);
-		title.setHorizontalAlignment(SwingConstants.CENTER);
-		this.remove(1);
-		this.add(title, 1);
-		
-		playButton = new JButton("Spielen");
-		loadButton = new JButton("Spiel laden");
-		exitButton = new JButton("Beenden");
-		
-		JButton[] homeButtons = {playButton, loadButton, exitButton};
-		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, homeButtons);
-		
-		homeMenu = new Bar(homeButtons);
-		homeMenu.barPlacement(this, 4);
-		
-=======
     private GridBagConstraints screenDivisionConstraints = new GridBagConstraints();
->>>>>>> b7596267b92666da721127c275c059602f7be22a
 
     private JLabel title;
     private DartBoardGraphic backgroundBoard;
