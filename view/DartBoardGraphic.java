@@ -13,11 +13,12 @@ public class DartBoardGraphic extends JPanel {
     private final static double ANGLELINES = 2 * Math.PI / 20;
     private final static String[] NUMBERS = {"20", "1", "18", "4", "13", "6", "10", "15", "2", "17", "3", "19", "7", "16", "8", "11", "14", "9", "12", "5"};
     private final static double BOARDSIZEPANELSIZERELATION = 3.0/4.0;
+    private static int visibility = 255;
     private final static Color BLACK = Color.BLACK;
-    private final static Color GREY = new Color(77, 77, 77);
-    private final static Color WHITE = new Color(230, 230, 230);
-    private final static Color GREEN = new Color(39, 200, 89);
-    private final static Color RED = new Color(228, 30, 37);
+    private final static Color GREY = new Color(77, 77, 77, visibility);
+    private final static Color WHITE = new Color(230, 230, 230, visibility);
+    private final static Color GREEN = new Color(39, 200, 89, visibility);
+    private final static Color RED = new Color(228, 30, 37, visibility);
     private final static float STROKEWIDTH = 2.6f;
     
     private Font dartBoardNumbersFont;
@@ -29,7 +30,11 @@ public class DartBoardGraphic extends JPanel {
     private int[] adjustedBoardDiameters;
     private int fontSize;
     
-
+    public DartBoardGraphic(double visibilityMultiplier) {
+    	DartBoardGraphic.visibility *= visibilityMultiplier;
+    }
+    
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
