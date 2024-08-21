@@ -13,10 +13,10 @@ public class DartsGUI extends JFrame {
 	
 	private CardLayout cardLayout;  // Instanzvariable für CardLayout
 	
-	protected final static Font FONT_TITLE = new Font("Arial", Font.BOLD, 32);
-	protected final static Font FONT_BIG = new Font("Arial", Font.BOLD, 22);
-	protected final static Font FONT_NORMAL = new Font("Arial", Font.PLAIN, 14);
-	protected final static Font FONT_SMALL = new Font("Arial", Font.PLAIN, 10);
+	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 32);
+	protected final static Font FONT_BIG = new Font("Impact", Font.BOLD, 22);
+	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 14);
+	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 10);
 	
 	public DartsGUI(model.DartsData gameData){
 		
