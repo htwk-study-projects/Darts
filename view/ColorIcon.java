@@ -13,9 +13,9 @@ public class ColorIcon implements Icon {
 
     public void paintIcon(Component c, Graphics g, int x, int y) {
         g.setColor(color);
-        g.fillRect(x, y, SIZE, SIZE);
+        g.fillOval(x, y, SIZE, SIZE);
         g.setColor(Color.BLACK);
-        g.drawRect(x, y, SIZE, SIZE);
+        g.drawOval(x, y, SIZE, SIZE);
     }
 
     public int getIconWidth() {
