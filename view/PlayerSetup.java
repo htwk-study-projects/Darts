@@ -109,6 +109,7 @@ public class PlayerSetup extends JPanel {
         
         // Zeile 0: Spieler Label
         gbc.gridy = 1;
+        gbc.gridx = 1;
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.WEST;
         gridBagPanel.add(playerNameLable, gbc);
