@@ -6,6 +6,7 @@ public class Throw {
 	private final static double G = 9.81;
 	private final static MathVector gravityVector = new MathVector(new double[]{0,0,-0.5*G});
 	private final static MathVector dartBoardCenter = new MathVector(new double[]{distanceToDartBoard,0,0});
+	private final static MathVector dartBoardAngleVector = new MathVector(new double[]{0,1,0});
 	
 	private MathVector directionVector;
 	private MathVector impactVector;
@@ -30,6 +31,8 @@ public class Throw {
 	}
 	
 	public int computeAngleOnDartBoard() {
-		return dartBoardCenter.intersectionAngle(impactVector);
+		int angle = dartBoardAngleVector.intersectionAngleAntiClockwise(impactVector);
+		if(dartBoardAngleVector.dotProd(impactVector) < 0) return angle + 180;
+		return angle;
 	}
 }
