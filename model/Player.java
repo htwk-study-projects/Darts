@@ -1,14 +1,16 @@
 package model;
 
+import java.awt.Color;
+
 public class Player {
 	
     private String name;
-    private Colors color;
+    private Color color;
     
     private int wuerfeZahl;
     private int punktzahl;
 
-    public Player(String name, Colors color) {
+    public Player(String name, Color color) {
         this.name = name;
         this.color = color;
         this.wuerfeZahl = 3;
@@ -31,12 +33,8 @@ public class Player {
         this.name = name;
     }
 
-    public Colors getColor() {
+    public Color getColor() {
         return color;
-    }
-
-    public void setColor(Colors color) {
-        this.color = color;
     }
 
     public int getWuerfeZahl() {
