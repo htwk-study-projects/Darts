@@ -2,26 +2,35 @@ package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class GameScreen extends JPanel {
 	
 	private GridBagConstraints screenDivisionConstraints = new GridBagConstraints();
+	
 	private DartBoardGraphic board;
-	private JPanel sideBar;
+	private GameScreenSideBar sideBar;
+
+	protected JButton saveButton;
+	protected JButton backButton;
 	
 	public GameScreen() {
 		
 		 this.setLayout(new GridBagLayout());
 			
-		 board = new DartBoardGraphic();
-	     this.setScreenDivisionConstrains(0, 0, 2, 2, 3, 3, GridBagConstraints.BOTH); // Position und Größe des Dartboards
-	     this.add(board, screenDivisionConstraints); // Dartboard hinzufügen
+		 board = new DartBoardGraphic(1);
+	     this.setScreenDivisionConstrains(0, 0, 2, 2, 20, 20, GridBagConstraints.BOTH);
+	     this.add(board, screenDivisionConstraints);
 	        
-	     sideBar = new JPanel();
-	     this.setScreenDivisionConstrains(2, 0, 1, 1, 1, 1, GridBagConstraints.BOTH); // Position und Größe des Buttons
-	     this.add(sideBar, screenDivisionConstraints); // Button hinzufügen
+	     sideBar = new GameScreenSideBar();
+	     this.setScreenDivisionConstrains(2, 0, 1, 1, 1, 1, GridBagConstraints.BOTH);
+	     this.add(sideBar, screenDivisionConstraints);
 
+		 this.saveButton = sideBar.saveButton;
+		 this.backButton = sideBar.backButton;
+		 
 	        
 	}
 	

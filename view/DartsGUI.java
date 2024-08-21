@@ -13,10 +13,10 @@ public class DartsGUI extends JFrame {
 	
 	private CardLayout cardLayout;  // Instanzvariable für CardLayout
 	
-	protected final static Font FONT_TITLE = new Font("Arial", Font.BOLD, 32);
-	protected final static Font FONT_BIG = new Font("Arial", Font.BOLD, 22);
-	protected final static Font FONT_NORMAL = new Font("Arial", Font.PLAIN, 14);
-	protected final static Font FONT_SMALL = new Font("Arial", Font.PLAIN, 10);
+	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 32);
+	protected final static Font FONT_BIG = new Font("Impact", Font.BOLD, 22);
+	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 14);
+	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 10);
 	
 	public DartsGUI(model.DartsData gameData){
 		
@@ -27,12 +27,17 @@ public class DartsGUI extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
+		//DartArrowGraphic dartarrow = new DartArrowGraphic();
+		//this.add(dartarrow,"arrow");
 		
 		HomeScreen home = new HomeScreen();
 		this.add(home, "home");
 		
 		SetupScreen setup = new SetupScreen();
 		this.add(setup, "setup");
+		
+		PlayerSetup setPlayer = new PlayerSetup();
+		this.add(setPlayer, "player");
 		
 		GameScreen game = new GameScreen();
 		this.add(game, "game");
@@ -41,8 +46,13 @@ public class DartsGUI extends JFrame {
 		home.exitButton.addActionListener(e -> System.exit(0));
 		
 		setup.homeButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
-		setup.startButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "game"));
+		setup.startButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "player"));
 		
+		setPlayer.homeButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "setup"));
+		setPlayer.startButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "game"));
+		
+		//game.saveButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "game"));
+		game.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
 		//game.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
 		
 	}

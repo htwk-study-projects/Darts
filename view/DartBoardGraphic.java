@@ -12,13 +12,15 @@ public class DartBoardGraphic extends JPanel {
     private final static int[] DIAMETERS = {760, 750, 640, 600, 390, 350, 50, 20};
     private final static double ANGLELINES = 2 * Math.PI / 20;
     private final static String[] NUMBERS = {"20", "1", "18", "4", "13", "6", "10", "15", "2", "17", "3", "19", "7", "16", "8", "11", "14", "9", "12", "5"};
-    private final static double BOARDSIZEPANELSIZERELATION = 3.0/4.0;
-    private final static Color BLACK = Color.BLACK;
-    private final static Color GREY = new Color(77, 77, 77);
-    private final static Color WHITE = new Color(230, 230, 230);
-    private final static Color GREEN = new Color(39, 200, 89);
-    private final static Color RED = new Color(228, 30, 37);
-    private final static float STROKEWIDTH = 2.6f;
+    private final static double BOARDSIZE_PANELSIZE_RELATION = 3.0/4.0;
+    private final static float STROKE_WIDTH = 2.6f;
+    
+    private int visibility = 255;
+    private Color BLACK;
+    private Color GREY; 
+    private Color WHITE;
+    private Color GREEN;
+    private Color RED;
     
     private Font dartBoardNumbersFont;
     private int panelWidth;
@@ -29,14 +31,27 @@ public class DartBoardGraphic extends JPanel {
     private int[] adjustedBoardDiameters;
     private int fontSize;
     
-
+    public DartBoardGraphic(double visibilityMultiplier) {
+    	this.visibility *= visibilityMultiplier;
+    	this.setColors();
+    }
+    
+    private void setColors() {
+    	this.BLACK = new Color(10, 10, 10, visibility);
+        this.GREY = new Color(77, 77, 77, visibility);
+        this.WHITE = new Color(230, 230, 230, visibility);
+        this.GREEN = new Color(39, 200, 89, visibility);
+        this.RED = new Color(228, 30, 37, visibility);
+    }
+    
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D dartBoardTwoD = (Graphics2D) g;
 
         widthHeightInit();
-        adjustedMAXBoardDiameter = (int) (Math.min(panelWidth, panelHeight) * (BOARDSIZEPANELSIZERELATION)); // Board-Durchmesser relativ zur Panelgröße // bestimmt boarddurchmesser, anhand ob x oder y-wert kleiner ist, da sonst das board mit Rand überlappen würde 
+        adjustedMAXBoardDiameter = (int) (Math.min(panelWidth, panelHeight) * (BOARDSIZE_PANELSIZE_RELATION)); // Board-Durchmesser relativ zur Panelgröße // bestimmt boarddurchmesser, anhand ob x oder y-wert kleiner ist, da sonst das board mit Rand überlappen würde 
         adjustedBoardDiameters = diameterScaling();
         
         dartBoardNumbersFont = textScaling();
@@ -103,7 +118,7 @@ public class DartBoardGraphic extends JPanel {
     
     private void drawBoundaryLinesAndLabels(Graphics2D targetPlace) {
     	for (int i = 0; i < 20; i++) {
-    		targetPlace.setStroke(new BasicStroke(STROKEWIDTH));
+    		targetPlace.setStroke(new BasicStroke(STROKE_WIDTH));
     		double angle = (1.5 + i) * ANGLELINES;
     		int x_inner_circle = CenterX + (int) (Math.cos(angle) * adjustedBoardDiameters[6] / 2); 
     		int y_inner_circle = CenterY + (int) (Math.sin(angle) * adjustedBoardDiameters[6] / 2);

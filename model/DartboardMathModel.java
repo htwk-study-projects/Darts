@@ -12,23 +12,23 @@ public class DartboardMathModel {
 	private final static Integer[] MULTIPLIERS = {-1,0,1,2,3};
 	private final static Double[] DISTANCES = {6.35, 15.9, 99.0, 107.0, 162.0, 170.0};
 	
-	private final static Integer[] sectors;
-	private final static Map<IntegerKeyPair, Integer> fieldValueRelations = new HashMap<>();
-	private final static Map<Integer, Integer> angleSectorRelation = new HashMap<>();
+	private final static Integer[] SECTORS;
+	private final static Map<IntegerKeyPair, Integer> FIELD_VALUE_RELATIONS = new HashMap<>();
+	private final static Map<Integer, Integer> ANGLE_SECTOR_RELATION = new HashMap<>();
 	
 	static {
-		sectors = sectorGenerator();
+		SECTORS = sectorGenerator();
 		fieldValueRelationsGenerator();
 		angleSectorRelationGenerator();
 	}
 	
 	private static void fieldValueRelationsGenerator() {
-		for(Integer sector : sectors) {
+		for(Integer sector : SECTORS) {
 			List<Integer> values = new ArrayList<>();
 			values = valuesGenerator(sector);
 			for(Integer multiplier : MULTIPLIERS) {
 				IntegerKeyPair keyPair = new IntegerKeyPair(sector, multiplier);
-				fieldValueRelations.put(keyPair, values.get(multiplier + 1));
+				FIELD_VALUE_RELATIONS.put(keyPair, values.get(multiplier + 1));
 			}
 		}	
 	}
@@ -54,16 +54,16 @@ public class DartboardMathModel {
 	private static void angleSectorRelationGenerator() {
 		Integer[] sectorSequence = {6,13,4,18,1,20,5,12,9,14,11,8,16,7,19,3,17,2,15,10,6};
 		for(int i = 0; i < sectorSequence.length; i++) {
-			angleSectorRelation.put(i, sectorSequence[i]);
+			ANGLE_SECTOR_RELATION.put(i, sectorSequence[i]);
 		}
 	}
 	
 	public  Map<IntegerKeyPair, Integer> getFieldValueRelations() {
-		return fieldValueRelations;
+		return FIELD_VALUE_RELATIONS;
 	}
 	
 	public void printFieldValueRelations() {
-        for (Map.Entry<IntegerKeyPair, Integer> entry : fieldValueRelations.entrySet()) {
+        for (Map.Entry<IntegerKeyPair, Integer> entry : FIELD_VALUE_RELATIONS.entrySet()) {
         	IntegerKeyPair keyArray = entry.getKey();
             Integer value = entry.getValue();
             System.out.println(keyArray + " Wert: " + value);
@@ -75,7 +75,7 @@ public class DartboardMathModel {
 		Integer multiplier = determineMultiplier(distance);
 		Integer points;
 		IntegerKeyPair keyPair = new IntegerKeyPair(sector, multiplier);
-		points = fieldValueRelations.get(keyPair);
+		points = FIELD_VALUE_RELATIONS.get(keyPair);
 		if(points == null) return 0;
 		return points;
 	}
@@ -89,8 +89,8 @@ public class DartboardMathModel {
 		hitSectorTemp = angle/degreePerSector + 0.5;
 		hitSector = (int)(angle/degreePerSector + 0.5);
 		boolean isWireHit = (hitSectorTemp - hitSector) == 0;
-		if(isWireHit) return angleSectorRelation.get(hitSector - random.nextInt(2));
-		return angleSectorRelation.get(hitSector);
+		if(isWireHit) return ANGLE_SECTOR_RELATION.get(hitSector - random.nextInt(2));
+		return ANGLE_SECTOR_RELATION.get(hitSector);
 	}
 	
 	public Integer determineMultiplier(Double distance) {

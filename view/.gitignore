@@ -13,4 +13,23 @@
 /GameScreenBar$2.class
 /GameScreenBar$ColorAndTextCellRenderer.class
 /GameScreenBar$ColorIcon.class
+<<<<<<< HEAD
+=======
 /Line.class
+>>>>>>> b4cb0d53401316570c8ea81f9ce977d2b233eefb
+/GameScreenSideBar.class
+/GameScreenSideBar$1.class
+/GameScreenSideBar$2.class
+/ColorIcon.class
+/ColorAndTextCellRenderer.class
+/IconRenderer.class
+<<<<<<< HEAD
+/PlayerSetup.class
+=======
+/HomeScreen$1.class
+>>>>>>> b7596267b92666da721127c275c059602f7be22a
+<<<<<<< HEAD
+/DartArrowGraphic.class
+=======
+/GameScreenPlayerPanel.class
+>>>>>>> 3396bbe443b3153a62fe1f992b315abf27448f0d
