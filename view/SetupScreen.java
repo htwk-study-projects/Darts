@@ -42,22 +42,23 @@ public class SetupScreen extends JPanel {
 	private JRadioButton tripleOut;
 	
 	
-	
 	private Bar setupMenuBar;
 	
 	public SetupScreen() {
 		
-		this.setLayout(new GridLayout(1,3));	
-		DartsGUI.gridLayoutFill(this, 1 , 3);
+		this.setLayout(new GridLayout(3,3));	
+		DartsGUI.gridLayoutFill(this, 3,3);
 
 		
 		title = new JLabel("Game Setup");
 		title.setFont(DartsGUI.FONT_TITLE);
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JComponent[] Buttons = {players2, players3, players4};
+		JComponent[] titleBarElements = {title,new TransparentPanel()};
+		Bar titleBar = new Bar(titleBarElements);
 		
-		playerNumberLabel = new JLabel("Spieleranzahl:");	
+		
+		playerNumberLabel = new JLabel("Spieler:");	
 		players2 = new JRadioButton("2 Spieler");
 		players2.setSelected(true);
 		players3 = new JRadioButton("3 Spieler");
@@ -67,6 +68,7 @@ public class SetupScreen extends JPanel {
 		playersGroup.add(players3);
 		playersGroup.add(players4);	
 		JComponent[] playerNumberSetup = {playerNumberLabel, players2, players3, players4};
+		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, playerNumberSetup);
 		playerNumberLine = new Line(playerNumberSetup);
 		
 		pointsLabel = new JLabel("Punkte:");	
@@ -77,30 +79,34 @@ public class SetupScreen extends JPanel {
 		modeGroup.add(points301);
 		modeGroup.add(points501);		
 		JComponent[] modeSetup = {pointsLabel, points301, points501};
+		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, modeSetup);
 		pointsLine = new Line(modeSetup);
 		
-		modInLabel = new JLabel("Start:");	
-		straightIn = new JRadioButton("Straight-In");
+		modInLabel = new JLabel("In");	
+		straightIn = new JRadioButton("Straight");
 		straightIn.setSelected(true);
-		doubleIn = new JRadioButton("Double-In");
-		tripleIn = new JRadioButton("Triple-In");
+		doubleIn = new JRadioButton("Double");
+		tripleIn = new JRadioButton("Triple");
 		ButtonGroup modInGroup = new ButtonGroup();
 		modInGroup.add(straightIn);
 		modInGroup.add(doubleIn);
 		modInGroup.add(tripleIn);	
 		JComponent[] modInSetup = {modInLabel, straightIn, doubleIn, tripleIn};
+		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, modInSetup);
 		modInLine = new Line(modInSetup);
 		
-		modOutLabel = new JLabel("Finish:");	
-		straightOut = new JRadioButton("Straight-Out");
+		modOutLabel = new JLabel("Out:");	
+		straightOut = new JRadioButton("Straight");
+		
 		straightOut.setSelected(true);
-		doubleOut = new JRadioButton("Double-Out");
-		tripleOut = new JRadioButton("Triple-Out");
+		doubleOut = new JRadioButton("Double");
+		tripleOut = new JRadioButton("Triple");
 		ButtonGroup modOutGroup = new ButtonGroup();
 		modOutGroup.add(straightOut);
 		modOutGroup.add(doubleOut);
 		modOutGroup.add(tripleOut);	
 		JComponent[] modOutSetup = {modOutLabel, straightOut, doubleOut, tripleOut};
+		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, modOutSetup);
 		modOutLine = new Line(modOutSetup);
 		
 		startButton = new JButton("Weiter");		
@@ -109,9 +115,21 @@ public class SetupScreen extends JPanel {
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
 		startBreakLine = new Line(setupButtons);
 		
-		JComponent[] setupMenu = {title,pointsLine, playerNumberLine, modInLine, modOutLine,startBreakLine};
+		JComponent[] setupMenu = {pointsLine, playerNumberLine, modInLine, modOutLine};
+		
+		JComponent[] startBreakBarElements = {new TransparentPanel(),new TransparentPanel(),new TransparentPanel(),startBreakLine};
+		Bar startBreakBar = new Bar(startBreakBarElements);
+		
+		
+		this.remove(1);
+		this.add(titleBar,1);
 		setupMenuBar = new Bar(setupMenu);
-		setupMenuBar.barPlacement(this, 1);
+		setupMenuBar.barPlacement(this, 4);
+		this.remove(7);
+		this.add(startBreakBar,7);
+		
+		
 		
 	}
+	
 }

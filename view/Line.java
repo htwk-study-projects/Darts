@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class Line extends JPanel{
 	
 	public Line(JComponent[] elements) {
-		this.setLayout(new FlowLayout());
+		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 		for(JComponent element : elements) {
 			this.add(element);
 		}
