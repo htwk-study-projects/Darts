@@ -11,6 +11,7 @@ public class GameScreen extends JPanel {
 	private GridBagConstraints screenDivisionConstraints = new GridBagConstraints();
 	private DartBoardGraphic board;
 	private GameScreenSideBar sideBar;
+	private GameScreenPlayerPanel playerPanel;
 	protected JButton saveButton;
 	protected JButton backButton;
 	
@@ -28,6 +29,7 @@ public class GameScreen extends JPanel {
 
 		 this.saveButton = sideBar.saveButton;
 		 this.backButton = sideBar.backButton;
+		 
 	        
 	}
 	
