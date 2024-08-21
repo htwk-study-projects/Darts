@@ -56,24 +56,11 @@ public class MathVector {
 		return scalarProd;
 	}
 	
-	public MathVector crossProd(MathVector vector2) {
-		 if (this.length != 3 || vector2.length != 3) {
-	            throw new IllegalArgumentException("Kreuzprodukt ist nur für 3D-Vektoren definiert.");
-		 }
-		 double[] crossProductComponents = new double[3];
-	     crossProductComponents[0] = this.vectorComponents[1] * vector2.vectorComponents[2] - this.vectorComponents[2] * vector2.vectorComponents[1];
-	     crossProductComponents[1] = this.vectorComponents[2] * vector2.vectorComponents[0] - this.vectorComponents[0] * vector2.vectorComponents[2];
-	     crossProductComponents[2] = this.vectorComponents[0] * vector2.vectorComponents[1] - this.vectorComponents[1] * vector2.vectorComponents[0];
-	     return new MathVector(crossProductComponents);
-	}
-	
 	public int intersectionAngleAntiClockwise(MathVector vector2) {
 		double cosTheta = this.dotProd(vector2) / (this.vectorSize() * vector2.vectorSize());
-	    int theta = (int) Math.toDegrees(Math.acos(cosTheta));
+	    double theta =  Math.toDegrees(Math.acos(cosTheta));
 	    
-	    double sinTheta = this.crossProd(vector2).vectorSize() / (this.vectorSize() * vector2.vectorSize());
-	    
-	    if(sinTheta < 0) return 360 - theta;
-	    return theta;
+	    if(vector2.vectorComponents[2] < 0) theta = 360 - theta; //DartBoard xy-Area is mirror
+	    return (int) theta;
 	}
 }

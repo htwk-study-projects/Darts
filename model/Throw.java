@@ -31,8 +31,7 @@ public class Throw {
 	}
 	
 	public int computeAngleOnDartBoard() {
-		int angle = dartBoardAngleVector.intersectionAngleAntiClockwise(impactVector);
-		if(dartBoardAngleVector.dotProd(impactVector) < 0) return angle + 180;
-		return angle;
+		return dartBoardAngleVector.intersectionAngleAntiClockwise(impactVector);
+
 	}
 }
