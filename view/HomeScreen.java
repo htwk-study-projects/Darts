@@ -67,7 +67,7 @@ public class HomeScreen extends JPanel {
         this.add(gridBagPanel, BorderLayout.CENTER);
     }
 
-    private void setScreenDivisionConstrains(int gridX, int gridY, int gridWidth, int gridHeight, double weightX, double weightY, int fill) {
+    private void setScreenDivisionConstrains(int gridX, int gridY, int gridWidth, int gridHeight, int weightX, int weightY, int fill) {
         screenDivisionConstraints.gridx = gridX;
         screenDivisionConstraints.gridy = gridY;
         screenDivisionConstraints.gridwidth = gridWidth;
