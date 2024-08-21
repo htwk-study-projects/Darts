@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ColorIcon implements Icon {
-    private final Color color;
-    private static final int SIZE = 15;
+    
+	private final Color color;
+    private final static int SIZE = 15;
 
     public ColorIcon(Color value) {
         this.color = value;

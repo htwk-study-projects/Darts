@@ -9,9 +9,10 @@ import javax.swing.JPanel;
 public class GameScreen extends JPanel {
 	
 	private GridBagConstraints screenDivisionConstraints = new GridBagConstraints();
+	
 	private DartBoardGraphic board;
 	private GameScreenSideBar sideBar;
-	private GameScreenPlayerPanel playerPanel;
+
 	protected JButton saveButton;
 	protected JButton backButton;
 	

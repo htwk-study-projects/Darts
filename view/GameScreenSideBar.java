@@ -24,9 +24,6 @@ public class GameScreenSideBar extends JPanel {
 
         this.setLayout(new BorderLayout());
 
-        // Hintergrundfarbe des Hauptpanels (GameScreenSideBar) auf Grau setzen
-        this.setBackground(Color.LIGHT_GRAY);
-
         // Tabelle erstellen mit Spalten: Farbe (als Kästchen), Spieler, Punktzahl (ohne Kopfzeilen)
         Object[][] data = {
             {Color.RED, "501", "Spieler 1"},
@@ -36,13 +33,13 @@ public class GameScreenSideBar extends JPanel {
         };
 
         // Custom TableModel, um die Bearbeitung zu verhindern
-        DefaultTableModel model = new DefaultTableModel(data, new Object[]{"", "", ""}) {
+        DefaultTableModel tableModel = new DefaultTableModel(data, new Object[]{"", "", ""}) {
             public boolean isCellEditable(int row, int column) {
                 return false; // Alle Zellen sind nicht editierbar
             }
         };
 
-        JTable table = new JTable(model) {
+        JTable table = new JTable(tableModel) {
             public TableCellRenderer getCellRenderer(int row, int column) {
                 if (column == 0) { // Erste Spalte (Spieler mit Kästchen) bekommt speziellen Renderer
                     return new IconRenderer();
@@ -50,21 +47,8 @@ public class GameScreenSideBar extends JPanel {
                 return super.getCellRenderer(row, column);
             }
         };
+        setTabelSettings(table);
 
-        table.setOpaque(false);
-        table.setBackground(new Color(0, 0, 0, 0)); // Vollständig transparent
-        table.setShowGrid(false);
-        table.setTableHeader(null);
-
-        table.setFocusable(false);
-        table.setRowSelectionAllowed(false);
-        table.setCellSelectionEnabled(false);
-        table.setColumnSelectionAllowed(false);
-
-        table.removeColumn(table.getColumnModel().getColumn(2));
-
-        table.setFont(DartsGUI.FONT_NORMAL);
-        table.setRowHeight(40);
 
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setOpaque(false);
@@ -101,5 +85,19 @@ public class GameScreenSideBar extends JPanel {
         Table.setBackground(Color.LIGHT_GRAY); // Hintergrund von Table auf Grau setzen
         
         this.add(Table, BorderLayout.CENTER);
+    }
+    
+    private void setTabelSettings(JTable table) {
+        table.setOpaque(false);
+        table.setBackground(new Color(0, 0, 0, 0)); // Vollständig transparent
+        table.setShowGrid(false);
+        table.setTableHeader(null);
+        table.setFocusable(false);
+        table.setRowSelectionAllowed(false);
+        table.setCellSelectionEnabled(false);
+        table.setColumnSelectionAllowed(false);
+        table.removeColumn(table.getColumnModel().getColumn(2));
+        table.setFont(DartsGUI.FONT_NORMAL);
+        table.setRowHeight(40);
     }
 }

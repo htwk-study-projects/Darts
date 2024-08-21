@@ -22,8 +22,8 @@ public class PlayerSetup extends JPanel {
     protected JComboBox<ColorIcon> comboBox2;
     protected JComboBox<ColorIcon> comboBox3;
     protected JComboBox<ColorIcon> comboBox4;
-   
     
+    //die JTextField auch noch mit hier hoch
     
     private ColorIcon yellow = new ColorIcon(new Color(254,198,0));
     private ColorIcon red = new ColorIcon(new Color(201,17,0));
