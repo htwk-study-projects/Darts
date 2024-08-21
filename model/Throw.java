@@ -22,7 +22,7 @@ public class Throw {
 		// xComponent is on impact equal to distanceToDartBoard 
 		double scalarT = DISTANCE_TO_BOARD / directionVector.getVectorComponents()[0];		
 		MathVector scaledDirectionVector = directionVector.scalarMult(scalarT);
-		MathVector scaledGravityVector = GRAVITY_VECTOR.scalarMult(scalarT);
+		MathVector scaledGravityVector = GRAVITY_VECTOR.scalarMult(Math.pow(scalarT, 2));
 		return scaledDirectionVector.vectorAdd(scaledGravityVector);
 	}
 	
