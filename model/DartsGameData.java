@@ -7,22 +7,50 @@ public class DartsGameData {
 	private static int gameIDCounter = 0;
 	
 	private int gameID;
-	private final String gameName;
-	private final Player[] players;
-	private final GameMode gameMode;
+	private String gameName;
+	private Player[] players;
+	private GameMode gameMode;
 	
-	public DartsGameData(String gameName, String[] playerNames, Color[] playerColors, int gamePoints, String inMode, String outMode){
-		//gameIDCounter muss vorher auf die höchste gameID der gespeicherten spiele gesetzt werden
+	public DartsGameData(){
 		setGameIDCounter(10);
 		this.gameID = gameIDCounter;
-		this.gameName = gameName;
-		this.players = Player.createPlayer(playerNames, playerColors, gamePoints);
-		this.gameMode = new GameMode(gamePoints, inMode, outMode);
+		gameIDCounter++;
 	}
 	
 	public static void setGameIDCounter(int gameIDCounter) {
 		DartsGameData.gameIDCounter = gameIDCounter;
 	}
+
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
+	public void setPlayers(String[] playerNames, Color[] playerColors, int gamePoints) {
+		this.players = Player.createPlayer(playerNames, playerColors, gamePoints);;
+	}
+
+	public void setGameMode(int gamePoints, String inMode, String outMode) {
+		this.gameMode = new GameMode(gamePoints, inMode, outMode);
+	}
+
+	public int getGameID() {
+		return gameID;
+	}
+
+	public String getGameName() {
+		return gameName;
+	}
+
+	public Player[] getPlayers() {
+		return players;
+	}
+
+	public GameMode getGameMode() {
+		return gameMode;
+	}
+	
+	
+	
 	
 
 }

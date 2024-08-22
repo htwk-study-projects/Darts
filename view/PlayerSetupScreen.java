@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class PlayerSetup extends JPanel {
+public class PlayerSetupScreen extends JPanel {
 
     private JLabel title;
     protected JButton startButton;
@@ -38,7 +38,7 @@ public class PlayerSetup extends JPanel {
     private ColorIcon grey = new ColorIcon(new Color(130,134,137));
 
     
-    public PlayerSetup() {
+    public PlayerSetupScreen() {
     	
     	Color lightGray = Color.LIGHT_GRAY;
 

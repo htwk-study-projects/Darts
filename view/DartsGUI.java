@@ -8,8 +8,6 @@ import javax.swing.JFrame;
 
 public class DartsGUI extends JFrame {
 	
-	private controller.DartsController dartsController;
-	
 	private CardLayout cardLayout;  // Instanzvariable für CardLayout
 	
 	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 32);
@@ -17,7 +15,13 @@ public class DartsGUI extends JFrame {
 	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 14);
 	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 10);
 	
-	public DartsGUI(model.DartsGameData gameData){
+	
+	private HomeScreen homeScreen;
+	private SetupScreen setupScreen;
+	private PlayerSetupScreen setPlayerScreen;
+	private GameScreen gameScreen;
+	
+	public DartsGUI(){
 		
 		cardLayout = new CardLayout();
 		this.setLayout(cardLayout);
@@ -27,30 +31,29 @@ public class DartsGUI extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
-		HomeScreen home = new HomeScreen();
-		this.add(home, "home");
+		homeScreen = new HomeScreen();
+		this.add(homeScreen, "home");
 		
-		SetupScreen setup = new SetupScreen();
-		this.add(setup, "setup");
+		setupScreen = new SetupScreen();
+		this.add(setupScreen, "setup");
 		
-		PlayerSetup setPlayer = new PlayerSetup();
-		this.add(setPlayer, "player");
+		setPlayerScreen = new PlayerSetupScreen();
+		this.add(setPlayerScreen, "player");
 		
-		GameScreen game = new GameScreen();
-		this.add(game, "game");
+		gameScreen = new GameScreen();
+		this.add(gameScreen, "game");
 		
-		home.playButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "setup"));
-		home.exitButton.addActionListener(e -> System.exit(0));
+		homeScreen.playButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "setup"));
+		homeScreen.exitButton.addActionListener(e -> System.exit(0));
 		
-		setup.homeButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
-		setup.startButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "player"));
+		setupScreen.homeButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
+		setupScreen.startButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "player"));
 		
-		setPlayer.homeButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "setup"));
-		setPlayer.startButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "game"));
+		setPlayerScreen.homeButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "setup"));
+		setPlayerScreen.startButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "game"));
 		
-		//game.saveButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "game"));
-		game.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
-		//game.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
+		gameScreen.saveButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "game"));
+		gameScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
 		
 	}
 	
@@ -65,6 +68,26 @@ public class DartsGUI extends JFrame {
 		for(int i = 0; i < areas; i++) {
 			gridElement.add(new TransparentPanel());
 		}
+	}
+
+	public CardLayout getCardLayout() {
+		return cardLayout;
+	}
+
+	public HomeScreen getHomeScreen() {
+		return homeScreen;
+	}
+
+	public SetupScreen getSetupScreen() {
+		return setupScreen;
+	}
+
+	public PlayerSetupScreen getSetPlayerScreen() {
+		return setPlayerScreen;
+	}
+
+	public GameScreen getGameScreen() {
+		return gameScreen;
 	}
 
 }
