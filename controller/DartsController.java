@@ -8,7 +8,7 @@ public class DartsController {
 	private model.DartsGameData data;
 	
 	private StartController startController;
-	private SetupController setupController;
+	private  SetupController setupController;
 	private GameController gameController;
 	
 	public DartsController() {
@@ -16,7 +16,7 @@ public class DartsController {
 		this.startController = new StartController();
 	}
 	
-	public SetupController goIntoSetup() {
+	public void goIntoSetup() {
 		this.setupController = new SetupController();
 		
 	}

@@ -1,12 +1,8 @@
 package view;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
@@ -16,9 +12,9 @@ public class DartsGUI extends JFrame {
 	
 	private CardLayout cardLayout;  // Instanzvariable für CardLayout
 	
-	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 60);
+	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 32);
 	protected final static Font FONT_BIG = new Font("Impact", Font.BOLD, 22);
-	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 16);
+	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 14);
 	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 10);
 	
 	public DartsGUI(model.DartsGameData gameData){
@@ -27,12 +23,10 @@ public class DartsGUI extends JFrame {
 		this.setLayout(cardLayout);
 		this.setTitle("DARTS");	
 		this.setSize(1400, 920);
+		this.setMinimumSize(new Dimension(1400, 920));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-        this.setMinimumSize(new Dimension(1400, 920));
-     
 		
-        
 		HomeScreen home = new HomeScreen();
 		this.add(home, "home");
 		
