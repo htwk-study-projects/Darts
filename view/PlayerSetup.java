@@ -39,6 +39,8 @@ public class PlayerSetup extends JPanel {
 
     
     public PlayerSetup() {
+    	
+    	Color lightGray = Color.LIGHT_GRAY;
 
         // Setze das Layout des Hauptpanels
         this.setLayout(new GridLayout(3, 3));
@@ -62,12 +64,15 @@ public class PlayerSetup extends JPanel {
         DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
         Line startBreakLine = new Line(setupButtons);
 
+        
+        
         // Panel für die Buttons
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 1)); // GridLayout für die Buttons
         JComponent[] startBreakBarElements = {new TransparentPanel(), new TransparentPanel(), new TransparentPanel(), startBreakLine};
         Bar startBreakBar = new Bar(startBreakBarElements);
         buttonPanel.add(startBreakBar);
+     
 
         // Panel für das Textfeld
         JPanel gridBagPanel = new JPanel();

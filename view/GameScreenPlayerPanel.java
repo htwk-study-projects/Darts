@@ -25,7 +25,7 @@ public class GameScreenPlayerPanel extends JPanel {
 
         // Farbkästchen und Spielername kombinieren
         playerNameLabel = new JLabel("Spieler 1", new ColorIcon(Color.RED), SwingConstants.CENTER);
-        playerNameLabel.setFont(new Font("Impact", Font.BOLD, 16));
+        playerNameLabel.setFont(DartsGUI.FONT_NORMAL);
         playerNameLabel.setIconTextGap(10); // Abstand zwischen Icon und Text
 
         add(playerNameLabel);
