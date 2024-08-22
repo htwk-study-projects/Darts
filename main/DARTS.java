@@ -1,7 +1,5 @@
 package main;
 
-import javax.swing.JFrame;
-
 import controller.DartsController;
 
 public class DARTS {
