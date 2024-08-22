@@ -58,7 +58,7 @@ public class DartboardMathModel {
 		}
 	}
 	
-	public  Map<IntegerKeyPair, Integer> getFieldValueRelations() {
+	public Map<IntegerKeyPair, Integer> getFieldValueRelations() {
 		return FIELD_VALUE_RELATIONS;
 	}
 	
@@ -70,7 +70,7 @@ public class DartboardMathModel {
         }
 	}
 	
-	public Integer determinePoints(Integer angle, Double distance) {
+	public static Integer determinePoints(Integer angle, Double distance) {
 		Integer sector = determineSector(angle);
 		Integer multiplier = determineMultiplier(distance);
 		Integer points;
@@ -80,7 +80,7 @@ public class DartboardMathModel {
 		return points;
 	}
 	
-	public Integer determineSector(Integer angle) {
+	public static Integer determineSector(Integer angle) {
 		Random random = new Random();
 		Integer hitSector;
 		double hitSectorTemp;
@@ -93,7 +93,7 @@ public class DartboardMathModel {
 		return ANGLE_SECTOR_RELATION.get(hitSector);
 	}
 	
-	public Integer determineMultiplier(Double distance) {
+	public static Integer determineMultiplier(Double distance) {
 		Random random = new Random();
 		final Integer OutOfBoard = null;
 		final Integer[] MULTIPLIER_VALUES_ORDER = {-1, 0, 1, 3, 1, 2, OutOfBoard};
