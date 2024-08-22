@@ -12,6 +12,7 @@ public class GameScreen extends JPanel {
 	
 	private DartBoardGraphic board;
 	private GameScreenSideBar sideBar;
+	private DartArrowGraphic dartArrow;
 
 	protected JButton saveButton;
 	protected JButton backButton;
@@ -27,6 +28,20 @@ public class GameScreen extends JPanel {
 	     sideBar = new GameScreenSideBar();
 	     this.setScreenDivisionConstrains(2, 0, 1, 1, 1, 1, GridBagConstraints.BOTH);
 	     this.add(sideBar, screenDivisionConstraints);
+	     
+	     dartArrow = new DartArrowGraphic();
+	     this.setScreenDivisionConstrains(0, 0, 2, 2, 20, 20, GridBagConstraints.BOTH);
+	     this.add(dartArrow, screenDivisionConstraints);
+	     
+	     JPanel test = new TransparentPanel();
+	     this.setScreenDivisionConstrains(2, 0, 1, 1, 1, 1, GridBagConstraints.BOTH);
+	     this.add(test, screenDivisionConstraints);
+	     
+	     
+	     this.setComponentZOrder(board, 1);
+	     this.setComponentZOrder(sideBar, 1);
+	     this.setComponentZOrder(dartArrow, 0);
+	     this.setComponentZOrder(test, 0);
 
 		 this.saveButton = sideBar.saveButton;
 		 this.backButton = sideBar.backButton;
