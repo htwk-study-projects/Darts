@@ -1,6 +1,13 @@
 package view;
+<<<<<<< HEAD
 import java.awt.BorderLayout;
 import java.awt.Color;
+=======
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+>>>>>>> 0fce48d4e396be5353fde478e2351b4863e2fa54
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;

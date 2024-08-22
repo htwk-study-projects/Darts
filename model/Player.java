@@ -13,7 +13,7 @@ public class Player {
     private boolean statusPlayOut;
     private boolean statusFinish; //Gewonnen true or false
 
-    private Player(String name, Color color, int selectedPoints, boolean statusPlayIn, boolean statusPlayOut, boolean statusFinish) {
+    private Player(String name, Color color, int selectedPoints) {
         this.name = name;
         this.color = color;
         this.playerDarts = DartArrow.createDart(3);
@@ -25,10 +25,10 @@ public class Player {
  
     }
     
-    public static Player[] createPlayer(String[] names, Color[] colors, int selectedPoints, boolean statusPlayIn, boolean statusPlayOut, boolean statusFinish) {
+    public static Player[] createPlayer(String[] names, Color[] colors, int selectedPoints) {
     	Player[] player = new Player[names.length];
     	for(int i = 0; i < names.length; i++) {
-    		player[i] = new Player(names[i], colors[i], selectedPoints, statusPlayIn, statusPlayOut, statusFinish);
+    		player[i] = new Player(names[i], colors[i], selectedPoints);
     	}
     	return player;
     }

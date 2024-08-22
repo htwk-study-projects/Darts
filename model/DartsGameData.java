@@ -16,7 +16,7 @@ public class DartsGameData {
 		setGameIDCounter(10);
 		this.gameID = gameIDCounter;
 		this.gameName = gameName;
-		this.players = Player.createPlayer(playerNames, playerColors, gamePoints, statusPlayIn, statusPlayOut, statusFinish);
+		this.players = Player.createPlayer(playerNames, playerColors, gamePoints);
 		this.gameMode = new GameMode(gamePoints, inMode, outMode);
 	}
 	
