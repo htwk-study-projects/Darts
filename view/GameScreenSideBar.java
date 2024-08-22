@@ -69,6 +69,8 @@ public class GameScreenSideBar extends JPanel {
 
         saveButton = new JButton("Speichern");
         backButton = new JButton("Zurück");
+    	JButton[] setupButtons = {saveButton, backButton};
+		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
         JButton[] buttons = {saveButton, backButton};
         JPanel buttonLine = new Line(buttons);
         buttonLine.setBackground(Color.LIGHT_GRAY); // Hintergrund von buttonLine auf Grau setzen
