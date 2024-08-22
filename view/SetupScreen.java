@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.ButtonGroup;
@@ -48,14 +49,19 @@ public class SetupScreen extends JPanel {
 		
 		this.setLayout(new GridLayout(3,3));	
 		DartsGUI.gridLayoutFill(this, 3,3);
+				
+		Color lightGray = Color.LIGHT_GRAY;
 
-		
 		title = new JLabel("Game Setup");
 		title.setFont(DartsGUI.FONT_TITLE);
 		title.setHorizontalAlignment(SwingConstants.CENTER);
+	
+		
 		
 		JComponent[] titleBarElements = {title,new TransparentPanel()};
 		Bar titleBar = new Bar(titleBarElements);
+		titleBar.setBackground(lightGray);
+
 		
 		
 		playerNumberLabel = new JLabel("Spieler:");	
@@ -70,6 +76,7 @@ public class SetupScreen extends JPanel {
 		JComponent[] playerNumberSetup = {playerNumberLabel, players2, players3, players4};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, playerNumberSetup);
 		playerNumberLine = new Line(playerNumberSetup);
+
 		
 		pointsLabel = new JLabel("Punkte:");	
 		points301 = new JRadioButton("301 Punkte");
@@ -81,6 +88,7 @@ public class SetupScreen extends JPanel {
 		JComponent[] modeSetup = {pointsLabel, points301, points501};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, modeSetup);
 		pointsLine = new Line(modeSetup);
+
 		
 		modInLabel = new JLabel("In");	
 		straightIn = new JRadioButton("Straight");
@@ -94,6 +102,8 @@ public class SetupScreen extends JPanel {
 		JComponent[] modInSetup = {modInLabel, straightIn, doubleIn, tripleIn};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, modInSetup);
 		modInLine = new Line(modInSetup);
+
+
 		
 		modOutLabel = new JLabel("Out:");	
 		straightOut = new JRadioButton("Straight");
@@ -108,17 +118,26 @@ public class SetupScreen extends JPanel {
 		JComponent[] modOutSetup = {modOutLabel, straightOut, doubleOut, tripleOut};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, modOutSetup);
 		modOutLine = new Line(modOutSetup);
+	
 		
 		startButton = new JButton("Weiter");		
 		homeButton = new JButton("Zurück");
 		JButton[] setupButtons = {homeButton, startButton};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
 		startBreakLine = new Line(setupButtons);
+		startBreakLine.setBackground(lightGray);
+	
 		
 		JComponent[] setupMenu = {pointsLine, playerNumberLine, modInLine, modOutLine};
+		for (JComponent component : setupMenu) {
+			component.setOpaque(false);	
+		}
+		
+		
 		
 		JComponent[] startBreakBarElements = {new TransparentPanel(),new TransparentPanel(),new TransparentPanel(),startBreakLine};
 		Bar startBreakBar = new Bar(startBreakBarElements);
+		startBreakBar.setBackground(lightGray);
 		
 		
 		this.remove(1);
@@ -128,8 +147,6 @@ public class SetupScreen extends JPanel {
 		this.remove(7);
 		this.add(startBreakBar,7);
 		
-		
-		
+		setupMenuBar.setBackground(lightGray);
 	}
-	
 }
