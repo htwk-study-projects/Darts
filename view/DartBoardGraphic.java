@@ -12,7 +12,7 @@ public class DartBoardGraphic extends JPanel {
     private final static int[] DIAMETERS = {760, 750, 640, 600, 390, 350, 50, 20};
     private final static double ANGLELINES = 2 * Math.PI / 20;
     private final static String[] NUMBERS = {"20", "1", "18", "4", "13", "6", "10", "15", "2", "17", "3", "19", "7", "16", "8", "11", "14", "9", "12", "5"};
-    private final static double BOARDSIZE_PANELSIZE_RELATION = 3.0/4.0;
+    private final static double BOARDSIZE_PANELSIZE_RELATION = 3.2/4.0;
     private final static float STROKE_WIDTH = 2.6f;
     
     private int visibility = 255;

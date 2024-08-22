@@ -1,9 +1,7 @@
 package view;
-import view.GameScreenPlayerPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
