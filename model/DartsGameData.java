@@ -1,10 +1,13 @@
 package model;
 
-public class DartsData {
+import java.awt.Color;
+
+public class DartsGameData {
+	
 	
 	private Player[] players;
 	
-	public DartsData(){
+	public DartsGameData(String[] playerNames, Color[] playerColors, int gamePoints){
 		
 	}
 	
