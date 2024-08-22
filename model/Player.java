@@ -6,14 +6,14 @@ public class Player {
 	
     private String name;
     private Color color;
-    private Dart[] playerDarts;
+    private DartArrow[] playerDarts;
     private int wuerfeZahl;
     private int punktzahl;
 
     public Player(String name, Color color) {
         this.name = name;
         this.color = color;
-        this.playerDarts = Dart.createDart(3);
+        this.playerDarts = DartArrow.createDart(3);
         this.wuerfeZahl = 3;
     }
     
