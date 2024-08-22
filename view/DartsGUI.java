@@ -10,9 +10,9 @@ public class DartsGUI extends JFrame {
 	
 	private CardLayout cardLayout;  // Instanzvariable für CardLayout
 	
-	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 32);
+	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 60);
 	protected final static Font FONT_BIG = new Font("Impact", Font.BOLD, 22);
-	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 14);
+	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 16);
 	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 10);
 	
 	
