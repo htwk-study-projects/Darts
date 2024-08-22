@@ -27,8 +27,8 @@ public class DartsGUI extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
-		//DartArrowGraphic dartarrow = new DartArrowGraphic();
-		//this.add(dartarrow,"arrow");
+		DartArrowGraphic dartarrow = new DartArrowGraphic();
+		this.add(dartarrow,"arrow");
 		
 		HomeScreen home = new HomeScreen();
 		this.add(home, "home");
