@@ -1,49 +1,55 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import javax.swing.*;
+import java.awt.*;
 
-import javax.swing.JPanel;
 
 public class DartArrowGraphic extends JPanel {
+    
+	private int [] xPoints_arrowhead = {718,720,722};
+	private int [] yPoints_arrowhead = {295,250,295};
+	private int nPoints_arrowhead = 3; // Anzahl der Punkte
+	
+	private int [] xPoints_body = {718,719,721,722}; 
+	private int [] yPoints_body = {295,370,370,295}; 
+	private int nPoints_body = 4; 
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
 
-        // Anti-Aliasing einschalten für glattere Linien
+	private int [] xPoints_feather = {710,715,720,725,730,719,721,}; 
+	private int [] yPoints_feather = {400,385,400,385,400,370,370,}; 
+	private int nPoints_feather = 7; 
+
+	
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D) g;		
+		// Setzt Antialiasing für glattere Kanten
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Dartpfeil zeichnen
-
-        // 1. Spitze (Dreieck)
-        int[] xPoints = {150, 160, 140}; // x-Koordinaten des Dreiecks
-        int[] yPoints = {20, 40, 40}; // y-Koordinaten des Dreiecks
-        g2d.setColor(Color.GRAY);
-        g2d.fillPolygon(xPoints, yPoints, 3);
-
-        // 2. Schaft (Linie)
-        g2d.setColor(Color.BLACK);
-        g2d.fillRect(145, 40, 10, 100); // Schaft, positioniert unter der Spitze
-
-        // 3. Flights (Dreiecke)
-        int[] flight1X = {140, 150, 130};
-        int[] flight1Y = {140, 160, 160};
-
-        int[] flight2X = {160, 170, 150};
-        int[] flight2Y = {140, 160, 160};
-
-        g2d.setColor(Color.RED);
-        g2d.fillPolygon(flight1X, flight1Y, 3);
-        g2d.fillPolygon(flight2X, flight2Y, 3);
-
-        // 4. Details im Flight
-        g2d.setColor(Color.BLACK);
-        g2d.drawLine(145, 140, 145, 160);
-        g2d.drawLine(155, 140, 155, 160);
-    }
-
+		
+		//PfeilSpitze
+		g2d.setColor(new Color(221,219,219));
+		g2d.fillPolygon(xPoints_arrowhead, yPoints_arrowhead, nPoints_arrowhead);
+		g2d.setColor(Color.GRAY);
+		g2d.drawPolygon(xPoints_arrowhead, yPoints_arrowhead, nPoints_arrowhead);
+		
+		
+		//Wurfköper Griff
+		g2d.setColor(Color.BLACK);
+		g2d.fillPolygon(xPoints_body, yPoints_body, nPoints_body);
+		g2d.drawPolygon(xPoints_body, yPoints_body, nPoints_body);
+		
+		//Wurfkörper Vorne an der Spitze
+		g2d.setColor(Color.RED); // Farbe in Spieler Farbe Ändern.
+		g2d.fillRect(718,285,4,30);
+		g2d.drawRect(718,285,4,30);
+	
+		//Federn
+		g2d.setColor(Color.BLACK);
+		g2d.fillPolygon(xPoints_feather, yPoints_feather, nPoints_feather);
+		g2d.drawPolygon(xPoints_feather, yPoints_feather, nPoints_feather);
+	
+		
+	}
 }

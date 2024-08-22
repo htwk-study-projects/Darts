@@ -1,6 +1,9 @@
 package main;
 
+import javax.swing.JFrame;
+
 import controller.DartsController;
+import view.DartArrowGraphic;
 
 public class DARTS {
 
@@ -16,6 +19,8 @@ public class DARTS {
         model.DartboardMathModel board = dartsGame.getData().getBoard();
         int points = board.determinePoints(angle, distance);
         System.out.println("Punkte: " + points);
+        
+        
 	}
 
 }
