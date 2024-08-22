@@ -11,12 +11,12 @@ public class DartsGameData {
 	private final Player[] players;
 	private final GameMode gameMode;
 	
-	public DartsGameData(String gameName, String[] playerNames, Color[] playerColors, int gamePoints, String inMode, String outMode){
-		//gameIDCounter muss vorher auf die höchste gameID der gesepcherten spiele gesetzt werden
+	public DartsGameData(String gameName, String[] playerNames, Color[] playerColors, int gamePoints, String inMode, String outMode, boolean statusPlayIn, boolean statusPlayOut, boolean statusFinish){
+		//gameIDCounter muss vorher auf die höchste gameID der gespeicherten spiele gesetzt werden
 		setGameIDCounter(10);
 		this.gameID = gameIDCounter;
 		this.gameName = gameName;
-		this.players = Player.createPlayer(playerNames, playerColors, gamePoints);
+		this.players = Player.createPlayer(playerNames, playerColors, gamePoints, statusPlayIn, statusPlayOut, statusFinish);
 		this.gameMode = new GameMode(gamePoints, inMode, outMode);
 	}
 	

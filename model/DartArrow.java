@@ -8,6 +8,7 @@ public class DartArrow {
 	private double[] throwParameter = new double[3];
 	private Throw dartThrow;
 	private Integer points;
+	private int multiplier;
 	
 	private DartArrow() {
 		this.throwParameter = null;
@@ -37,6 +38,11 @@ public class DartArrow {
 		int angle = dartThrow.computeAngleOnDartBoard();
 		System.out.println(distance + "cm " + angle +"°");
 		points = DartboardMathModel.determinePoints(angle, distance);
+	}
+	
+	public int getMultiplier(double Distance) {
+		multiplier = DartboardMathModel.determineMultiplier(Distance);
+		return multiplier;
 	}
 
 
