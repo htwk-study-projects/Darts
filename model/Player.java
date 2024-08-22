@@ -9,19 +9,26 @@ public class Player {
     private DartArrow[] playerDarts;
     private int throwCount;
     private int playerPoints;
+    private boolean statusPlayIn;
+    private boolean statusPlayOut;
+    private boolean statusFinish; //Gewonnen true or false
 
-    private Player(String name, Color color, int selectedPoints) {
+    private Player(String name, Color color, int selectedPoints, boolean statusPlayIn, boolean statusPlayOut, boolean statusFinish) {
         this.name = name;
         this.color = color;
         this.playerDarts = DartArrow.createDart(3);
         this.throwCount = 3;
         this.playerPoints = selectedPoints;
+        this.statusPlayIn = false;
+        this.statusPlayOut = false;
+        this.statusFinish = false;
+ 
     }
     
-    public static Player[] createPlayer(String[] names, Color[] colors, int selectedPoints) {
+    public static Player[] createPlayer(String[] names, Color[] colors, int selectedPoints, boolean statusPlayIn, boolean statusPlayOut, boolean statusFinish) {
     	Player[] player = new Player[names.length];
     	for(int i = 0; i < names.length; i++) {
-    		player[i] = new Player(names[i], colors[i], selectedPoints);
+    		player[i] = new Player(names[i], colors[i], selectedPoints, statusPlayIn, statusPlayOut, statusFinish);
     	}
     	return player;
     }
@@ -41,7 +48,23 @@ public class Player {
     public int getPlayerPoints() {
         return playerPoints;
     }
-
+    
+    public boolean getStatusPlayIn() {
+    	return statusPlayIn;
+    }
+    
+    public boolean getStatusPlayOut() {
+    	return statusPlayOut;
+    }
+    
+    public boolean getStatusFinish() {
+    	return statusFinish;
+    }
    // public 
  
+   /* public int calculationPlayerPoints(GameMode gameMode) {
+    	int currentDartThrow = playerDarts.length - throwCount;
+    	playerDarts[currentDartThrow]
+    }
+    */
 }
