@@ -19,7 +19,7 @@ public class GameMode {
 		initInOutModes();
 	}
 	
-	static private void initInOutModes() {
+	private static void initInOutModes() {
 		String[] modeNames = {"straigth", "double", "triple"};
 		int[] modeNumbers = {STRAIGHT_IN_OUT, DOUBLE_IN_OUT, TRIPLE_IN_OUT};
 		for(int i = 0; i < modeNames.length; i++) {
@@ -33,4 +33,9 @@ public class GameMode {
 		this.outMode = IN_OUT_MODES.get(outMode.toLowerCase());
 	}
 	
+	public static boolean isGameModeConditionFulfilled(DartArrow dart) {
+		//testet ob getroffener multiplier das erforderliche in oder out erfüllt
+		
+		return false;
+	}
 }
