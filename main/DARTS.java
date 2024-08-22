@@ -10,10 +10,7 @@ public class DARTS {
 		dartsGame.getUserView().setVisible(true);	
         
         
-		model.DartArrow[] newDart =  model.DartArrow.createDart(1);
-		newDart[0].setThrowParameter(new double[] {23.7, 5.0, 50.0});
-		newDart[0].throwDart();
-        System.out.println("Punkte: " + newDart[0].getPoints());
+		
 
 	}
 

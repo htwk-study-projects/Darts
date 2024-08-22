@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 
 public class DartsGUI extends JFrame {
 	
+	private controller.DartsController dartsController;
+	
 	private CardLayout cardLayout;  // Instanzvariable für CardLayout
 	
 	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 32);
