@@ -60,7 +60,10 @@ public class Player {
     public boolean getStatusFinish() {
     	return statusFinish;
     }
-   // public 
+   
+    public void updatePlayerPoints() {
+    	
+    }
  
    /* public int calculationPlayerPoints(GameMode gameMode) {
     	int currentDartThrow = playerDarts.length - throwCount;

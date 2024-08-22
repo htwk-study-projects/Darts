@@ -11,7 +11,7 @@ public class DartsGameData {
 	private final Player[] players;
 	private final GameMode gameMode;
 	
-	public DartsGameData(String gameName, String[] playerNames, Color[] playerColors, int gamePoints, String inMode, String outMode, boolean statusPlayIn, boolean statusPlayOut, boolean statusFinish){
+	public DartsGameData(String gameName, String[] playerNames, Color[] playerColors, int gamePoints, String inMode, String outMode){
 		//gameIDCounter muss vorher auf die höchste gameID der gespeicherten spiele gesetzt werden
 		setGameIDCounter(10);
 		this.gameID = gameIDCounter;
