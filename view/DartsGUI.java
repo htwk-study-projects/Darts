@@ -18,7 +18,7 @@ public class DartsGUI extends JFrame {
 	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 14);
 	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 10);
 	
-	public DartsGUI(model.DartsData gameData){
+	public DartsGUI(model.DartsGameData gameData){
 		
 		cardLayout = new CardLayout();
 		this.setLayout(cardLayout);

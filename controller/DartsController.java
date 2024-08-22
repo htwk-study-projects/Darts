@@ -5,12 +5,12 @@ package controller;
 public class DartsController {
 	
 	private view.DartsGUI userView;
-	private model.DartsData data;
+	private model.DartsGameData data;
 	
 	
 	
 	public DartsController() {
-		data = new model.DartsData();
+		//data = new model.DartsGameData();
 		userView = new view.DartsGUI(data);
 		
 	}
@@ -19,7 +19,7 @@ public class DartsController {
 		return userView;
 	}
 
-	public model.DartsData getData() {
+	public model.DartsGameData getData() {
 		return data;
 	}
 	

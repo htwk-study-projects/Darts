@@ -6,45 +6,42 @@ public class Player {
 	
     private String name;
     private Color color;
-    private Dart[] playerDarts;
-    private int wuerfeZahl;
-    private int punktzahl;
+    private DartArrow[] playerDarts;
+    private int throwCount;
+    private int playerPoints;
 
-    public Player(String name, Color color) {
+    private Player(String name, Color color, int selectedPoints) {
         this.name = name;
         this.color = color;
-        this.playerDarts = Dart.createDart(3);
-        this.wuerfeZahl = 3;
+        this.playerDarts = DartArrow.createDart(3);
+        this.throwCount = 3;
+        this.playerPoints = selectedPoints;
     }
     
-    public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                ", color=" + color +
-                ", wuerfeZahl=" + wuerfeZahl +
-                ", punktzahl=" + punktzahl +
-                '}';
+    public static Player[] createPlayer(String[] names, Color[] colors, int selectedPoints) {
+    	Player[] player = new Player[names.length];
+    	for(int i = 0; i < names.length; i++) {
+    		player[i] = new Player(names[i], colors[i], selectedPoints);
+    	}
+    	return player;
     }
-
+    
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Color getColor() {
         return color;
     }
-
-    public int getWuerfeZahl() {
-        return wuerfeZahl;
+    
+    public int getThrowCount() {
+        return throwCount;
     }
     
-    public int getPunktzahl() {
-        return punktzahl;
+    public int getPlayerPoints() {
+        return playerPoints;
     }
 
+   // public 
  
 }
