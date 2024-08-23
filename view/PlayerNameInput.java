@@ -30,11 +30,7 @@ public class PlayerNameInput extends JPanel {
 	 private JTextField gameNameText;
 	 private JLabel gameNameLabel;
 	 
-<<<<<<< HEAD
-	 private JLabel playerNameLable;
-=======
 	 private JLabel playerNameLabel;
->>>>>>> 800b60b42782fe9cbd200b7332caaff7459dd532
 	 
 	 private JLabel player1Name;
 	 private JTextField player1NameField;
