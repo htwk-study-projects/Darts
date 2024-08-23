@@ -19,13 +19,18 @@ public class GameMode {
 	}
 	
 	private static void initInOutModes() {
-		String[] modeNames = {"straigth", "double", "triple"};
+		String[] modeNames = {"straight", "double", "triple"};
 		int[] modeNumbers = {STRAIGHT_IN_OUT, DOUBLE_IN_OUT, TRIPLE_IN_OUT};
 		for(int i = 0; i < modeNames.length; i++) {
 			IN_OUT_MODES.put(modeNames[i], modeNumbers[i]);
 		}
 	}
 	
+	@Override
+	public String toString() {
+		return "GameMode [gamePoints=" + gamePoints + ", inMode=" + inMode + ", outMode=" + outMode + "]";
+	}
+
 	public GameMode(int selectedPoints, String inMode, String outMode) {
 		this.gamePoints = selectedPoints;
 		this.inMode = IN_OUT_MODES.get(inMode.toLowerCase());

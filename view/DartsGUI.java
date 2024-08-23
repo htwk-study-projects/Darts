@@ -20,11 +20,15 @@ public class DartsGUI extends JFrame {
 	private SetupScreen setupScreen;
 	private PlayerSetupScreen setPlayerScreen;
 	private GameScreen gameScreen;
+<<<<<<< HEAD
 	private SaveScreen saveScreen;
+=======
+	private DartArrowGraphic dartarrow;
+>>>>>>> b864dc76a03ae38108480b0e2aef88c5bc8da835
 	
 	public DartsGUI(){
 		
-		cardLayout = new CardLayout();
+		this.cardLayout = new CardLayout();
 		this.setLayout(cardLayout);
 		this.setTitle("DARTS");	
 		this.setSize(1400, 920);
@@ -32,16 +36,19 @@ public class DartsGUI extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
-		homeScreen = new HomeScreen();
+		//this.dartarrow = new DartArrowGraphic();
+		//this.add(dartarrow,"arrow");
+		
+		this.homeScreen = new HomeScreen();
 		this.add(homeScreen, "home");
 		
-		setupScreen = new SetupScreen();
+		this.setupScreen = new SetupScreen();
 		this.add(setupScreen, "setup");
 		
-		setPlayerScreen = new PlayerSetupScreen();
+		this.setPlayerScreen = new PlayerSetupScreen();
 		this.add(setPlayerScreen, "player");
 		
-		gameScreen = new GameScreen();
+		this.gameScreen = new GameScreen();
 		this.add(gameScreen, "game");
 		
 		saveScreen = new SaveScreen();
@@ -52,7 +59,7 @@ public class DartsGUI extends JFrame {
 		homeScreen.loadButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "save"));
 		
 		setupScreen.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
-		setupScreen.startButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "player"));
+		
 		
 		setPlayerScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "setup"));
 		setPlayerScreen.startButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "game"));
