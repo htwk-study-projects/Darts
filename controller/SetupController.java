@@ -13,5 +13,6 @@ public class SetupController{
 	private void readGamePoints() {
 		System.out.println(screenToControl.getPlayersGroup().getSelection().toString());
 	}
-
+	
+	
 }

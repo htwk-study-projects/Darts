@@ -12,71 +12,67 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class PlayerNameInput extends JPanel {
-	
-	 protected JComboBox<ColorIcon> comboBox1;
-	 protected JComboBox<ColorIcon> comboBox2;
-	 protected JComboBox<ColorIcon> comboBox3;
-	 protected JComboBox<ColorIcon> comboBox4;
 	 
-	 private ColorIcon yellow = new ColorIcon(new Color(254,198,0));
-	 private ColorIcon red = new ColorIcon(new Color(201,17,0));
-	 private ColorIcon orange = new ColorIcon(new Color(252,108,0));
-	 private ColorIcon violett = new ColorIcon(new Color(148,36,149));
-	 private ColorIcon pink = new ColorIcon(new Color(194,43,106));
-	 private ColorIcon blue = new ColorIcon(new Color(26,47,172));
-	 private ColorIcon lightblue = new ColorIcon(new Color(0,136,195));
-	 private ColorIcon green = new ColorIcon(new Color(0,135,60));
-	 private ColorIcon lightgreen = new ColorIcon(new Color(40,154,2));
-	 private ColorIcon black = new ColorIcon(Color.black);
-	 private ColorIcon grey = new ColorIcon(new Color(130,134,137));
+	 private static final ColorIcon YELLOW = new ColorIcon(new Color(254,198,0));
+	 private static final ColorIcon RED = new ColorIcon(new Color(201,17,0));
+	 private static final ColorIcon ORANGE = new ColorIcon(new Color(252,108,0));
+	 private static final ColorIcon VIOLETT = new ColorIcon(new Color(148,36,149));
+	 private static final ColorIcon PINK = new ColorIcon(new Color(194,43,106));
+	 private static final ColorIcon BLUE = new ColorIcon(new Color(26,47,172));
+	 private static final ColorIcon LIGHTBLUE = new ColorIcon(new Color(0,136,195));
+	 private static final ColorIcon GREEN = new ColorIcon(new Color(0,135,60));
+	 private static final ColorIcon LIGHTGREEN = new ColorIcon(new Color(40,154,2));
+	 private static final ColorIcon BLACK = new ColorIcon(Color.black);
+	 private static final ColorIcon GREY = new ColorIcon(new Color(130,134,137));
 	 
-	 ColorIcon[] options = {yellow,red,orange,violett,pink,blue,lightblue,green,lightgreen,black,grey};
+	 private static final ColorIcon[] OPTIONS = {YELLOW,RED,ORANGE,VIOLETT,PINK,BLUE,LIGHTBLUE,GREEN,LIGHTGREEN,BLACK,GREY};
 	 
 	 private JTextField gameNameText;
 	 private JLabel gameNameLable;
-	 
 	 
 	 private JLabel playerNameLable;
 	 
 	 private JLabel player1Name;
 	 private JTextField player1NameField;
+	 protected JComboBox<ColorIcon> comboBox1;
 	 
 	 private JLabel player2Name;
 	 private JTextField player2NameField;
+	 protected JComboBox<ColorIcon> comboBox2;
 	 
 	 private JLabel player3Name;
 	 private JTextField player3NameField;
+	 protected JComboBox<ColorIcon> comboBox3;
 	 
 	 private JLabel player4Name;
 	 private JTextField player4NameField;
+	 protected JComboBox<ColorIcon> comboBox4;
 	 
-	 GridBagConstraints gbc = new GridBagConstraints();
+	 private GridBagConstraints gbc = new GridBagConstraints();
 	
 	public PlayerNameInput(){
-		
-		comboBox1 = new JComboBox<>(options);
-	    comboBox2 = new JComboBox<>(options);
-	    comboBox3 = new JComboBox<>(options);
-	    comboBox4 = new JComboBox<>(options);
-		
 	    this.setLayout(new GridBagLayout());
 
-	    gameNameText = new JTextField(16);
 	    gameNameLable = new JLabel("Spielname:");
+	    gameNameText = new JTextField(16);
 
 	    playerNameLable = new JLabel("Spieler:");
 	    
 	    player1Name = new JLabel("Spieler 1:");
 	    player1NameField = new JTextField(10);
+		comboBox1 = new JComboBox<>(OPTIONS);
 
 	    player2Name = new JLabel("Spieler 2:");
 	    player2NameField = new JTextField(10);
-
+	    comboBox2 = new JComboBox<>(OPTIONS);
+	    
 	    player3Name = new JLabel("Spieler 3:");
 	    player3NameField = new JTextField(10);
-
+	    comboBox3 = new JComboBox<>(OPTIONS);
+	    
 	    player4Name = new JLabel("Spieler 4:");
 	    player4NameField = new JTextField(10);
+	    comboBox4 = new JComboBox<>(OPTIONS);
 	    
 	    JComponent[] LabelPlayer = {gameNameLable, playerNameLable, player1Name, player2Name, player3Name, player4Name};
 	    DartsGUI.fontAdjust(DartsGUI.FONT_BIG, LabelPlayer);

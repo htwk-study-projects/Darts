@@ -137,12 +137,13 @@ public class SetupScreen extends JPanel {
 		setupMenuBar.barPlacement(this, 4);
 		startBreakBar.barPlacement(this, 7);
 		
-
 	}
 	
 	public ButtonGroup getPlayersGroup() {
 		return playersGroup;
 	}
+	
+	
 	
 	
 }
