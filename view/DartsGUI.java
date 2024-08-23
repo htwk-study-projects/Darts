@@ -20,11 +20,9 @@ public class DartsGUI extends JFrame {
 	private SetupScreen setupScreen;
 	private PlayerSetupScreen setPlayerScreen;
 	private GameScreen gameScreen;
-<<<<<<< HEAD
 	private SaveScreen saveScreen;
-=======
 	private DartArrowGraphic dartarrow;
->>>>>>> b864dc76a03ae38108480b0e2aef88c5bc8da835
+
 	
 	public DartsGUI(){
 		
