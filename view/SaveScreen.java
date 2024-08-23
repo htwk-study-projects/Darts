@@ -56,8 +56,9 @@ public class SaveScreen extends JPanel {
 		setTabelSettings(savesTable);  // Apply the custom table settings
 		
 		JScrollPane scrollPane = new JScrollPane(savesTable);
-		scrollPane.setOpaque(false);
-		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBackground(background);
+		scrollPane.getViewport().setBackground(background);
+		
 		
 		// Create buttons
 		loadingButton = new JButton("Laden");		
@@ -94,14 +95,16 @@ public class SaveScreen extends JPanel {
 	    table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Optional: only one row can be selected at a time
 	    table.setFont(DartsGUI.FONT_NORMAL);
 	    table.setRowHeight(40);
-	    table.setGridColor(background);
+	    table.setShowGrid(false);
+	    
+	    table.setSelectionBackground(Color.BLACK);
+	    table.setSelectionForeground(Color.WHITE);
 	    
 	    
         JTableHeader header = table.getTableHeader();
         header.setFont(DartsGUI.FONT_NORMAL);
         header.setResizingAllowed(false); 
-        header.setReorderingAllowed(false); 
-        header.setOpaque(false); 
+        header.setReorderingAllowed(false);  
         header.setBackground(background); 
       
         
