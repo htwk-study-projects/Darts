@@ -29,7 +29,7 @@ public class PlayerSetupScreen extends JPanel {
     	Color lightGray = Color.LIGHT_GRAY;
 
         // Setze das Layout des Hauptpanels
-        this.setLayout(new GridLayout(3, 3));
+        this.setLayout(new GridLayout(1, 3));
 
         // Erstellen und Konfigurieren des Titel-Labels
         title = new JLabel("Player Setup");
@@ -62,9 +62,6 @@ public class PlayerSetupScreen extends JPanel {
    
        playerNameInput = new PlayerNameInput();
      
-
-        
-
         // Füge die Panels in das Hauptpanel ein
         this.add(titlePanel); // Titel-Panel in der mittleren Spalte, erste Zeile
         this.add(playerNameInput); //Spieler-Label und Combo Boxen
