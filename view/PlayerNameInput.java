@@ -26,11 +26,11 @@ public class PlayerNameInput extends JPanel {
 	 private static final ColorIcon GREY = new ColorIcon(new Color(130,134,137));
 	 
 	 private static final ColorIcon[] OPTIONS = {YELLOW,RED,ORANGE,VIOLETT,PINK,BLUE,LIGHTBLUE,GREEN,LIGHTGREEN,BLACK,GREY};
-	 
+
 	 private JTextField gameNameText;
-	 private JLabel gameNameLable;
+	 private JLabel gameNameLabel;
 	 
-	 private JLabel playerNameLable;
+	 private JLabel playerNameLabel;
 	 
 	 private JLabel player1Name;
 	 private JTextField player1NameField;
@@ -53,10 +53,12 @@ public class PlayerNameInput extends JPanel {
 	public PlayerNameInput(){
 	    this.setLayout(new GridBagLayout());
 
-	    gameNameLable = new JLabel("Spielname:");
+	    gameNameLabel = new JLabel("Spielname:");
 	    gameNameText = new JTextField(16);
-
-	    playerNameLable = new JLabel("Spieler:");
+	    JComponent[] gameNameLineElements = {gameNameLabel, gameNameText};
+	    Line gameNameLine = new Line(gameNameLineElements );
+	    
+	    playerNameLabel = new JLabel("Spieler:");
 	    
 	    player1Name = new JLabel("Spieler 1:");
 	    player1NameField = new JTextField(10);
@@ -74,7 +76,7 @@ public class PlayerNameInput extends JPanel {
 	    player4NameField = new JTextField(10);
 	    comboBox4 = new JComboBox<>(OPTIONS);
 	    
-	    JComponent[] LabelPlayer = {gameNameLable, playerNameLable, player1Name, player2Name, player3Name, player4Name};
+	    JComponent[] LabelPlayer = {gameNameLabel, playerNameLabel, player1Name, player2Name, player3Name, player4Name};
 	    DartsGUI.fontAdjust(DartsGUI.FONT_BIG, LabelPlayer);
 
 	    gbc.insets = new Insets(5, 5, 5, 5); // Abstand zwischen den Komponenten
@@ -85,13 +87,13 @@ public class PlayerNameInput extends JPanel {
 	    gbc.gridx = 1;
 	    gbc.gridwidth = 1;
 	    gbc.anchor = GridBagConstraints.WEST;
-	    this.add(playerNameLable, gbc);
+	    this.add(playerNameLabel, gbc);
 
 	    // Zeile 1: Spielname Label und Textfeld
 	    gbc.gridx = 0;
 	    gbc.gridy = 0;
 	    gbc.anchor = GridBagConstraints.WEST;
-	    this.add(gameNameLable, gbc);
+	    this.add(gameNameLabel, gbc);
 
 	    gbc.gridx = 1;
 	    gbc.fill = GridBagConstraints.HORIZONTAL;
