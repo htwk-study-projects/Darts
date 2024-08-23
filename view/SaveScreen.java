@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -36,12 +38,12 @@ public class SaveScreen extends JPanel {
 		titleBar.setBackground(background);
 		
 		// Create the table with dummy data
-		String[] columnNames = {"Game ID", "Date"};
+		String[] columnNames = {"Game ID", "Name", "Date"};
 		Object[][] data = {
-		    {"1", "2024-08-20"},
-		    {"2", "2024-08-21"},
-		    {"3", "2024-08-22"},
-		    {"4", "2024-08-23"}
+		    {"1", "Spiel 1" , "2024-08-20"},
+		    {"2", "Spiel 2" , "2024-08-21"},
+		    {"3", "Spiel 3" , "2024-08-22"},
+		    {"4", "Spiel 4" , "2024-08-23"}
 		};
 		
 		// Create a table model with non-editable cells
@@ -58,6 +60,7 @@ public class SaveScreen extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(savesTable);
 		scrollPane.setBackground(background);
 		scrollPane.getViewport().setBackground(background);
+		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		
 		
 		// Create buttons
