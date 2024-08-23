@@ -60,13 +60,10 @@ public class SetupScreen extends JPanel {
 		title.setFont(DartsGUI.FONT_TITLE);
 		title.setHorizontalAlignment(SwingConstants.CENTER);		
 		JComponent[] titleBarElements = {title,new TransparentPanel()};
-<<<<<<< HEAD
-		Bar titleBar = new Bar(titleBarElements);
-		titleBar.setBackground(background);
-=======
+
 		titleBar = new Bar(titleBarElements);
-		titleBar.setBackground(lightGray);
-	
+		titleBar.setBackground(background);
+
 		pointsLabel = new JLabel("Punkte:");	
 		points301 = new JRadioButton("301 Punkte");
 		points301.setSelected(true);
@@ -79,7 +76,7 @@ public class SetupScreen extends JPanel {
 		JComponent[] modeSetup = {pointsLabel, points301, points501};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, modeSetup);
 		pointsLine = new Line(modeSetup);
->>>>>>> b864dc76a03ae38108480b0e2aef88c5bc8da835
+
 
 		modInLabel = new JLabel("In");	
 		straightIn = new JRadioButton("Straight");
@@ -134,28 +131,18 @@ public class SetupScreen extends JPanel {
 		JButton[] setupButtons = {backButton, startButton};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
 		startBreakLine = new Line(setupButtons);
-<<<<<<< HEAD
+
 		startBreakLine.setBackground(background);
-=======
-		startBreakLine.setBackground(lightGray);
+
 		JComponent[] startBreakBarElements = {new TransparentPanel(),new TransparentPanel(),new TransparentPanel(),startBreakLine};
 		Bar startBreakBar = new Bar(startBreakBarElements);
-		startBreakBar.setBackground(lightGray);
->>>>>>> b864dc76a03ae38108480b0e2aef88c5bc8da835
+		startBreakBar.setBackground(background);
 	
 		JComponent[] setupMenu = {pointsLine, playerNumberLine, modInLine, modOutLine};
 		for (JComponent component : setupMenu) {
 			component.setOpaque(false);	
 		}
-<<<<<<< HEAD
-		
-		
-		
-		JComponent[] startBreakBarElements = {new TransparentPanel(),new TransparentPanel(),new TransparentPanel(),startBreakLine};
-		Bar startBreakBar = new Bar(startBreakBarElements);
-		startBreakBar.setBackground(background);
-		
-		
+				
 		this.remove(1);
 		this.add(titleBar,1);
 		setupMenuBar = new Bar(setupMenu);
@@ -163,15 +150,12 @@ public class SetupScreen extends JPanel {
 		this.remove(7);
 		this.add(startBreakBar,7);
 		
-		setupMenuBar.setBackground(background);
-=======
 		setupMenuBar = new Bar(setupMenu);
-		setupMenuBar.setBackground(lightGray);
+		setupMenuBar.setBackground(background);
 		
 		titleBar.barPlacement(this, 1);
 		setupMenuBar.barPlacement(this, 4);
 		startBreakBar.barPlacement(this, 7);
->>>>>>> b864dc76a03ae38108480b0e2aef88c5bc8da835
 	}
 	
 	public ButtonGroup getPlayersGroup() {
