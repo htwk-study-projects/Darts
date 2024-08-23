@@ -97,6 +97,9 @@ public class SaveScreen extends JPanel {
 	    table.setRowHeight(40);
 	    table.setShowGrid(false);
 	    
+	    table.setSelectionBackground(Color.BLACK);
+	    table.setSelectionForeground(Color.WHITE);
+	    
 	    
         JTableHeader header = table.getTableHeader();
         header.setFont(DartsGUI.FONT_NORMAL);
