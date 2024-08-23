@@ -35,18 +35,17 @@ public class SetupScreen extends JPanel {
 	
 	private Line modInLine;
 	private JLabel modInLabel;
-	private ButtonGroup modInGroup;
+	private ButtonGroup modeInGroup;
 	private JRadioButton straightIn; 
 	private JRadioButton doubleIn;
 	private JRadioButton tripleIn;
 	
 	private Line modOutLine;
 	private JLabel modOutLabel;
-	private ButtonGroup modOutGroup;
+	private ButtonGroup modeOutGroup;
 	private JRadioButton straightOut; 
 	private JRadioButton doubleOut;
 	private JRadioButton tripleOut;
-	
 	
 	private Bar setupMenuBar;
 	
@@ -63,24 +62,13 @@ public class SetupScreen extends JPanel {
 		JComponent[] titleBarElements = {title,new TransparentPanel()};
 		titleBar = new Bar(titleBarElements);
 		titleBar.setBackground(lightGray);
-
-		playerNumberLabel = new JLabel("Spieler:");	
-		players2 = new JRadioButton("2 Spieler");
-		players2.setSelected(true);
-		players3 = new JRadioButton("3 Spieler");
-		players4 = new JRadioButton("4 Spieler");
-		playersGroup = new ButtonGroup();
-		playersGroup.add(players2);
-		playersGroup.add(players3);
-		playersGroup.add(players4);	
-		JComponent[] playerNumberSetup = {playerNumberLabel, players2, players3, players4};
-		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, playerNumberSetup);
-		playerNumberLine = new Line(playerNumberSetup);
 	
 		pointsLabel = new JLabel("Punkte:");	
 		points301 = new JRadioButton("301 Punkte");
 		points301.setSelected(true);
+		points301.setActionCommand("301");
 		points501 = new JRadioButton("501 Punkte");	
+		points501.setActionCommand("501");
 		pointsGroup = new ButtonGroup();
 		pointsGroup.add(points301);
 		pointsGroup.add(points501);		
@@ -91,29 +79,50 @@ public class SetupScreen extends JPanel {
 		modInLabel = new JLabel("In");	
 		straightIn = new JRadioButton("Straight");
 		straightIn.setSelected(true);
+		straightIn.setActionCommand("straight");
 		doubleIn = new JRadioButton("Double");
+		doubleIn.setActionCommand("double");
 		tripleIn = new JRadioButton("Triple");
-		modInGroup = new ButtonGroup();
-		modInGroup.add(straightIn);
-		modInGroup.add(doubleIn);
-		modInGroup.add(tripleIn);	
+		tripleIn.setActionCommand("triple");
+		modeInGroup = new ButtonGroup();
+		modeInGroup.add(straightIn);
+		modeInGroup.add(doubleIn);
+		modeInGroup.add(tripleIn);	
 		JComponent[] modInSetup = {modInLabel, straightIn, doubleIn, tripleIn};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, modInSetup);
 		modInLine = new Line(modInSetup);
 		
 		modOutLabel = new JLabel("Out:");	
 		straightOut = new JRadioButton("Straight");
-		
 		straightOut.setSelected(true);
+		straightOut.setActionCommand("straight");
 		doubleOut = new JRadioButton("Double");
+		doubleOut.setActionCommand("double");
 		tripleOut = new JRadioButton("Triple");
-		modOutGroup = new ButtonGroup();
-		modOutGroup.add(straightOut);
-		modOutGroup.add(doubleOut);
-		modOutGroup.add(tripleOut);	
+		tripleOut.setActionCommand("triple");
+		modeOutGroup = new ButtonGroup();
+		modeOutGroup.add(straightOut);
+		modeOutGroup.add(doubleOut);
+		modeOutGroup.add(tripleOut);	
 		JComponent[] modOutSetup = {modOutLabel, straightOut, doubleOut, tripleOut};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, modOutSetup);
 		modOutLine = new Line(modOutSetup);
+		
+		playerNumberLabel = new JLabel("Spieler:");	
+		players2 = new JRadioButton("2 Spieler");
+		players2.setSelected(true);
+		players2.setActionCommand("2");
+		players3 = new JRadioButton("3 Spieler");
+		players3.setActionCommand("3");
+		players4 = new JRadioButton("4 Spieler");
+		players4.setActionCommand("4");
+		playersGroup = new ButtonGroup();
+		playersGroup.add(players2);
+		playersGroup.add(players3);
+		playersGroup.add(players4);	
+		JComponent[] playerNumberSetup = {playerNumberLabel, players2, players3, players4};
+		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, playerNumberSetup);
+		playerNumberLine = new Line(playerNumberSetup);
 	
 		startButton = new JButton("Weiter");		
 		backButton = new JButton("Zurück");
@@ -121,6 +130,9 @@ public class SetupScreen extends JPanel {
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
 		startBreakLine = new Line(setupButtons);
 		startBreakLine.setBackground(lightGray);
+		JComponent[] startBreakBarElements = {new TransparentPanel(),new TransparentPanel(),new TransparentPanel(),startBreakLine};
+		Bar startBreakBar = new Bar(startBreakBarElements);
+		startBreakBar.setBackground(lightGray);
 	
 		JComponent[] setupMenu = {pointsLine, playerNumberLine, modInLine, modOutLine};
 		for (JComponent component : setupMenu) {
@@ -129,21 +141,30 @@ public class SetupScreen extends JPanel {
 		setupMenuBar = new Bar(setupMenu);
 		setupMenuBar.setBackground(lightGray);
 		
-		JComponent[] startBreakBarElements = {new TransparentPanel(),new TransparentPanel(),new TransparentPanel(),startBreakLine};
-		Bar startBreakBar = new Bar(startBreakBarElements);
-		startBreakBar.setBackground(lightGray);
-		
 		titleBar.barPlacement(this, 1);
 		setupMenuBar.barPlacement(this, 4);
 		startBreakBar.barPlacement(this, 7);
-		
 	}
 	
 	public ButtonGroup getPlayersGroup() {
 		return playersGroup;
 	}
 	
+	public ButtonGroup getPointsGroup() {
+		return pointsGroup;
+	}
 	
+	public ButtonGroup getModeInGroup() {
+		return modeInGroup;
+	}
+	
+	public ButtonGroup getModeOutGroup() {
+		return modeOutGroup;
+	}
+	
+	public JButton getStartButton() {
+		return startButton;
+	}
 	
 	
 }
