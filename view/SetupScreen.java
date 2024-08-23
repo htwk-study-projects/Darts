@@ -50,7 +50,7 @@ public class SetupScreen extends JPanel {
 		this.setLayout(new GridLayout(3,3));	
 		DartsGUI.gridLayoutFill(this, 3,3);
 				
-		Color lightGray = Color.LIGHT_GRAY;
+		Color background = Color.LIGHT_GRAY;
 
 		title = new JLabel("Game Setup");
 		title.setFont(DartsGUI.FONT_TITLE);
@@ -60,7 +60,7 @@ public class SetupScreen extends JPanel {
 		
 		JComponent[] titleBarElements = {title,new TransparentPanel()};
 		Bar titleBar = new Bar(titleBarElements);
-		titleBar.setBackground(lightGray);
+		titleBar.setBackground(background);
 
 		
 		
@@ -125,7 +125,7 @@ public class SetupScreen extends JPanel {
 		JButton[] setupButtons = {backButton, startButton};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
 		startBreakLine = new Line(setupButtons);
-		startBreakLine.setBackground(lightGray);
+		startBreakLine.setBackground(background);
 	
 		
 		JComponent[] setupMenu = {pointsLine, playerNumberLine, modInLine, modOutLine};
@@ -137,7 +137,7 @@ public class SetupScreen extends JPanel {
 		
 		JComponent[] startBreakBarElements = {new TransparentPanel(),new TransparentPanel(),new TransparentPanel(),startBreakLine};
 		Bar startBreakBar = new Bar(startBreakBarElements);
-		startBreakBar.setBackground(lightGray);
+		startBreakBar.setBackground(background);
 		
 		
 		this.remove(1);
@@ -147,6 +147,6 @@ public class SetupScreen extends JPanel {
 		this.remove(7);
 		this.add(startBreakBar,7);
 		
-		setupMenuBar.setBackground(lightGray);
+		setupMenuBar.setBackground(background);
 	}
 }

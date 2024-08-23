@@ -52,7 +52,6 @@ public class GameScreenSideBar extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false); // Tabelle selbst bleibt transparent
-        scrollPane.setBackground(Color.LIGHT_GRAY); // Hintergrund von scrollPane auf Grau setzen
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
        
         JPanel scrollPaneContainer = new JPanel(new BorderLayout());
