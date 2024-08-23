@@ -42,9 +42,8 @@ public class GameScreen extends JPanel {
 	     container.add(test, screenDivisionConstraints);
 	     
 	     dartArrow = new DartArrowGraphic();
-	     dartArrow.setBackground(Color.blue);
-	     dartArrow.setOpaque(true);
-	     this.setScreenDivisionConstrains(0, 3, 2, 2, 1, 1, GridBagConstraints.BOTH);
+	     dartArrow.setOpaque(false);
+	     this.setScreenDivisionConstrains(0, 2, 2, 2, 1, 1, GridBagConstraints.BOTH);
 	     container.add(dartArrow, screenDivisionConstraints);
 	     
 	     this.setScreenDivisionConstrains(0, 0, 3, 3, 4, 4, GridBagConstraints.BOTH);
