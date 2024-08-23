@@ -17,7 +17,7 @@ public class PlayerSetupScreen extends JPanel {
 
     private JLabel title;
     protected JButton startButton;
-    protected JButton homeButton;
+    protected JButton backButton;
     protected JComboBox<ColorIcon> comboBox1;
     protected JComboBox<ColorIcon> comboBox2;
     protected JComboBox<ColorIcon> comboBox3;
@@ -59,8 +59,8 @@ public class PlayerSetupScreen extends JPanel {
 
         // Erstellen der Buttons
         startButton = new JButton("Weiter");
-        homeButton = new JButton("Zurück");
-        JButton[] setupButtons = {homeButton, startButton};
+        backButton = new JButton("Zurück");
+        JButton[] setupButtons = {backButton, startButton};
         DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
         Line startBreakLine = new Line(setupButtons);
 

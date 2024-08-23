@@ -17,7 +17,7 @@ public class SetupScreen extends JPanel {
 
 	private Line startBreakLine;
 	protected JButton startButton;
-	protected JButton homeButton;
+	protected JButton backButton;
 	
 	private Line pointsLine;
 	private JLabel pointsLabel;
@@ -121,8 +121,8 @@ public class SetupScreen extends JPanel {
 	
 		
 		startButton = new JButton("Weiter");		
-		homeButton = new JButton("Zurück");
-		JButton[] setupButtons = {homeButton, startButton};
+		backButton = new JButton("Zurück");
+		JButton[] setupButtons = {backButton, startButton};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
 		startBreakLine = new Line(setupButtons);
 		startBreakLine.setBackground(lightGray);
