@@ -40,10 +40,12 @@ public class DartArrow {
 		points = DartboardMathModel.determinePoints(angle, distance);
 	}
 	
-	public int getMultiplier(double Distance) {
+	public int computeMultiplier(double Distance) {
 		multiplier = DartboardMathModel.determineMultiplier(Distance);
 		return multiplier;
 	}
+	
+	
 
 
 }
