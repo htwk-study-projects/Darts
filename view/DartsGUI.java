@@ -30,9 +30,10 @@ public class DartsGUI extends JFrame {
 		this.setLayout(cardLayout);
 		this.setTitle("DARTS");	
 		this.setSize(1400, 920);
+		/*
 		this.setMinimumSize(new Dimension(1400, 920));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
+		this.setLocationRelativeTo(null);*/
 		
 		//this.dartarrow = new DartArrowGraphic();
 		//this.add(dartarrow,"arrow");

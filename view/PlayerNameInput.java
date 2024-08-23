@@ -30,7 +30,11 @@ public class PlayerNameInput extends JPanel {
 	 private JTextField gameNameText;
 	 private JLabel gameNameLabel;
 	 
+<<<<<<< HEAD
+	 private JLabel playerNameLable;
+=======
 	 private JLabel playerNameLabel;
+>>>>>>> 800b60b42782fe9cbd200b7332caaff7459dd532
 	 
 	 private JLabel player1Name;
 	 private JTextField player1NameField;
@@ -81,7 +85,6 @@ public class PlayerNameInput extends JPanel {
 
 	    gbc.insets = new Insets(5, 5, 5, 5); // Abstand zwischen den Komponenten
 	    
-	    
 	    // Zeile 0: Spieler Label
 	    gbc.gridy = 1;
 	    gbc.gridx = 1;
@@ -113,7 +116,6 @@ public class PlayerNameInput extends JPanel {
 	    gbc.fill = GridBagConstraints.HORIZONTAL;
 	    this.add(comboBox1, gbc);
 
-	    // Zeile 3: Spieler 2 Label und Textfeld
 	    gbc.gridx = 0;
 	    gbc.gridy = 3;
 	    gbc.fill = GridBagConstraints.NONE;
@@ -127,7 +129,6 @@ public class PlayerNameInput extends JPanel {
 	    gbc.fill = GridBagConstraints.HORIZONTAL;
 	    this.add(comboBox2, gbc);
 
-	    // Zeile 4: Spieler 3 Label und Textfeld
 	    gbc.gridx = 0;
 	    gbc.gridy = 4;
 	    gbc.fill = GridBagConstraints.NONE;
@@ -141,7 +142,6 @@ public class PlayerNameInput extends JPanel {
 	    gbc.fill = GridBagConstraints.HORIZONTAL;
 	    this.add(comboBox3, gbc);
 
-	    // Zeile 5: Spieler 4 Label und Textfeld
 	    gbc.gridx = 0;
 	    gbc.gridy = 5;
 	    gbc.fill = GridBagConstraints.NONE;
