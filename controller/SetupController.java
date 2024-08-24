@@ -8,6 +8,7 @@ import javax.swing.JComponent;
 public class SetupController{
 	
     private view.SetupScreenInterface screenToControl;
+    private view.PlayerSetupScreenInterface screenToAdjustDisplay;
 	private model.DartsGameData data;	
 	private CardLayout cardLayout;
 	
@@ -19,8 +20,9 @@ public class SetupController{
 	private static final String PLAYER_SETUP_PANEL = "player";
 	
 	
-	public SetupController(view.SetupScreenInterface setup, model.DartsGameData data, CardLayout cardLayout) {
+	public SetupController(view.SetupScreenInterface setup, view.PlayerSetupScreenInterface adjustDisplay , model.DartsGameData data, CardLayout cardLayout) {
 		this.screenToControl = setup;
+		this.screenToAdjustDisplay = adjustDisplay;
 		this.data = data;
 		this.cardLayout = cardLayout;
 		
@@ -30,6 +32,7 @@ public class SetupController{
 	private void initGameSetup() {
 		readGameSetup();
 		writeGameSetup();
+		screenToAdjustDisplay.getPlayerNameInput().setChoosenPlayers(selectedPlayerCount);
 		cardLayout.show(screenToControl.getRootPane().getContentPane(), PLAYER_SETUP_PANEL);
 		System.out.println(data.getGameMode().toString());
 	}

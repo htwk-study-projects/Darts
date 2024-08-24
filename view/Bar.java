@@ -21,6 +21,13 @@ public class Bar extends JPanel{
 		}
 	}
 	
+	public void setComponents(JComponent[] elements) {
+        this.removeAll();
+        for (JComponent element : elements) {
+            this.add(element);
+        }
+	}
+	
 	/**
      * Replaces the component at the specified position in the parent panel, gridlayout obligatory, with this Bar panel.
      *

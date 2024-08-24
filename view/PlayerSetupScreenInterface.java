@@ -8,4 +8,5 @@ public interface PlayerSetupScreenInterface {
     JButton getPlayButton();
     PlayerNameInput getPlayerNameInput();
 	JRootPane getRootPane();
+	void repaint();
 }

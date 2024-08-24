@@ -19,7 +19,7 @@ public class DartsGUI extends JFrame {
 	
 	private HomeScreen homeScreen;
 	private SetupScreen setupScreen;
-	private PlayerSetupScreen setPlayerScreen;
+	private PlayerSetupScreen playerSetupScreen;
 	private GameScreen gameScreen;
 	private SaveScreen saveScreen;
 	private DartArrowGraphic dartarrow;
@@ -45,8 +45,8 @@ public class DartsGUI extends JFrame {
 		this.setupScreen = new SetupScreen();
 		this.add(setupScreen, "setup");
 		
-		this.setPlayerScreen = new PlayerSetupScreen();
-		this.add(setPlayerScreen, "player");
+		this.playerSetupScreen = new PlayerSetupScreen();
+		this.add(playerSetupScreen, "player");
 		
 		this.gameScreen = new GameScreen();
 		this.add(gameScreen, "game");
@@ -60,7 +60,7 @@ public class DartsGUI extends JFrame {
 
 		setupScreen.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
 			
-		setPlayerScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "setup"));
+		playerSetupScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "setup"));
 		
 		gameScreen.saveButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
 		gameScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
@@ -95,8 +95,8 @@ public class DartsGUI extends JFrame {
 		return setupScreen;
 	}
 
-	public PlayerSetupScreen getSetPlayerScreen() {
-		return setPlayerScreen;
+	public PlayerSetupScreen getPlayerSetupScreen() {
+		return playerSetupScreen;
 	}
 
 	public GameScreen getGameScreen() {

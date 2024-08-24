@@ -55,6 +55,8 @@ public class PlayerNameInput extends JPanel implements PlayerNameInputInterface{
 	 private JComboBox<ColorIcon> comboBox4;
 	 
 	 private Bar playerNameInputBar;
+	 private JComponent[] playerNameInputBarElements;
+	 private int choosenPlayers = 4;
 	
 	public PlayerNameInput(){
 
@@ -90,7 +92,9 @@ public class PlayerNameInput extends JPanel implements PlayerNameInputInterface{
 	    JComponent[] Labels = {gameNameLabel, player1Label, player2Label, player3Label, player4Label};
 	    DartsGUI.fontAdjust(DartsGUI.FONT_BIG, Labels);
 	    
-	    JComponent[] playerNameInputBarElements = {gameNameLine, player1Line, player2Line, player3Line, player4Line};
+	    
+	    
+	    adjustplayerNameInputBarElements();
 	    for(JComponent component : playerNameInputBarElements) {
 			component.setOpaque(false);	
 		}
@@ -110,6 +114,26 @@ public class PlayerNameInput extends JPanel implements PlayerNameInputInterface{
 	    @SuppressWarnings("unchecked")
 	    JComboBox<ColorIcon>[] colorInputArray = colorInput.toArray(new JComboBox[0]);
 	    return colorInputArray;
+	}
+	
+	public void setChoosenPlayers(int selectedPlayerCount) {
+		this.choosenPlayers = selectedPlayerCount;
+		adjustplayerNameInputBarElements();
+		playerNameInputBar.setComponents(playerNameInputBarElements);
+        this.revalidate();
+        this.repaint();
+	}
+	
+	private void adjustplayerNameInputBarElements() {
+		JComponent[] player = {player1Line, player2Line, player3Line, player4Line};
+		playerNameInputBarElements = new JComponent[5];
+		playerNameInputBarElements[0] = gameNameLine;
+		for(int i = 1; i <= choosenPlayers; i++) {
+			playerNameInputBarElements[i] = player[i-1];
+		}
+		for(int j = choosenPlayers+1; j < playerNameInputBarElements.length; j++) {
+			playerNameInputBarElements[j] = new TransparentPanel();
+		}
 	}
 	
 	
