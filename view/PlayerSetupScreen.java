@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -8,14 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class PlayerSetupScreen extends JPanel {
+public class PlayerSetupScreen extends JPanel implements  PlayerSetupScreenInterface{
 
     private JLabel title;
     private Bar titleBar;
     
     private Line startBreakLine;
     private Bar startBreakBar;
-    protected JButton startButton;
+    protected JButton playButton;
     protected JButton backButton;
     
     private PlayerNameInput playerNameInput;
@@ -31,25 +30,30 @@ public class PlayerSetupScreen extends JPanel {
         JComponent[] titleBarElements = {title, new TransparentPanel()};
         titleBar = new Bar(titleBarElements);
         titleBar.setBackground(DartsGUI.BACKGROUND_COLOR);
-        titleBar.barPlacementInGridLayout(this, 1);
-
-        // Erstellen der Buttons
-        startButton = new JButton("Weiter");
+        
+        playerNameInput = new PlayerNameInput();
+        playerNameInput.setBackground(DartsGUI.BACKGROUND_COLOR);
+        
+        playButton = new JButton("Weiter");
         backButton = new JButton("Zurück");
-        JButton[] setupButtons = {backButton, startButton};
+        JButton[] setupButtons = {backButton, playButton};
         DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
         startBreakLine = new Line(setupButtons);
         startBreakLine.setOpaque(false);
         JComponent[] startBreakBarElements = {new TransparentPanel(), new TransparentPanel(), new TransparentPanel(), startBreakLine};
         startBreakBar = new Bar(startBreakBarElements);
         startBreakBar.setBackground(DartsGUI.BACKGROUND_COLOR);
-        startBreakBar.barPlacementInGridLayout(this, 7);;
         
-       playerNameInput = new PlayerNameInput();
-       playerNameInput.setBackground(DartsGUI.BACKGROUND_COLOR);
-       
-       this.remove(4);
-       this.add(playerNameInput, 4); //Spieler-Label und Combo Boxen
+        titleBar.barPlacementInGridLayout(this, 1);
+        this.remove(4);
+        this.add(playerNameInput, 4);
+        startBreakBar.barPlacementInGridLayout(this, 7);
     }
+
+
+	@Override
+	public JButton getPlayButton() {
+		return playButton;
+	}
     
 }
