@@ -77,14 +77,5 @@ public class DartArrowGraphic extends JPanel {
 	*/
 		
 	}
-	
-	private ArrayList<Double> adjustFactor(int[] factor, double multiplier, ArrayList<Double> adjustFactor) {
-	    for (int i = 0; i < factor.length; i++) {
-	        double element = factor[i] * multiplier;
-	        adjustFactor.add(element);
-	    }
-	    
-	    return  adjustFactor;
-	}
 
 }

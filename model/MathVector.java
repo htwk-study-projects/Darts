@@ -49,6 +49,7 @@ public class MathVector {
 	}
 	
 	public double dotProd(MathVector vector2) {
+		if (vector2 == null || this.length != vector2.length) throw new IllegalArgumentException("Die Vektoren müssen die gleiche Länge haben.");	
 		double scalarProd = 0;
 		for( int i = 0; i < this.length;i++) {
 			scalarProd += this.vectorComponents[i] * vector2.vectorComponents[i];
@@ -58,6 +59,7 @@ public class MathVector {
 	
 	public int intersectionAngleAntiClockwise(MathVector vector2) {
 		double cosTheta = this.dotProd(vector2) / (this.vectorSize() * vector2.vectorSize());
+		cosTheta = Math.max(-1, Math.min(1, cosTheta));
 	    double theta =  Math.toDegrees(Math.acos(cosTheta));
 	    
 	    if(vector2.vectorComponents[2] < 0) theta = 360 - theta; //DartBoard xy-Area is mirror

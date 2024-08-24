@@ -41,7 +41,7 @@ public class GameScreenSideBar extends JPanel {
         JTable table = new JTable(tableModel) {
             public TableCellRenderer getCellRenderer(int row, int column) {
                 if (column == 0) { // Erste Spalte (Spieler mit Kästchen) bekommt speziellen Renderer
-                    return new IconRenderer();
+                    return new IconRendererForTable();
                 }
                 return super.getCellRenderer(row, column);
             }

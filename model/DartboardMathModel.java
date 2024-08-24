@@ -24,8 +24,7 @@ public class DartboardMathModel {
 	
 	private static void fieldValueRelationsGenerator() {
 		for(Integer sector : SECTORS) {
-			List<Integer> values = new ArrayList<>();
-			values = valuesGenerator(sector);
+			List<Integer> values = valuesGenerator(sector);
 			for(Integer multiplier : MULTIPLIERS) {
 				IntegerKeyPair keyPair = new IntegerKeyPair(sector, multiplier);
 				FIELD_VALUE_RELATIONS.put(keyPair, values.get(multiplier + 1));

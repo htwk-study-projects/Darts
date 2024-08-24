@@ -1,19 +1,17 @@
 package model;
 
-import java.awt.Color;
-
 public class DartArrow {
-	private final static Color DART_COLOR= Color.black;
 	
 	private double[] throwParameter = new double[3];
 	private Throw dartThrow;
 	private Integer points;
-	private int multiplier;
+	private Integer multiplier;
 	
 	private DartArrow() {
 		this.throwParameter = null;
 		this.dartThrow = null;
 		this.points = null;
+		this.multiplier = null;
 	}
 	
 	public static DartArrow[] createDart(int number) {
@@ -32,20 +30,17 @@ public class DartArrow {
 		return points;
 	}
 	
+	public Integer getMultiplier() {
+		return multiplier;
+	}
+	
 	public void throwDart() {
 		dartThrow = new Throw(throwParameter[0],throwParameter[1],throwParameter[2]);
 		double distance = dartThrow.computeDistanceToDartBoardCenter();
 		int angle = dartThrow.computeAngleOnDartBoard();
 		System.out.println(distance + "cm " + angle +"°");
 		points = DartboardMathModel.determinePoints(angle, distance);
+		multiplier = DartboardMathModel.determineMultiplier(distance);
 	}
 	
-	public int computeMultiplier(double Distance) {
-		multiplier = DartboardMathModel.determineMultiplier(Distance);
-		return multiplier;
-	}
-	
-	
-
-
 }

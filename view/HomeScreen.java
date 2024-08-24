@@ -56,7 +56,7 @@ public class HomeScreen extends JPanel {
         JPanel gridPanel = new JPanel();
         gridPanel.setLayout(new GridLayout(3,3));
         DartsGUI.gridLayoutFill(gridPanel, 3, 3);
-        homeMenu.barPlacement(gridPanel, 4);
+        homeMenu.barPlacementInGridLayout(gridPanel, 4);
         gridPanel.setOpaque(false);
         this.setScreenDivisionConstrains(0, 0, 3, 3, 3, 3, GridBagConstraints.BOTH);
         gridBagPanel.add(gridPanel, screenDivisionConstraints);

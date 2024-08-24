@@ -3,10 +3,11 @@ package controller;
 import java.awt.CardLayout;
 
 import javax.swing.ButtonModel;
+import javax.swing.JComponent;
 
 public class SetupController{
 	
-	private view.SetupScreen screenToControl;
+    private view.SetupScreenInterface screenToControl;
 	private model.DartsGameData data;	
 	private CardLayout cardLayout;
 	
@@ -15,8 +16,10 @@ public class SetupController{
 	private String selectedInMode;
 	private String selectedOutMode;
 	
+	private static final String PLAYER_SETUP_PANEL = "player";
 	
-	public SetupController(view.SetupScreen setup, model.DartsGameData data, CardLayout cardLayout) {
+	
+	public SetupController(view.SetupScreenInterface setup, model.DartsGameData data, CardLayout cardLayout) {
 		this.screenToControl = setup;
 		this.data = data;
 		this.cardLayout = cardLayout;
@@ -27,11 +30,12 @@ public class SetupController{
 	private void initGameSetup() {
 		readGameSetup();
 		writeGameSetup();
-		cardLayout.show(screenToControl.getRootPane().getContentPane(), "player");
+		cardLayout.show(screenToControl.getRootPane().getContentPane(), PLAYER_SETUP_PANEL);
 		System.out.println(data.getGameMode().toString());
 	}
 	
 	private void writeGameSetup() {
+		data.setPlayerCount(selectedPlayerCount);
 		data.setGameMode(selectedGamePoints, selectedInMode, selectedOutMode);
 	}
 	
@@ -44,29 +48,22 @@ public class SetupController{
 	
 	private void readGamePoints() {
 		  ButtonModel selectedButton = screenToControl.getPointsGroup().getSelection();
-		   if (selectedButton != null) {
-			   selectedGamePoints = Integer.parseInt(selectedButton.getActionCommand());
-		    }
+		  selectedGamePoints = Integer.parseInt(selectedButton.getActionCommand());
+
 	}
 	
 	private void readModeIn() {
 		  ButtonModel selectedButton = screenToControl.getModeInGroup().getSelection();
-		   if (selectedButton != null) {
-			   selectedInMode = selectedButton.getActionCommand();
-		    }
+		  selectedInMode = selectedButton.getActionCommand();
 	}
 	
 	private void readModeOut() {
 		  ButtonModel selectedButton = screenToControl.getModeOutGroup().getSelection();
-		   if (selectedButton != null) {
-			   selectedOutMode = selectedButton.getActionCommand();
-		    }
+		  selectedOutMode = selectedButton.getActionCommand();
 	}
 	
 	private void readPlayerCount() {
 		  ButtonModel selectedButton = screenToControl.getPlayersGroup().getSelection();
-		   if (selectedButton != null) {
-		        selectedPlayerCount = Integer.parseInt(selectedButton.getActionCommand());
-		    }
+		  selectedPlayerCount = Integer.parseInt(selectedButton.getActionCommand());
 	}
 }

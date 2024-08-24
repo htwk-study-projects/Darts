@@ -1,17 +1,29 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
 
-public class ColorIcon implements Icon {
+import javax.swing.Icon;
+
+/**
+ * An Icon that is a colored circle.
+ */ 
+class ColorIcon implements Icon {
     
 	private final Color color;
     private final static int SIZE = 15;
 
+    /**
+     * Constructs a ColorIcon with a specified color.
+     *
+     * @param color The color of the circle
+     */
     public ColorIcon(Color value) {
         this.color = value;
     }
-
+    
+    @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         g.setColor(color);
         g.fillOval(x, y, SIZE, SIZE);

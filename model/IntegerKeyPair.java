@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class IntegerKeyPair {
 	
-	private Integer firstKey;
-	private Integer secondKey;
+	private final Integer firstKey;
+	private final Integer secondKey;
 	
 	public IntegerKeyPair(Integer firstKey, Integer secondKey) {
 		this.firstKey = firstKey;

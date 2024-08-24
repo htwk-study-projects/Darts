@@ -17,11 +17,7 @@ public class DartsController {
 		this.userView = new view.DartsGUI();
 		this.data = new model.DartsGameData();
 		this.cardLayout = userView.getCardLayout();
-		if (userView.getSetupScreen() == null) {
-	        System.out.println("SetupScreen ist null");
-	    } else {
-	        System.out.println("SetupScreen ist nicht null");
-	    }
+
 		this.setupController = new SetupController(userView.getSetupScreen(), data, cardLayout);
 		this.playerSetupController = new PlayerSetupController(userView.getSetPlayerScreen());
 		this.gameController = new GameController(userView.getGameScreen());

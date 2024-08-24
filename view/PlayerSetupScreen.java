@@ -33,7 +33,7 @@ public class PlayerSetupScreen extends JPanel {
         JComponent[] titleBarElements = {title, new TransparentPanel()};
         titleBar = new Bar(titleBarElements);
         titleBar.setBackground(background);
-        titleBar.barPlacement(this, 1);
+        titleBar.barPlacementInGridLayout(this, 1);
 
         // Erstellen der Buttons
         startButton = new JButton("Weiter");
@@ -45,7 +45,7 @@ public class PlayerSetupScreen extends JPanel {
         JComponent[] startBreakBarElements = {new TransparentPanel(), new TransparentPanel(), new TransparentPanel(), startBreakLine};
         startBreakBar = new Bar(startBreakBarElements);
         startBreakBar.setBackground(background);
-        startBreakBar.barPlacement(this, 7);;
+        startBreakBar.barPlacementInGridLayout(this, 7);;
         
        playerNameInput = new PlayerNameInput();
        playerNameInput.setBackground(background);

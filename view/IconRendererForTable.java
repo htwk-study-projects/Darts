@@ -8,8 +8,10 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-
-public class IconRenderer extends DefaultTableCellRenderer {
+/**
+ * Custom cell renderer for JTable that displays a color icon and player name in the first column.
+ */
+public class IconRendererForTable extends DefaultTableCellRenderer {
 
     public JComponent getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

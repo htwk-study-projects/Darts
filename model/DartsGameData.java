@@ -8,6 +8,7 @@ public class DartsGameData {
 	
 	private int gameID;
 	private String gameName;
+	private int playerCount;
 	private Player[] players;
 	private GameMode gameMode;
 	
@@ -47,6 +48,14 @@ public class DartsGameData {
 
 	public GameMode getGameMode() {
 		return gameMode;
+	}
+
+	public int getPlayerCount() {
+		return playerCount;
+	}
+
+	public void setPlayerCount(int playerCount) {
+		this.playerCount = playerCount;
 	}
 	
 	

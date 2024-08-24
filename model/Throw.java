@@ -20,6 +20,10 @@ public class Throw {
 	// startoint = (0,0,0)
 	private MathVector computeImpactPoint() {
 		// xComponent is on impact equal to distanceToDartBoard 
+		double xVelocity = directionVector.getVectorComponents()[0];
+	        if (xVelocity == 0) {
+	            throw new IllegalStateException("Horizontalgeschwindigkeit darf nicht null sein.");
+	        }
 		double scalarT = DISTANCE_TO_BOARD / directionVector.getVectorComponents()[0];		
 		MathVector scaledDirectionVector = directionVector.scalarMult(scalarT);
 		MathVector scaledGravityVector = GRAVITY_VECTOR.scalarMult(Math.pow(scalarT, 2));
