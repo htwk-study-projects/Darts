@@ -34,7 +34,6 @@ public class SetupController{
 		writeGameSetup();
 		screenToAdjustDisplay.getPlayerNameInput().setChoosenPlayers(selectedPlayerCount);
 		cardLayout.show(screenToControl.getRootPane().getContentPane(), PLAYER_SETUP_PANEL);
-		System.out.println(data.getGameMode().toString());
 	}
 	
 	private void writeGameSetup() {

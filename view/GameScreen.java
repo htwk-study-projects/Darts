@@ -1,14 +1,12 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class GameScreen extends JPanel {
+public class GameScreen extends JPanel implements GameScreenInterface{
 	
 	private GridBagConstraints screenDivisionConstraints = new GridBagConstraints();
 	

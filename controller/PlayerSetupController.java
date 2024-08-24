@@ -12,14 +12,16 @@ import view.ColorIcon;
 public class PlayerSetupController {
 	
 	private view.PlayerSetupScreenInterface screenToControl;
+    private view.GameScreenInterface screenToAdjustDisplay;
 	private model.DartsGameData data;	
 	private CardLayout cardLayout;
 	
 	private String[] playerNames;
 	private Color[] playerColors;
 	
-	public PlayerSetupController(view.PlayerSetupScreenInterface playerSetup, model.DartsGameData data, CardLayout cardLayout) {
+	public PlayerSetupController(view.PlayerSetupScreenInterface playerSetup, view.GameScreenInterface adjustDisplay, model.DartsGameData data, CardLayout cardLayout) {
 		this.screenToControl = playerSetup;
+		this.screenToAdjustDisplay = adjustDisplay;
 		this.data = data;
 		this.cardLayout = cardLayout;
 		
