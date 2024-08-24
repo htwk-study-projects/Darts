@@ -1,10 +1,11 @@
 package model;
 
 import java.awt.Color;
+import java.util.Arrays;
 
 public class Player {
-	
-    private String name;
+
+	private String name;
     private Color color;
     private DartArrow[] playerDarts;
     private int throwCount;
@@ -32,6 +33,13 @@ public class Player {
     	}
     	return player;
     }
+    
+    @Override
+	public String toString() {
+		return "Player [name=" + name + ", color=" + color + ", playerDarts=" + Arrays.toString(playerDarts)
+				+ ", throwCount=" + throwCount + ", playerPoints=" + playerPoints + ", statusPlayIn=" + statusPlayIn
+				+ ", statusPlayOut=" + statusPlayOut + ", statusFinish=" + statusFinish + "]\n";
+	}
     
     public String getName() {
         return name;

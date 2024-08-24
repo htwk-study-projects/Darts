@@ -9,7 +9,7 @@ import javax.swing.Icon;
 /**
  * An Icon that is a colored circle.
  */ 
-class ColorIcon implements Icon {
+public class ColorIcon implements Icon {
     
 	private final Color color;
     private final static int SIZE = 15;
@@ -38,4 +38,8 @@ class ColorIcon implements Icon {
     public int getIconHeight() {
         return SIZE;
     }
+    
+	public Color getColor() {
+		return color;
+	}
 }

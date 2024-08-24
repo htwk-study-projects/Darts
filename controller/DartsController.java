@@ -19,7 +19,7 @@ public class DartsController {
 		this.cardLayout = userView.getCardLayout();
 
 		this.setupController = new SetupController(userView.getSetupScreen(), data, cardLayout);
-		this.playerSetupController = new PlayerSetupController(userView.getSetPlayerScreen());
+		this.playerSetupController = new PlayerSetupController(userView.getSetPlayerScreen(), data, cardLayout);
 		this.gameController = new GameController(userView.getGameScreen());
 	}
 

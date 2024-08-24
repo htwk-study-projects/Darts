@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class PlayerSetupScreen extends JPanel implements  PlayerSetupScreenInterface{
+public class PlayerSetupScreen extends JPanel implements PlayerSetupScreenInterface{
 
     private JLabel title;
     private Bar titleBar;
@@ -54,6 +54,12 @@ public class PlayerSetupScreen extends JPanel implements  PlayerSetupScreenInter
 	@Override
 	public JButton getPlayButton() {
 		return playButton;
+	}
+
+
+	@Override
+	public PlayerNameInput getPlayerNameInput() {
+		return playerNameInput;
 	}
     
 }

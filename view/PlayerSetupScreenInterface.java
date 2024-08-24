@@ -6,5 +6,6 @@ import javax.swing.JRootPane;
 public interface PlayerSetupScreenInterface {
 	
     JButton getPlayButton();
+    PlayerNameInput getPlayerNameInput();
 	JRootPane getRootPane();
 }

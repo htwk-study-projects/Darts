@@ -55,14 +55,12 @@ public class DartsGUI extends JFrame {
 		this.add (saveScreen, "save");
 		
 		homeScreen.playButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "setup"));
-		homeScreen.exitButton.addActionListener(e -> System.exit(0));
 		homeScreen.loadButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "save"));
-		
+		homeScreen.exitButton.addActionListener(e -> System.exit(0));
+
 		setupScreen.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
-		
-		
+			
 		setPlayerScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "setup"));
-		setPlayerScreen.playButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "game"));
 		
 		gameScreen.saveButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
 		gameScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
