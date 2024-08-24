@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JComponent;
@@ -14,7 +15,7 @@ public class DartsGUI extends JFrame {
 	protected final static Font FONT_BIG = new Font("Impact", Font.BOLD, 22);
 	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 16);
 	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 10);
-	
+	protected static final Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
 	
 	private HomeScreen homeScreen;
 	private SetupScreen setupScreen;

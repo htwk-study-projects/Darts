@@ -27,130 +27,73 @@ public class PlayerNameInput extends JPanel {
 	 
 	 private static final ColorIcon[] OPTIONS = {YELLOW,RED,ORANGE,VIOLETT,PINK,BLUE,LIGHTBLUE,GREEN,LIGHTGREEN,BLACK,GREY};
 
+	 private Line gameNameLine;
 	 private JTextField gameNameText;
 	 private JLabel gameNameLabel;
 	 
-	 private JLabel playerNameLabel;
-	 
+	 private Line player1Line;
 	 private JLabel player1Name;
 	 private JTextField player1NameField;
 	 protected JComboBox<ColorIcon> comboBox1;
 	 
+	 private Line player2Line;
 	 private JLabel player2Name;
 	 private JTextField player2NameField;
 	 protected JComboBox<ColorIcon> comboBox2;
 	 
+	 private Line player3Line;
 	 private JLabel player3Name;
 	 private JTextField player3NameField;
 	 protected JComboBox<ColorIcon> comboBox3;
 	 
+	 private Line player4Line;
 	 private JLabel player4Name;
 	 private JTextField player4NameField;
 	 protected JComboBox<ColorIcon> comboBox4;
 	 
-	 private GridBagConstraints gbc = new GridBagConstraints();
+	 private Bar playerNameInputBar;
 	
 	public PlayerNameInput(){
-	    this.setLayout(new GridBagLayout());
 
 	    gameNameLabel = new JLabel("Spielname:");
 	    gameNameText = new JTextField(16);
 	    JComponent[] gameNameLineElements = {gameNameLabel, gameNameText};
-	    Line gameNameLine = new Line(gameNameLineElements );
-	    
-	    playerNameLabel = new JLabel("Spieler:");
+	    gameNameLine = new Line(gameNameLineElements);
 	    
 	    player1Name = new JLabel("Spieler 1:");
 	    player1NameField = new JTextField(10);
 		comboBox1 = new JComboBox<>(OPTIONS);
-
-	    player2Name = new JLabel("Spieler 2:");
+		JComponent[] glayer1LineElements = {player1Name, player1NameField, comboBox1};
+		player1Line = new Line(glayer1LineElements);
+		
+		player2Name = new JLabel("Spieler 2:");
 	    player2NameField = new JTextField(10);
-	    comboBox2 = new JComboBox<>(OPTIONS);
+		comboBox2 = new JComboBox<>(OPTIONS);
+		JComponent[] player2LineElements = {player2Name, player2NameField, comboBox2};
+		player2Line = new Line(player2LineElements);
 	    
-	    player3Name = new JLabel("Spieler 3:");
+		player3Name = new JLabel("Spieler 3:");
 	    player3NameField = new JTextField(10);
-	    comboBox3 = new JComboBox<>(OPTIONS);
+		comboBox3 = new JComboBox<>(OPTIONS);
+		JComponent[] player3LineElements = {player3Name, player3NameField, comboBox3};
+		player3Line = new Line(player3LineElements );
 	    
-	    player4Name = new JLabel("Spieler 4:");
+		player4Name = new JLabel("Spieler 4:");
 	    player4NameField = new JTextField(10);
-	    comboBox4 = new JComboBox<>(OPTIONS);
+		comboBox4 = new JComboBox<>(OPTIONS);
+		JComponent[] player4LineElements = {player4Name, player4NameField, comboBox4};
+		player4Line = new Line(player4LineElements);
+		
+	    JComponent[] Labels = {gameNameLabel, player1Name, player2Name, player3Name, player4Name};
+	    DartsGUI.fontAdjust(DartsGUI.FONT_BIG, Labels);
 	    
-	    JComponent[] LabelPlayer = {gameNameLabel, playerNameLabel, player1Name, player2Name, player3Name, player4Name};
-	    DartsGUI.fontAdjust(DartsGUI.FONT_BIG, LabelPlayer);
-
-	    gbc.insets = new Insets(5, 5, 5, 5); // Abstand zwischen den Komponenten
-	    
-	    // Zeile 0: Spieler Label
-	    gbc.gridy = 1;
-	    gbc.gridx = 1;
-	    gbc.gridwidth = 1;
-	    gbc.anchor = GridBagConstraints.WEST;
-	    this.add(playerNameLabel, gbc);
-
-	    // Zeile 1: Spielname Label und Textfeld
-	    gbc.gridx = 0;
-	    gbc.gridy = 0;
-	    gbc.anchor = GridBagConstraints.WEST;
-	    this.add(gameNameLabel, gbc);
-
-	    gbc.gridx = 1;
-	    gbc.fill = GridBagConstraints.HORIZONTAL;
-	    this.add(gameNameText, gbc);
-
-	    // Zeile 2: Spieler 1 Label und Textfeld
-	    gbc.gridx = 0;
-	    gbc.gridy = 2;
-	    gbc.fill = GridBagConstraints.NONE;
-	    this.add(player1Name, gbc);
-
-	    gbc.gridx = 1;
-	    gbc.fill = GridBagConstraints.HORIZONTAL;
-	    this.add(player1NameField, gbc);
-	    
-	    gbc.gridx = 2;
-	    gbc.fill = GridBagConstraints.HORIZONTAL;
-	    this.add(comboBox1, gbc);
-
-	    gbc.gridx = 0;
-	    gbc.gridy = 3;
-	    gbc.fill = GridBagConstraints.NONE;
-	    this.add(player2Name, gbc);
-
-	    gbc.gridx = 1;
-	    gbc.fill = GridBagConstraints.HORIZONTAL;
-	    this.add(player2NameField, gbc);
-	    
-	    gbc.gridx = 2;
-	    gbc.fill = GridBagConstraints.HORIZONTAL;
-	    this.add(comboBox2, gbc);
-
-	    gbc.gridx = 0;
-	    gbc.gridy = 4;
-	    gbc.fill = GridBagConstraints.NONE;
-	    this.add(player3Name, gbc);
-
-	    gbc.gridx = 1;
-	    gbc.fill = GridBagConstraints.HORIZONTAL;
-	    this.add(player3NameField, gbc);
-	    
-	    gbc.gridx = 2;
-	    gbc.fill = GridBagConstraints.HORIZONTAL;
-	    this.add(comboBox3, gbc);
-
-	    gbc.gridx = 0;
-	    gbc.gridy = 5;
-	    gbc.fill = GridBagConstraints.NONE;
-	    this.add(player4Name, gbc);
-
-	    gbc.gridx = 1;
-	    gbc.fill = GridBagConstraints.HORIZONTAL;
-	    this.add(player4NameField, gbc);
-	   
-	    gbc.gridx = 2;
-	    gbc.fill = GridBagConstraints.HORIZONTAL;
-	    this.add(comboBox4, gbc);
-	    
+	    JComponent[] playerNameInputBarElements = {gameNameLine, player1Line, player2Line, player3Line, player4Line};
+	    for (JComponent component : playerNameInputBarElements) {
+			component.setOpaque(false);	
+		}
+	    playerNameInputBar = new Bar(playerNameInputBarElements);
+	    playerNameInputBar.setBackground(DartsGUI.BACKGROUND_COLOR);
+	    this.add(playerNameInputBar);	    
 	}
 
 }

@@ -22,8 +22,6 @@ public class PlayerSetupScreen extends JPanel {
 
     
     public PlayerSetupScreen() {
-    	
-    	Color background = Color.LIGHT_GRAY;
 
         this.setLayout(new GridLayout(3, 3));
         DartsGUI.gridLayoutFill(this, 3, 3);
@@ -32,7 +30,7 @@ public class PlayerSetupScreen extends JPanel {
         title.setHorizontalAlignment(SwingConstants.CENTER);
         JComponent[] titleBarElements = {title, new TransparentPanel()};
         titleBar = new Bar(titleBarElements);
-        titleBar.setBackground(background);
+        titleBar.setBackground(DartsGUI.BACKGROUND_COLOR);
         titleBar.barPlacementInGridLayout(this, 1);
 
         // Erstellen der Buttons
@@ -44,11 +42,11 @@ public class PlayerSetupScreen extends JPanel {
         startBreakLine.setOpaque(false);
         JComponent[] startBreakBarElements = {new TransparentPanel(), new TransparentPanel(), new TransparentPanel(), startBreakLine};
         startBreakBar = new Bar(startBreakBarElements);
-        startBreakBar.setBackground(background);
+        startBreakBar.setBackground(DartsGUI.BACKGROUND_COLOR);
         startBreakBar.barPlacementInGridLayout(this, 7);;
         
        playerNameInput = new PlayerNameInput();
-       playerNameInput.setBackground(background);
+       playerNameInput.setBackground(DartsGUI.BACKGROUND_COLOR);
        
        this.remove(4);
        this.add(playerNameInput, 4); //Spieler-Label und Combo Boxen

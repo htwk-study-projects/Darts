@@ -50,7 +50,7 @@ public class SetupScreen extends JPanel implements SetupScreenInterface{
 	
 	private Bar setupMenuBar;
 	
-	private static final Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
+
 	
 	public SetupScreen() {
 		
@@ -100,7 +100,7 @@ public class SetupScreen extends JPanel implements SetupScreenInterface{
 		this.title.setHorizontalAlignment(SwingConstants.CENTER);		
 		JComponent[] titleBarElements = {this.title, new TransparentPanel()};
 		this.titleBar = new Bar(titleBarElements);
-		this.titleBar.setBackground(BACKGROUND_COLOR);
+		this.titleBar.setBackground(DartsGUI.BACKGROUND_COLOR);
 	}
 	
 	private void createPointsLine() {
@@ -163,7 +163,7 @@ public class SetupScreen extends JPanel implements SetupScreenInterface{
 			component.setOpaque(false);	
 		}
 		this.setupMenuBar = new Bar(setupMenuBarElements);
-		this.setupMenuBar.setBackground(BACKGROUND_COLOR);
+		this.setupMenuBar.setBackground(DartsGUI.BACKGROUND_COLOR);
 	}
 	
 	private void createStartBreakBar() {
@@ -172,11 +172,11 @@ public class SetupScreen extends JPanel implements SetupScreenInterface{
 		JButton[] startBreakLineElements = {this.backButton, this.startButton};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, startBreakLineElements);
 		this.startBreakLine = new Line(startBreakLineElements);
-		this.startBreakLine.setBackground(BACKGROUND_COLOR);
+		this.startBreakLine.setBackground(DartsGUI.BACKGROUND_COLOR);
 
 		JComponent[] startBreakBarElements = {new TransparentPanel(),new TransparentPanel(),new TransparentPanel(), this.startBreakLine};
 		this.startBreakBar = new Bar(startBreakBarElements);
-		this.startBreakBar.setBackground(BACKGROUND_COLOR);
+		this.startBreakBar.setBackground(DartsGUI.BACKGROUND_COLOR);
 	}
 	
     private JRadioButton createRadioButton(String text, String actionCommand, boolean isSelected) {

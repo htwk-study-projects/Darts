@@ -72,17 +72,17 @@ public class GameScreenSideBar extends JPanel {
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
         JButton[] buttons = {saveButton, backButton};
         JPanel buttonLine = new Line(buttons);
-        buttonLine.setBackground(Color.LIGHT_GRAY); // Hintergrund von buttonLine auf Grau setzen
+        buttonLine.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von buttonLine auf Grau setzen
 
         GameScreenPlayerPanel playerPanel = new GameScreenPlayerPanel();
-        playerPanel.setBackground(Color.LIGHT_GRAY); // Hintergrund von playerPanel auf Grau setzen
+        playerPanel.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von playerPanel auf Grau setzen
 
         JPanel empty = new JPanel();
-        empty.setBackground(Color.LIGHT_GRAY);
+        empty.setBackground(DartsGUI.BACKGROUND_COLOR);
         
         JComponent[] test = {empty, scrollPaneContainer, playerPanel, buttonLine};
         Bar Table = new Bar(test);
-        Table.setBackground(Color.LIGHT_GRAY); // Hintergrund von Table auf Grau setzen
+        Table.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von Table auf Grau setzen
         
         this.add(Table, BorderLayout.CENTER);
     }
