@@ -58,7 +58,13 @@ public class DartsGameData {
 		this.playerCount = playerCount;
 	}
 	
-	
+	public Object[][] preparePlayerDataForTabel(){
+		Object[][] playerDataForTable = new Object[this.playerCount][3] ;
+		for(int i = 0; i < playerDataForTable.length; i++) {
+			playerDataForTable[i] = new Object[] {players[i].getColor(), players[i].getPlayerPoints(), players[i].getName()};
+		}
+		return playerDataForTable;
+	}
 	
 	
 

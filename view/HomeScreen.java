@@ -77,6 +77,10 @@ public class HomeScreen extends JPanel {
         screenDivisionConstraints.fill = fill;
     }
     
+    public JButton getPlayButton() {
+    	return this.playButton;
+    }
+    
     
     
 }

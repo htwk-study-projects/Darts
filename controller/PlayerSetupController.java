@@ -32,6 +32,7 @@ public class PlayerSetupController {
 	private void initPlayerSetup() {
 		readPlayerSetup();
 		writePlayerSetup();
+		screenToAdjustDisplay.getGameScreenSideBar().setPlayerTableData(data.preparePlayerDataForTabel());
 		cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
 	}
 	
@@ -66,4 +67,5 @@ public class PlayerSetupController {
 			playerColors[i] = selectedColorIcon.getColor();
 		}
 	}
+	
 }

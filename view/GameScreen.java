@@ -34,24 +34,15 @@ public class GameScreen extends JPanel implements GameScreenInterface{
 		 
 		 //noch experiementell __________________
 		 
-		 JPanel container = new TransparentPanel();
-		 container.setLayout(new GridBagLayout());
-		 
-		 JPanel test = new TransparentPanel();
-	     this.setScreenDivisionConstrains(0, 0, 2, 2, 4, 4, GridBagConstraints.BOTH);
-	     container.add(test, screenDivisionConstraints);
 	     
 	     dartArrow = new DartArrowGraphic();
-	     dartArrow.setBackground(Color.blue);
-	     dartArrow.setOpaque(true);
-	     this.setScreenDivisionConstrains(0, 2, 2, 2, 1, 1, GridBagConstraints.BOTH);
-	     container.add(dartArrow, screenDivisionConstraints);
-	     
+	     //dartArrow.setBackground(Color.blue);
+	     dartArrow.setOpaque(false);
 	     this.setScreenDivisionConstrains(0, 0, 3, 3, 4, 4, GridBagConstraints.BOTH);
-	     boardAndArrowPanel.add(container, screenDivisionConstraints);
+	     boardAndArrowPanel.add(dartArrow, screenDivisionConstraints);
 	     
 	     boardAndArrowPanel.setComponentZOrder(board, 1);
-	     boardAndArrowPanel.setComponentZOrder(container, 0);
+	     boardAndArrowPanel.setComponentZOrder(dartArrow, 0);
 	     
 	     //noch experiementell __________________
 	     
@@ -76,6 +67,11 @@ public class GameScreen extends JPanel implements GameScreenInterface{
         screenDivisionConstraints.weightx = weightX;
         screenDivisionConstraints.weighty = weightY;
         screenDivisionConstraints.fill = fill;
+	}
+
+	@Override
+	public GameScreenSideBar getGameScreenSideBar() {
+		return sideBar;
 	}
 	
 }

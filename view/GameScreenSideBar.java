@@ -21,6 +21,12 @@ public class GameScreenSideBar extends JPanel {
     protected JButton backButton;
     
     private Object[][] playerTableData;
+    DefaultTableModel tableModel ;
+    JTable table;
+    JScrollPane scrollPane;
+    JPanel scrollPaneContainer ;
+    TransparentPanel leftSpace;
+    
     private GameScreenPlayerPanel playerPanel;
     
 
@@ -28,7 +34,7 @@ public class GameScreenSideBar extends JPanel {
 
         this.setLayout(new BorderLayout());
 
-        // Tabelle erstellen mit Spalten: Farbe (als Kästchen), Spieler, Punktzahl (ohne Kopfzeilen)
+        // Dummy Table
         playerTableData = new Object[][]{
             {Color.RED, "501", "Spieler 1"},
             {Color.BLUE, "501", "Spieler 2"},
@@ -37,13 +43,13 @@ public class GameScreenSideBar extends JPanel {
         };
 
         // Custom TableModel, um die Bearbeitung zu verhindern
-        DefaultTableModel tableModel = new DefaultTableModel(playerTableData, new Object[]{"", "", ""}) {
+        tableModel = new DefaultTableModel(playerTableData, new Object[]{"", "", ""}) {
             public boolean isCellEditable(int row, int column) {
                 return false; // Alle Zellen sind nicht editierbar
             }
         };
 
-        JTable table = new JTable(tableModel) {
+        table = new JTable(tableModel) {
             public TableCellRenderer getCellRenderer(int row, int column) {
                 if (column == 0) { // Erste Spalte (Spieler mit Kästchen) bekommt speziellen Renderer
                     return new IconRendererForTable();
@@ -54,18 +60,17 @@ public class GameScreenSideBar extends JPanel {
         setTabelSettings(table);
 
 
-        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane = new JScrollPane(table);
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false); // Tabelle selbst bleibt transparent
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
        
-        JPanel scrollPaneContainer = new JPanel(new BorderLayout());
+        scrollPaneContainer = new JPanel(new BorderLayout());
         scrollPaneContainer.setOpaque(false);
   
 
         // Leeres Panel links, um Platz zu schaffen
-        JPanel leftSpace = new JPanel();
-        leftSpace.setOpaque(false); // Hintergrund transparent
+        TransparentPanel leftSpace = new TransparentPanel();
         leftSpace.setPreferredSize(new java.awt.Dimension(70, 0)); // Anpassen für den gewünschten Abstand
 
         scrollPaneContainer.add(leftSpace, BorderLayout.WEST); // Platzhalter links
@@ -81,11 +86,8 @@ public class GameScreenSideBar extends JPanel {
 
         playerPanel = new GameScreenPlayerPanel();
         playerPanel.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von playerPanel auf Grau setzen
-
-        JPanel empty = new JPanel();
-        empty.setBackground(DartsGUI.BACKGROUND_COLOR);
         
-        JComponent[] test = {empty, scrollPaneContainer, playerPanel, buttonLine};
+        JComponent[] test = {new TransparentPanel(), scrollPaneContainer, playerPanel, buttonLine};
         Bar Table = new Bar(test);
         Table.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von Table auf Grau setzen
         
@@ -104,5 +106,13 @@ public class GameScreenSideBar extends JPanel {
         table.removeColumn(table.getColumnModel().getColumn(2));
         table.setFont(DartsGUI.FONT_NORMAL);
         table.setRowHeight(40);
+    }
+    
+    public void setPlayerTableData(Object[][] data) {
+    	this.playerTableData = data.clone();
+        this.tableModel.setDataVector(playerTableData, new Object[]{"", "", ""});
+        setTabelSettings(table);
+        this.revalidate();
+        this.repaint();
     }
 }

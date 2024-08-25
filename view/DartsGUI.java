@@ -54,7 +54,6 @@ public class DartsGUI extends JFrame {
 		saveScreen = new SaveScreen();
 		this.add (saveScreen, "save");
 		
-		homeScreen.playButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "setup"));
 		homeScreen.loadButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "save"));
 		homeScreen.exitButton.addActionListener(e -> System.exit(0));
 
