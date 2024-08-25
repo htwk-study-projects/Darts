@@ -6,9 +6,7 @@ public class MathVector {
 	private final int length;
 	
 	public MathVector(double[] components) {
-		if (components == null || components.length == 0) {
-	        throw new IllegalArgumentException("Das Komponentenarray darf nicht null oder leer sein.");
-	    }
+		if (components == null || components.length == 0) throw new IllegalArgumentException("Das Komponentenarray darf nicht null oder leer sein.");
 		this.vectorComponents = components.clone();
 		this.length = components.length;
 	}

@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -41,7 +42,8 @@ public class GameScreen extends JPanel implements GameScreenInterface{
 	     container.add(test, screenDivisionConstraints);
 	     
 	     dartArrow = new DartArrowGraphic();
-	     dartArrow.setOpaque(false);
+	     dartArrow.setBackground(Color.blue);
+	     dartArrow.setOpaque(true);
 	     this.setScreenDivisionConstrains(0, 2, 2, 2, 1, 1, GridBagConstraints.BOTH);
 	     container.add(dartArrow, screenDivisionConstraints);
 	     
