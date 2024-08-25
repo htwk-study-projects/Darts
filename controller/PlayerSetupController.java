@@ -18,6 +18,7 @@ public class PlayerSetupController {
 	
 	private String[] playerNames;
 	private Color[] playerColors;
+	private String gameName;
 	
 	public PlayerSetupController(view.PlayerSetupScreenInterface playerSetup, view.GameScreenInterface adjustDisplay, model.DartsGameData data, CardLayout cardLayout) {
 		this.screenToControl = playerSetup;
@@ -33,16 +34,21 @@ public class PlayerSetupController {
 		readPlayerSetup();
 		writePlayerSetup();
 		cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
-		System.out.println(Arrays.toString(data.getPlayers()));
 	}
 	
 	private void writePlayerSetup() {
+		this.data.setGameName(gameName);
 		this.data.setPlayers(playerNames, playerColors, data.getGameMode().getGamePoints());
 	}
 	
 	private void readPlayerSetup() {
+		readGameName();
 		readPlayerNames();
 		readPlayerColors();
+	}
+	
+	private void readGameName() {
+		gameName = screenToControl.getPlayerNameInput().getGameNameField().getText();
 	}
 	
 	private void readPlayerNames() {

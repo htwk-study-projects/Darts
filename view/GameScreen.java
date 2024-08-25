@@ -31,6 +31,7 @@ public class GameScreen extends JPanel implements GameScreenInterface{
 		 this.setScreenDivisionConstrains(0, 0, 3, 3, 4, 4, GridBagConstraints.BOTH);
 		 boardAndArrowPanel.add(board, screenDivisionConstraints);
 		 
+		 //noch experiementell __________________
 		 
 		 JPanel container = new TransparentPanel();
 		 container.setLayout(new GridBagLayout());
@@ -50,6 +51,7 @@ public class GameScreen extends JPanel implements GameScreenInterface{
 	     boardAndArrowPanel.setComponentZOrder(board, 1);
 	     boardAndArrowPanel.setComponentZOrder(container, 0);
 	     
+	     //noch experiementell __________________
 	     
 	     this.setScreenDivisionConstrains(0, 0, 3, 3, 20, 20, GridBagConstraints.BOTH);
 	     this.add(boardAndArrowPanel, screenDivisionConstraints);

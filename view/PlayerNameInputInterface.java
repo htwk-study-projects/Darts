@@ -6,5 +6,6 @@ import javax.swing.JTextField;
 public interface PlayerNameInputInterface {
 	JTextField[] getNameInputs();
 	JComboBox<ColorIcon>[] getColorInputs();
+	JTextField getGameNameField();
 	public void setChoosenPlayers(int selectedPlayerCount);
 }

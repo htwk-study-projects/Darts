@@ -16,15 +16,20 @@ import javax.swing.table.TableCellRenderer;
 
 public class GameScreenSideBar extends JPanel {
 
+	private Line buttonLine;
     protected JButton saveButton;
     protected JButton backButton;
+    
+    private Object[][] playerTableData;
+    private GameScreenPlayerPanel playerPanel;
+    
 
     public GameScreenSideBar() {
 
         this.setLayout(new BorderLayout());
 
         // Tabelle erstellen mit Spalten: Farbe (als Kästchen), Spieler, Punktzahl (ohne Kopfzeilen)
-        Object[][] data = {
+        playerTableData = new Object[][]{
             {Color.RED, "501", "Spieler 1"},
             {Color.BLUE, "501", "Spieler 2"},
             {Color.GREEN, "501", "Spieler 3"},
@@ -32,7 +37,7 @@ public class GameScreenSideBar extends JPanel {
         };
 
         // Custom TableModel, um die Bearbeitung zu verhindern
-        DefaultTableModel tableModel = new DefaultTableModel(data, new Object[]{"", "", ""}) {
+        DefaultTableModel tableModel = new DefaultTableModel(playerTableData, new Object[]{"", "", ""}) {
             public boolean isCellEditable(int row, int column) {
                 return false; // Alle Zellen sind nicht editierbar
             }
@@ -71,10 +76,10 @@ public class GameScreenSideBar extends JPanel {
     	JButton[] setupButtons = {saveButton, backButton};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
         JButton[] buttons = {saveButton, backButton};
-        JPanel buttonLine = new Line(buttons);
+        buttonLine = new Line(buttons);
         buttonLine.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von buttonLine auf Grau setzen
 
-        GameScreenPlayerPanel playerPanel = new GameScreenPlayerPanel();
+        playerPanel = new GameScreenPlayerPanel();
         playerPanel.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von playerPanel auf Grau setzen
 
         JPanel empty = new JPanel();

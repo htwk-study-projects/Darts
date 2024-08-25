@@ -31,7 +31,7 @@ public class PlayerNameInput extends JPanel implements PlayerNameInputInterface{
 	 private static final ColorIcon[] OPTIONS = {YELLOW,RED,ORANGE,VIOLETT,PINK,BLUE,LIGHTBLUE,GREEN,LIGHTGREEN,BLACK,GREY};
 
 	 private Line gameNameLine;
-	 private JTextField gameNameText;
+	 private JTextField gameNameField;
 	 private JLabel gameNameLabel;
 	 
 	 private Line player1Line;
@@ -61,8 +61,8 @@ public class PlayerNameInput extends JPanel implements PlayerNameInputInterface{
 	public PlayerNameInput(){
 
 	    gameNameLabel = new JLabel("Spielname:");
-	    gameNameText = new JTextField(16);
-	    JComponent[] gameNameLineElements = {gameNameLabel, gameNameText};
+	    gameNameField = new JTextField(16);
+	    JComponent[] gameNameLineElements = {gameNameLabel, gameNameField};
 	    gameNameLine = new Line(gameNameLineElements);
 	    
 	    player1Label = new JLabel("Spieler 1:");
@@ -134,6 +134,11 @@ public class PlayerNameInput extends JPanel implements PlayerNameInputInterface{
 		for(int j = choosenPlayers+1; j < playerNameInputBarElements.length; j++) {
 			playerNameInputBarElements[j] = new TransparentPanel();
 		}
+	}
+
+	@Override
+	public JTextField getGameNameField() {
+		return gameNameField;
 	}
 	
 	
