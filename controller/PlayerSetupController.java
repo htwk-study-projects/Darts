@@ -2,7 +2,6 @@ package controller;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.util.Arrays;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;

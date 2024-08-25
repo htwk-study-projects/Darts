@@ -34,6 +34,14 @@ public class Player {
     	return player;
     }
     
+	public void updatePlayerPoints() {
+    	//muss in Abhängigkeit der stati die punkte entweder abziehen oder gleichlassen
+		//setzen der stati erfolgt im Controller durch aufrufen von gameMode-Methodem und settern
+		//ist ein status einmal true bleibt er true
+    	
+    }
+
+    
     @Override
 	public String toString() {
 		return "Player [name=" + name + ", color=" + color + ", playerDarts=" + Arrays.toString(playerDarts)
@@ -69,13 +77,16 @@ public class Player {
     	return statusFinish;
     }
    
-    public void updatePlayerPoints() {
-    	
-    }
- 
-   /* public int calculationPlayerPoints(GameMode gameMode) {
-    	int currentDartThrow = playerDarts.length - throwCount;
-    	playerDarts[currentDartThrow]
-    }
-    */
+    public void setStatusPlayIn(boolean statusPlayIn) {
+		this.statusPlayIn = statusPlayIn;
+	}
+
+	public void setStatusPlayOut(boolean statusPlayOut) {
+		this.statusPlayOut = statusPlayOut;
+	}
+
+	public void setStatusFinish(boolean statusFinish) {
+		this.statusFinish = statusFinish;
+	}
+
 }
