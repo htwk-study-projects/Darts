@@ -48,3 +48,14 @@
 /PlayerSetupScreenInterface.class
 /PlayerNameInputInterface.class
 /GameScreenInterface.class
+<<<<<<< HEAD
+/DebugScreen.class
+/DebugScreen$1.class
+/DebugScreenSideBar.class
+/DebugScreenSideBar$1.class
+/DebugScreenInterface.class
+/DebugScreenSideBar$2.class
+/DebugScreenSideBar$3.class
+=======
+/DartArrowGraphic$1.class
+>>>>>>> da56ca6a0b5e8a20edeba98f8049ebac44f5c6e7
