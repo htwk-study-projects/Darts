@@ -58,4 +58,11 @@ public class GameMode {
 			default: return false;
 		}
 	}
+	
+	public boolean arePointValidForOutMode(int currentPlayerPoints, int currentThrowPoints) {
+		if(currentPlayerPoints - currentThrowPoints >= outMode || currentPlayerPoints - currentThrowPoints == 0 ){
+			return true;
+		}
+		return false;
+	}
 }
