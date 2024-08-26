@@ -130,7 +130,7 @@ public class SetupScreen extends JPanel implements SetupScreenInterface{
 	}
 	
 	private void createModeInLine() {
-		this.modInLabel = new JLabel("In");	
+		this.modInLabel = new JLabel("In:");	
 		this.straightIn = createRadioButton("Straight", "straight", true);
         this.doubleIn = createRadioButton("Double", "double", false);
         this.tripleIn = createRadioButton("Triple", "triple", false);

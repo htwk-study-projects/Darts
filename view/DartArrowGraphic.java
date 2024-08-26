@@ -4,16 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
+import java.awt.event.MouseListener;
 
-
-public class DartArrowGraphic extends JPanel implements MouseMotionListener {
+public class DartArrowGraphic extends JPanel implements MouseMotionListener, MouseListener {
 	
 	private int mouseX;
     private int mouseY;
 	
 	private int centerX;
 	private int baseY;
+	
+	private boolean shouldDraw = false; // Zustandsvariable
 	
 	private final double percentageArrowHeadHeight = 0.23;
 	private final double []percentageArrowHeadWidth = {0.45,0.55};
@@ -48,46 +49,48 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 
 	public DartArrowGraphic() {
 		this.addMouseMotionListener(this);
+		this.addMouseListener(this); // MouseListener hinzufügen
 		updatePoints();
 	}
 	
 	public void paintComponent(Graphics g) {
-		
 		super.paintComponent(g);
-		updatePoints();
-		Graphics2D dartArrow2D = (Graphics2D) g;		
-        dartArrow2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-		//PfeilSpitze
-		dartArrow2D.setColor(Color.GRAY);;
-		dartArrow2D.fillPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
-		dartArrow2D.setColor(Color.GRAY);
-		dartArrow2D.drawPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
 		
-		//Holder
-		dartArrow2D.setColor(new Color(0,135,60));
-		dartArrow2D.fillPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
-		dartArrow2D.drawPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
-				
-		//Wurfköper Griff
-		dartArrow2D.setColor(new Color(96,96,96));
-		dartArrow2D.fillPolygon(xPointsBody, yPointsBody, nPointsBody);
-		dartArrow2D.drawPolygon(xPointsBody, yPointsBody, nPointsBody);
+		if (shouldDraw) { // Nur zeichnen, wenn shouldDraw true ist
+			updatePoints();
+			Graphics2D dartArrow2D = (Graphics2D) g;		
+	        dartArrow2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		//Federn
-		dartArrow2D.setColor(new Color(0,135,60));
-		dartArrow2D.fillPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
-		dartArrow2D.drawPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
-		
+			// Pfeilspitze
+			dartArrow2D.setColor(Color.GRAY);
+			dartArrow2D.fillPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
+			dartArrow2D.setColor(Color.GRAY);
+			dartArrow2D.drawPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
+			
+			// Holder
+			dartArrow2D.setColor(new Color(0,135,60));
+			dartArrow2D.fillPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
+			dartArrow2D.drawPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
+					
+			// Wurfkörper Griff
+			dartArrow2D.setColor(new Color(96,96,96));
+			dartArrow2D.fillPolygon(xPointsBody, yPointsBody, nPointsBody);
+			dartArrow2D.drawPolygon(xPointsBody, yPointsBody, nPointsBody);
+
+			// Federn
+			dartArrow2D.setColor(new Color(0,135,60));
+			dartArrow2D.fillPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
+			dartArrow2D.drawPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
+		}
 	}
 	
 	private void updatePoints() {
 		int width = getWidth();
 		int height = getHeight();
 		
-		if(mouseX == 0 && mouseY == 0) {
-			this.centerX = width/2;
-			this.baseY = height/2;
+		if (mouseX == 0 && mouseY == 0) {
+			this.centerX = width / 2;
+			this.baseY = height / 2;
 		}
 		this.centerX = mouseX;
 		this.baseY = mouseY;
@@ -146,20 +149,47 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 	            (int) Math.round(usableHeight * percentageBodyHeight + baseY)
 	   };
 	}
-	
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
+		// Pfeilposition bei Dragging aktualisieren und neu zeichnen
 		mouseX = e.getX();
         mouseY = e.getY();
-        repaint(); 
-		
+        shouldDraw = true; // Sicherstellen, dass gezeichnet wird
+        repaint();
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		// Nicht verwendet
 	}
 
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// Bei Mausklick Pfeil zeichnen und in die Mitte setzen
+		shouldDraw = true;
+		mouseX = getWidth() / 2;
+		mouseY = getHeight() / 2;
+		repaint();
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// Nicht verwendet
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// Nicht verwendet
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// Nicht verwendet
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// Nicht verwendet
+	}
 }
