@@ -13,16 +13,19 @@ public class Player {
     private boolean statusPlayIn;
     private boolean statusPlayOut;
     private boolean statusFinish; //Gewonnen true or false
+    private boolean statusCanFinish;
 
     private Player(String name, Color color, int selectedPoints) {
         this.name = name;
         this.color = color;
-        this.playerDarts = DartArrow.createDart(3);
+        this.playerDarts = DartArrow.createDart(3).clone();
         this.throwCount = 3;
         this.playerPoints = selectedPoints;
         this.statusPlayIn = false;
         this.statusPlayOut = false;
+        this.statusCanFinish = false;
         this.statusFinish = false;
+        
  
     }
     
@@ -34,25 +37,50 @@ public class Player {
     	return player;
     }
     
+  //muss in Abhängigkeit der stati die punkte entweder abziehen oder gleichlassen
+  //setzen der stati erfolgt im Controller durch aufrufen von gameMode-Methodem und settern
+  //ist ein status einmal true bleibt er true	
 	public void updatePlayerPoints() {
-    	//muss in Abhängigkeit der stati die punkte entweder abziehen oder gleichlassen
-		//setzen der stati erfolgt im Controller durch aufrufen von gameMode-Methodem und settern
-		//ist ein status einmal true bleibt er true		
-		if(statusPlayIn) {
+		System.out.println(this.playerDarts[this.playerDarts.length - this.throwCount].getPoints());
+		if(statusPlayIn && statusCanFinish) {
 			this.playerPoints -= this.playerDarts[this.playerDarts.length - this.throwCount].getPoints();
 		}
-    	
+		if(statusPlayOut) {
+			setStatusFinish(true);
+		}
     }
+	
+	public boolean playerThrowCurrentDart(double [] ThrowParameter) {
+		if(!(throwCount > 0)) {
+			return false;
+		}
+		playerDarts[playerDarts.length - throwCount].setThrowParameter(ThrowParameter);
+		playerDarts[playerDarts.length - throwCount].throwDart();
+		throwCount --;
+		return true;
+	}
+	
 
 	@Override
 	public String toString() {
 		return "Player [name=" + name + ", color=" + color + ", playerDarts=" + Arrays.toString(playerDarts)
 				+ ", throwCount=" + throwCount + ", playerPoints=" + playerPoints + ", statusPlayIn=" + statusPlayIn
-				+ ", statusPlayOut=" + statusPlayOut + ", statusFinish=" + statusFinish + "]\n";
+				+ ", statusPlayOut=" + statusPlayOut + ", StatusCanFinish="+ statusCanFinish +", statusFinish=" + statusFinish + "]\n";
 	}
 	
+	/*
+	309.5cm 90°
+	Exception in thread "main" java.lang.NullPointerException: 
+	Cannot invoke "java.lang.Integer.intValue()" because the return value of "model.DartArrow.getMultiplier()" is null
+		at model.Player.getCurrentThrowMultiplier(Player.java:61)
+		at main.DARTS.main(DARTS.java:18)
+		*/
 	public int getCurrentThrowMultiplier() {
-		return this.playerDarts[this.playerDarts.length - this.throwCount].getMultiplier();
+		Integer multiplier = this.playerDarts[this.playerDarts.length - this.throwCount-1].getMultiplier();
+		if(multiplier.equals(4)) {
+			return 0;
+		}
+		return multiplier;
 	}
     
     public String getName() {
@@ -84,6 +112,10 @@ public class Player {
     	return statusPlayOut;
     }
     
+    public boolean getStatusCanFinish() {
+    	return getStatusCanFinish();
+    }
+    
     public boolean getStatusFinish() {
     	return statusFinish;
     }
@@ -94,6 +126,10 @@ public class Player {
 
 	public void setStatusPlayOut(boolean statusPlayOut) {
 		this.statusPlayOut = statusPlayOut;
+	}
+	
+	public void setStatusCanFinish(boolean statusCanFinish) {
+		this.statusCanFinish = statusCanFinish;
 	}
 
 	public void setStatusFinish(boolean statusFinish) {

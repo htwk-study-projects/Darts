@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 
 public class GameController{
 	
-	private view.GameScreen screenToControl;
+	private view.GameScreenInterface screenToControl;
 	
 	private JPanel dartArrowPanel;
 	
@@ -12,8 +12,9 @@ public class GameController{
 	//dann per mousemotionlistener verschiebbar, ändernung zum ausgangspunkt als y und z koordinaten für den WurfVektor
 	// auftreffpunkt werte für grafik skalieren und dort x zeichnen
 	
-	public GameController(view.GameScreen game ) {
+	public GameController(view.GameScreenInterface game ) {
 		this.screenToControl = game;
+		//this.dartArrowPanel = game.getD
 	}
 
 }
