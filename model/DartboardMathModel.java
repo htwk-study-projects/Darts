@@ -75,8 +75,8 @@ public class DartboardMathModel {
 		Integer points;
 		IntegerKeyPair keyPair = new IntegerKeyPair(sector, multiplier);
 		points = FIELD_VALUE_RELATIONS.get(keyPair);
-		if(points.equals(null)) return 0;
-		return points;
+		if(points != null) return points;
+		return 0;
 	}
 	
 	public static Integer determineSector(Integer angle) {
@@ -94,7 +94,7 @@ public class DartboardMathModel {
 	
 	public static Integer determineMultiplier(Double distance) {
 		Random random = new Random();
-		final Integer OutOfBoard = 4;
+		final Integer OutOfBoard = null;
 		final Integer[] MULTIPLIER_VALUES_ORDER = {-1, 0, 1, 3, 1, 2, OutOfBoard};
 		for(int i = 0; i < DISTANCES.length; i++) {
 			if(distance.equals(DISTANCES[i])) return MULTIPLIER_VALUES_ORDER[i + random.nextInt(2)];

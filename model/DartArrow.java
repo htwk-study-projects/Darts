@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public class DartArrow {
 	
 	private double[] throwParameter = new double[3];
@@ -11,7 +13,7 @@ public class DartArrow {
 		this.throwParameter = null;
 		this.dartThrow = null;
 		this.points = 0;
-		this.multiplier = 4;
+		this.multiplier = null;
 	}
 	
 	public static DartArrow[] createDart(int number) {
@@ -22,6 +24,14 @@ public class DartArrow {
 		return darts;
 	}
 	
+	
+	
+	/*@Override
+	public String toString() {
+		return "DartArrow [throwParameter=" + Arrays.toString(throwParameter) + ", dartThrow=" + dartThrow + ", points="
+				+ points + ", multiplier=" + multiplier + "]";
+	}*/
+
 	public void setThrowParameter(double[] tp) {
 		this.throwParameter = tp.clone();
 	}
