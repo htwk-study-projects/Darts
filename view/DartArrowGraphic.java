@@ -158,12 +158,6 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener {
     }
 
 	
-	/*public void setWidthAndHeight(int newWidth, int newHeight) {
-		thismouse = newWidth;
-		this.height = newHeight;
-		this.revalidate();
-        this.repaint();
-	}*/
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
