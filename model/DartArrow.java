@@ -41,6 +41,7 @@ public class DartArrow {
 		System.out.println(distance + "cm " + angle +"°");
 		points = DartboardMathModel.determinePoints(angle, distance);
 		multiplier = DartboardMathModel.determineMultiplier(distance);
+		System.out.println("Punkte: " + points + " " + "mutiplier " + multiplier);
 	}
 	
 }
