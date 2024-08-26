@@ -26,6 +26,7 @@ public class HomeScreen extends JPanel {
     protected JButton playButton;
     protected JButton loadButton;
     protected JButton exitButton;
+    protected JButton debugButton;
 
     public HomeScreen() {
     	
@@ -47,8 +48,9 @@ public class HomeScreen extends JPanel {
         playButton = new JButton("Spielen");
         loadButton = new JButton("Spiel laden");
         exitButton = new JButton("Beenden");
+        debugButton = new JButton("Debugmodus");
 
-        JComponent[] homeMenuElements = {playButton, loadButton, exitButton};
+        JComponent[] homeMenuElements = {playButton, debugButton, loadButton, exitButton};
         DartsGUI.fontAdjust(DartsGUI.FONT_BIG, homeMenuElements);
         homeMenu = new Bar(homeMenuElements);
         homeMenu.setOpaque(false);
@@ -79,8 +81,6 @@ public class HomeScreen extends JPanel {
     
     public JButton getPlayButton() {
     	return this.playButton;
-    }
-    
-    
+    }   
     
 }

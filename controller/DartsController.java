@@ -30,7 +30,8 @@ public class DartsController {
 		this.data = new model.DartsGameData();
 		this.setupController = new SetupController(userView.getSetupScreen(), userView.getPlayerSetupScreen(), data, cardLayout);
 		this.playerSetupController = new PlayerSetupController(userView.getPlayerSetupScreen(), userView.getGameScreen(), data, cardLayout);
-		this.gameController = new GameController(userView.getGameScreen());
+		this.gameController = new GameController(userView.getGameScreen(), data, cardLayout);
+		
 		cardLayout.show(userView.getContentPane(), "setup");
 		System.out.println(data);
 	}

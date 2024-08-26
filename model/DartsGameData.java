@@ -58,8 +58,8 @@ public class DartsGameData {
 		this.playerCount = playerCount;
 	}
 	
-	public void getCurrentPlayer() {
-		
+	public Player getCurrentPlayer() {
+		return players[0];
 	
 	}
 	

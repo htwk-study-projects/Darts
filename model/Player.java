@@ -41,9 +41,9 @@ public class Player {
   //setzen der stati erfolgt im Controller durch aufrufen von gameMode-Methodem und settern
   //ist ein status einmal true bleibt er true	
 	public void updatePlayerPoints() {
-		System.out.println(this.playerDarts[this.playerDarts.length - this.throwCount].getPoints());
+		System.out.println(this.playerDarts[this.playerDarts.length -1 - this.throwCount]);
 		if(statusPlayIn && statusCanFinish) {
-			this.playerPoints -= this.playerDarts[this.playerDarts.length - this.throwCount].getPoints();
+			this.playerPoints -= this.playerDarts[this.playerDarts.length -1 - this.throwCount].getPoints();
 		}
 		if(statusPlayOut) {
 			setStatusFinish(true);
@@ -56,7 +56,7 @@ public class Player {
 		}
 		playerDarts[playerDarts.length - throwCount].setThrowParameter(ThrowParameter);
 		playerDarts[playerDarts.length - throwCount].throwDart();
-		throwCount --;
+		this.throwCount--;
 		return true;
 	}
 	
@@ -68,19 +68,13 @@ public class Player {
 				+ ", statusPlayOut=" + statusPlayOut + ", StatusCanFinish="+ statusCanFinish +", statusFinish=" + statusFinish + "]\n";
 	}
 	
-	/*
-	309.5cm 90°
-	Exception in thread "main" java.lang.NullPointerException: 
-	Cannot invoke "java.lang.Integer.intValue()" because the return value of "model.DartArrow.getMultiplier()" is null
-		at model.Player.getCurrentThrowMultiplier(Player.java:61)
-		at main.DARTS.main(DARTS.java:18)
-		*/
 	public int getCurrentThrowMultiplier() {
-		Integer multiplier = this.playerDarts[this.playerDarts.length - this.throwCount-1].getMultiplier();
-		if(multiplier.equals(4)) {
-			return 0;
+		System.out.println(this.playerDarts[this.playerDarts.length - 1 - this.throwCount]);
+		Integer multiplier = this.playerDarts[this.playerDarts.length - 1 - this.throwCount].getMultiplier();
+		if(multiplier != null) {
+			return multiplier;
 		}
-		return multiplier;
+		return 404;
 	}
     
     public String getName() {
