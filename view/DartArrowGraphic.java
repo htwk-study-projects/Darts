@@ -2,79 +2,179 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 
-public class DartArrowGraphic extends JPanel {
-    
-	public void paintComponent(Graphics g)
-	{
-		int width = getWidth();
-		double height = getHeight();
-		
-		int centerX = width/2;
-		int baseY = 0;
-		
-		double usableHeight = height*0.9;
-		double percentageArrowHeadHeight = 0.23;
-		double []percentageArrowHeadWidth = {0.498,0.502};
-		
-		double percentageHolderHeight = 0.20 + percentageArrowHeadHeight;
-		double []percentageHolderWidth = {0.4985,0.5025};
-		
-		double percentageBodyHeight = 0.43 + percentageHolderHeight;
-		double []percentageBodyWidth = {0.4998,0.502,0.49985,0.5015};
-		
-		double percentageFeather = 0.14;
-		double percentageWidth = 0.05;
-		
-		
-		
-		int [] xPointsArrowhead = {(int) Math.round(width*percentageArrowHeadWidth[0]),centerX, (int) Math.round(width*percentageArrowHeadWidth[1])}; 
-		int [] yPointsArrowhead = {(int) Math.round(usableHeight * percentageArrowHeadHeight),baseY,(int)Math.round(usableHeight * percentageArrowHeadHeight)};
-		int nPointsArrowhead = 3; 
-		
-		int[] xPointsHolder = {(int)Math.round(width*percentageHolderWidth[0]),(int)Math.round(width*percentageHolderWidth[0]), (int)Math.round(width*percentageHolderWidth[1]),(int)Math.round(width*percentageHolderWidth[1])};
-		int[] yPointsHolder = {(int)Math.round(usableHeight * percentageArrowHeadHeight),(int)Math.round(usableHeight * percentageHolderHeight),(int)Math.round(usableHeight * percentageHolderHeight),(int)Math.round(usableHeight * percentageArrowHeadHeight)};
-		int nPointsHolder = 4;
-		
-		int [] xPointsBody = {(int)Math.round(width*percentageBodyWidth[0]),(int)Math.round(width*percentageBodyWidth[2]),(int)Math.round(width*percentageBodyWidth[3]),(int)Math.round(width*percentageBodyWidth[1])}; 
-		int [] yPointsBody = {(int)Math.round(usableHeight * percentageHolderHeight),(int)Math.round(usableHeight * percentageBodyHeight),(int)Math.round(usableHeight * percentageBodyHeight),(int)Math.round(usableHeight * percentageHolderHeight)}; 
-		int nPointsBody = 4; 
-
-		int [] xPointsFeather = {}; 
-		int [] yPointsFeather = {}; 
-		int nPointsFeather = 7;
-		
+public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 	
+
+	
+	private int mouseX;
+    private int mouseY;
+	
+	private int centerX;
+	private int baseY;
+	
+	private final double percentageArrowHeadHeight = 0.23;
+	private final double []percentageArrowHeadWidth = {0.498,0.502};
+	
+	private final double percentageHolderHeight = 0.20 + percentageArrowHeadHeight;
+	private final double []percentageHolderWidth = {0.4975,0.5025};
+	
+	private final double percentageBodyHeight = 0.43 + percentageHolderHeight;
+	private final double []percentageBodyWidth = {0.4978,0.502,0.49985,0.5015};
+	
+	private final double percentageFeatherHeight = 0.12 + percentageBodyHeight;
+	private final double percentageFeatherWidth = 0.008;
+	
+	private double usableHeight;
+	int[] xPointsArrowhead;
+	int[] yPointsArrowhead;
+	int nPointsArrowhead = 3; 
+	
+	int[] xPointsHolder;
+	int[] yPointsHolder;
+	int nPointsHolder = 4;
+	
+	int[] xPointsBody; 
+	int[] yPointsBody;
+	int nPointsBody = 4; 
+
+	int[] xPointsFeather;
+	int[] yPointsFeather;
+	int nPointsFeather = 8;
+
+	public DartArrowGraphic() {
+		this.addMouseMotionListener(this);
+		this.mouseX = getWidth() / 2;
+        this.mouseY = getHeight() / 2;
+		updatePoints();
+	}
+	
+	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D) g;		
-		// Setzt Antialiasing für glattere Kanten
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		updatePoints();
+		Graphics2D dartArrow2D = (Graphics2D) g;		
+        dartArrow2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		
 		//PfeilSpitze
-		g2d.setColor(new Color(221,219,219));
-		g2d.fillPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
-		g2d.setColor(Color.GRAY);
-		g2d.drawPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
+		dartArrow2D.setColor(Color.GRAY);;
+		dartArrow2D.fillPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
+		dartArrow2D.setColor(Color.LIGHT_GRAY);
+		dartArrow2D.drawPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
 		
 		//Holder
-				g2d.setColor(Color.RED);
-				g2d.fillPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
-				g2d.drawPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
+		dartArrow2D.setColor(Color.RED);
+		dartArrow2D.fillPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
+		dartArrow2D.drawPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
 				
 		//Wurfköper Griff
-		g2d.setColor(Color.BLACK);
-		g2d.fillPolygon(xPointsBody, yPointsBody, nPointsBody);
-		g2d.drawPolygon(xPointsBody, yPointsBody, nPointsBody);
-/*
+		dartArrow2D.setColor(Color.BLACK);
+		dartArrow2D.fillPolygon(xPointsBody, yPointsBody, nPointsBody);
+		dartArrow2D.drawPolygon(xPointsBody, yPointsBody, nPointsBody);
+
 		//Federn
-		g2d.setColor(Color.BLACK);
-		g2d.fillPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
-		g2d.drawPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
-	*/
+		dartArrow2D.setColor(Color.BLACK);
+		dartArrow2D.fillPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
+		dartArrow2D.drawPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
+		
+	}
+	
+	private void updatePoints() {
+        int width = getWidth();
+        int height = getHeight();
+
+        double usableHeight = height * 0.6; // Dieser Wert steuert die Länge des Pfeils
+
+        // Die Basis des Pfeils wird als Punkt relativ zur Mausposition festgelegt
+        int arrowBaseX = mouseX;
+        int arrowBaseY = mouseY;
+
+        // Spitze des Pfeils
+        xPointsArrowhead = new int[]{
+            arrowBaseX - (int) (usableHeight * percentageArrowHeadHeight / 2),
+            arrowBaseX + (int) (usableHeight * percentageArrowHeadHeight / 2),
+            arrowBaseX
+        };
+        yPointsArrowhead = new int[]{
+            arrowBaseY,
+            arrowBaseY,
+            arrowBaseY - (int) (usableHeight * percentageArrowHeadHeight)
+        };
+
+        // Halter
+        xPointsHolder = new int[]{
+            arrowBaseX - (int) (usableHeight * percentageHolderWidth[0]),
+            arrowBaseX - (int) (usableHeight * percentageHolderWidth[0]),
+            arrowBaseX + (int) (usableHeight * percentageHolderWidth[1]),
+            arrowBaseX + (int) (usableHeight * percentageHolderWidth[1])
+        };
+        yPointsHolder = new int[]{
+            arrowBaseY,
+            arrowBaseY + (int) (usableHeight * percentageHolderHeight),
+            arrowBaseY + (int) (usableHeight * percentageHolderHeight),
+            arrowBaseY
+        };
+
+        // Wurfkörper
+        xPointsBody = new int[]{
+            arrowBaseX - (int) (usableHeight * percentageBodyWidth[0]),
+            arrowBaseX - (int) (usableHeight * percentageBodyWidth[2]),
+            arrowBaseX + (int) (usableHeight * percentageBodyWidth[3]),
+            arrowBaseX + (int) (usableHeight * percentageBodyWidth[1])
+        };
+        yPointsBody = new int[]{
+            arrowBaseY + (int) (usableHeight * percentageHolderHeight),
+            arrowBaseY + (int) (usableHeight * percentageBodyHeight),
+            arrowBaseY + (int) (usableHeight * percentageBodyHeight),
+            arrowBaseY + (int) (usableHeight * percentageHolderHeight)
+        };
+
+        // Federn
+        xPointsFeather = new int[]{
+            arrowBaseX - (int) (usableHeight * percentageBodyWidth[2]),
+            arrowBaseX - (int) (usableHeight * percentageBodyWidth[2]),
+            arrowBaseX - (int) (usableHeight * (percentageBodyWidth[2] + percentageFeatherWidth)),
+            arrowBaseX - (int) (usableHeight * percentageBodyWidth[2]),
+            arrowBaseX + (int) (usableHeight * percentageBodyWidth[3]),
+            arrowBaseX + (int) (usableHeight * percentageBodyWidth[3]),
+            arrowBaseX + (int) (usableHeight * (percentageBodyWidth[3] + percentageFeatherWidth)),
+            arrowBaseX + (int) (usableHeight * percentageBodyWidth[3])
+        };
+
+        yPointsFeather = new int[]{
+            arrowBaseY + (int) (usableHeight * percentageBodyHeight),
+            arrowBaseY + (int) (usableHeight * percentageFeatherHeight),
+            arrowBaseY + (int) (usableHeight * percentageFeatherHeight + arrowBaseY * percentageFeatherWidth * 2),
+            arrowBaseY + (int) (usableHeight * percentageBodyHeight),
+            arrowBaseY + (int) (usableHeight * percentageBodyHeight),
+            arrowBaseY + (int) (usableHeight * percentageFeatherHeight),
+            arrowBaseY + (int) (usableHeight * percentageFeatherHeight + arrowBaseY * percentageFeatherWidth * 2),
+            arrowBaseY + (int) (usableHeight * percentageBodyHeight)
+        };
+    }
+
+	
+	/*public void setWidthAndHeight(int newWidth, int newHeight) {
+		thismouse = newWidth;
+		this.height = newHeight;
+		this.revalidate();
+        this.repaint();
+	}*/
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		mouseX = e.getX();
+        mouseY = e.getY();
+        repaint();
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+	
 		
 	}
 
