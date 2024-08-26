@@ -27,7 +27,7 @@ public class GameScreenSideBar extends JPanel {
     JPanel scrollPaneContainer ;
     TransparentPanel leftSpace;
     
-    private GameScreenPlayerPanel playerPanel;
+    private GameScreenCurrentPlayerPanel playerPanel;
     
 
     public GameScreenSideBar() {
@@ -84,7 +84,7 @@ public class GameScreenSideBar extends JPanel {
         buttonLine = new Line(buttons);
         buttonLine.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von buttonLine auf Grau setzen
 
-        playerPanel = new GameScreenPlayerPanel();
+        playerPanel = new GameScreenCurrentPlayerPanel();
         playerPanel.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von playerPanel auf Grau setzen
         
         JComponent[] test = {new TransparentPanel(), scrollPaneContainer, playerPanel, buttonLine};
@@ -107,6 +107,10 @@ public class GameScreenSideBar extends JPanel {
         table.setFont(DartsGUI.FONT_NORMAL);
         table.setRowHeight(40);
     }
+    
+    public GameScreenCurrentPlayerPanel getPlayerPanel() {
+		return playerPanel;
+	}
     
     public void setPlayerTableData(Object[][] data) {
     	this.playerTableData = data.clone();

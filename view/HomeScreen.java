@@ -81,8 +81,6 @@ public class HomeScreen extends JPanel {
     
     public JButton getPlayButton() {
     	return this.playButton;
-    }
-    
-    
+    }   
     
 }

@@ -137,11 +137,6 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 	            (int) Math.round(usableHeight * percentageBodyHeight + baseY)
 	   };
 	}
-	
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/prod
 
 	@Override
 	public void mouseDragged(MouseEvent e) {

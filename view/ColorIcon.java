@@ -11,8 +11,8 @@ import javax.swing.Icon;
  */ 
 public class ColorIcon implements Icon {
     
-	private final Color color;
-    private final static int SIZE = 15;
+	private Color color;
+	private final static int SIZE = 15;
 
     /**
      * Constructs a ColorIcon with a specified color.
@@ -42,4 +42,9 @@ public class ColorIcon implements Icon {
 	public Color getColor() {
 		return color;
 	}
+	
+    public void setColor(Color color) {
+		this.color = color;
+	}
+
 }
