@@ -48,3 +48,10 @@
 /PlayerSetupScreenInterface.class
 /PlayerNameInputInterface.class
 /GameScreenInterface.class
+/DebugScreen.class
+/DebugScreen$1.class
+/DebugScreenSideBar.class
+/DebugScreenSideBar$1.class
+/DebugScreenInterface.class
+/DebugScreenSideBar$2.class
+/DebugScreenSideBar$3.class
