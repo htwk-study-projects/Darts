@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 	
-
-	
 	private int mouseX;
     private int mouseY;
 	
@@ -30,26 +28,24 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 	private final double percentageFeatherWidth = 0.008;
 	
 	private double usableHeight;
-	int[] xPointsArrowhead;
-	int[] yPointsArrowhead;
+	int [] xPointsArrowhead;
+	int [] yPointsArrowhead;
 	int nPointsArrowhead = 3; 
 	
 	int[] xPointsHolder;
 	int[] yPointsHolder;
 	int nPointsHolder = 4;
 	
-	int[] xPointsBody; 
-	int[] yPointsBody;
+	int [] xPointsBody; 
+	int [] yPointsBody;
 	int nPointsBody = 4; 
 
-	int[] xPointsFeather;
-	int[] yPointsFeather;
+	int [] xPointsFeather;
+	int [] yPointsFeather;
 	int nPointsFeather = 8;
 
 	public DartArrowGraphic() {
 		this.addMouseMotionListener(this);
-		this.mouseX = getWidth() / 2;
-        this.mouseY = getHeight() / 2;
 		updatePoints();
 	}
 	
@@ -84,97 +80,77 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 	}
 	
 	private void updatePoints() {
-        int width = getWidth();
-        int height = getHeight();
+		int width = getWidth();
+		int height = getHeight();
+		
+		this.centerX = mouseX;
+		this.baseY = mouseY;
+		
+		this.usableHeight = height * 0.2;
+		
+		xPointsArrowhead = new int[]{
+				(int) Math.round(width * percentageArrowHeadWidth[0]), centerX, (int) Math.round(width * percentageArrowHeadWidth[1])
+	    };
+	    yPointsArrowhead = new int[]{
+	            (int) Math.round(usableHeight * percentageArrowHeadHeight + baseY), baseY, (int) Math.round(usableHeight * percentageArrowHeadHeight + baseY)
+	    };
 
-        double usableHeight = height * 0.6; // Dieser Wert steuert die Länge des Pfeils
+	    xPointsHolder = new int[]{
+	    		(int) Math.round(width * percentageHolderWidth[0]), (int) Math.round(width * percentageHolderWidth[0]),
+	            (int) Math.round(width * percentageHolderWidth[1]), (int) Math.round(width * percentageHolderWidth[1])
+	    };
+	    yPointsHolder = new int[]{
+	            (int) Math.round(usableHeight * percentageArrowHeadHeight + baseY),
+	            (int) Math.round(usableHeight * percentageHolderHeight + baseY),
+	            (int) Math.round(usableHeight * percentageHolderHeight + baseY),
+	            (int) Math.round(usableHeight * percentageArrowHeadHeight + baseY)
+	    };
 
-        // Die Basis des Pfeils wird als Punkt relativ zur Mausposition festgelegt
-        int arrowBaseX = mouseX;
-        int arrowBaseY = mouseY;
+	    xPointsBody = new int[]{
+	            (int) Math.round(width * percentageBodyWidth[0]), (int) Math.round(width * percentageBodyWidth[2]),
+	            (int) Math.round(width * percentageBodyWidth[3]), (int) Math.round(width * percentageBodyWidth[1])
+	    };
+	    yPointsBody = new int[]{
+	            (int) Math.round(usableHeight * percentageHolderHeight + baseY),
+	            (int) Math.round(usableHeight * percentageBodyHeight + baseY),
+	            (int) Math.round(usableHeight * percentageBodyHeight + baseY),
+	            (int) Math.round(usableHeight * percentageHolderHeight + baseY)
+	    };
 
-        // Spitze des Pfeils
-        xPointsArrowhead = new int[]{
-            arrowBaseX - (int) (usableHeight * percentageArrowHeadHeight / 2),
-            arrowBaseX + (int) (usableHeight * percentageArrowHeadHeight / 2),
-            arrowBaseX
-        };
-        yPointsArrowhead = new int[]{
-            arrowBaseY,
-            arrowBaseY,
-            arrowBaseY - (int) (usableHeight * percentageArrowHeadHeight)
-        };
+	    xPointsFeather = new int[]{
+	            (int) Math.round(width * percentageBodyWidth[2]), (int) Math.round(width * percentageBodyWidth[2]),
+	            (int) Math.round(width * (percentageBodyWidth[0] - percentageFeatherWidth)),
+	            (int) Math.round(width * percentageBodyWidth[2]), 
+	            (int) Math.round(width * percentageBodyWidth[3]), (int) Math.round(width * percentageBodyWidth[3]), 
+	            (int) Math.round(width * (percentageBodyWidth[1] + percentageFeatherWidth)),
+	            (int) Math.round(width * percentageBodyWidth[3])
+	    };
 
-        // Halter
-        xPointsHolder = new int[]{
-            arrowBaseX - (int) (usableHeight * percentageHolderWidth[0]),
-            arrowBaseX - (int) (usableHeight * percentageHolderWidth[0]),
-            arrowBaseX + (int) (usableHeight * percentageHolderWidth[1]),
-            arrowBaseX + (int) (usableHeight * percentageHolderWidth[1])
-        };
-        yPointsHolder = new int[]{
-            arrowBaseY,
-            arrowBaseY + (int) (usableHeight * percentageHolderHeight),
-            arrowBaseY + (int) (usableHeight * percentageHolderHeight),
-            arrowBaseY
-        };
-
-        // Wurfkörper
-        xPointsBody = new int[]{
-            arrowBaseX - (int) (usableHeight * percentageBodyWidth[0]),
-            arrowBaseX - (int) (usableHeight * percentageBodyWidth[2]),
-            arrowBaseX + (int) (usableHeight * percentageBodyWidth[3]),
-            arrowBaseX + (int) (usableHeight * percentageBodyWidth[1])
-        };
-        yPointsBody = new int[]{
-            arrowBaseY + (int) (usableHeight * percentageHolderHeight),
-            arrowBaseY + (int) (usableHeight * percentageBodyHeight),
-            arrowBaseY + (int) (usableHeight * percentageBodyHeight),
-            arrowBaseY + (int) (usableHeight * percentageHolderHeight)
-        };
-
-        // Federn
-        xPointsFeather = new int[]{
-            arrowBaseX - (int) (usableHeight * percentageBodyWidth[2]),
-            arrowBaseX - (int) (usableHeight * percentageBodyWidth[2]),
-            arrowBaseX - (int) (usableHeight * (percentageBodyWidth[2] + percentageFeatherWidth)),
-            arrowBaseX - (int) (usableHeight * percentageBodyWidth[2]),
-            arrowBaseX + (int) (usableHeight * percentageBodyWidth[3]),
-            arrowBaseX + (int) (usableHeight * percentageBodyWidth[3]),
-            arrowBaseX + (int) (usableHeight * (percentageBodyWidth[3] + percentageFeatherWidth)),
-            arrowBaseX + (int) (usableHeight * percentageBodyWidth[3])
-        };
-
-        yPointsFeather = new int[]{
-            arrowBaseY + (int) (usableHeight * percentageBodyHeight),
-            arrowBaseY + (int) (usableHeight * percentageFeatherHeight),
-            arrowBaseY + (int) (usableHeight * percentageFeatherHeight + arrowBaseY * percentageFeatherWidth * 2),
-            arrowBaseY + (int) (usableHeight * percentageBodyHeight),
-            arrowBaseY + (int) (usableHeight * percentageBodyHeight),
-            arrowBaseY + (int) (usableHeight * percentageFeatherHeight),
-            arrowBaseY + (int) (usableHeight * percentageFeatherHeight + arrowBaseY * percentageFeatherWidth * 2),
-            arrowBaseY + (int) (usableHeight * percentageBodyHeight)
-        };
-    }
-
+	    yPointsFeather = new int[]{
+	            (int) Math.round(usableHeight * percentageBodyHeight + baseY),
+	            (int) Math.round(usableHeight * percentageFeatherHeight + baseY),
+	            (int) Math.round(usableHeight * percentageFeatherHeight + baseY + baseY * percentageFeatherWidth * 2),
+	            (int) Math.round(usableHeight * percentageBodyHeight + baseY),
+	            (int) Math.round(usableHeight * percentageBodyHeight + baseY),
+	            (int) Math.round(usableHeight * percentageFeatherHeight + baseY),
+	            (int) Math.round(usableHeight * percentageFeatherHeight + baseY + baseY * percentageFeatherWidth * 2),
+	            (int) Math.round(usableHeight * percentageBodyHeight + baseY)
+	   };
+	}
 	
-	/*public void setWidthAndHeight(int newWidth, int newHeight) {
-		thismouse = newWidth;
-		this.height = newHeight;
-		this.revalidate();
-        this.repaint();
-	}*/
+
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		mouseX = e.getX();
         mouseY = e.getY();
-        repaint();
+        repaint(); 
+		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-	
+		// TODO Auto-generated method stub
 		
 	}
 

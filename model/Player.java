@@ -41,7 +41,7 @@ public class Player {
   //setzen der stati erfolgt im Controller durch aufrufen von gameMode-Methodem und settern
   //ist ein status einmal true bleibt er true	
 	public void updatePlayerPoints() {
-		
+		System.out.println(this.playerDarts[this.playerDarts.length - this.throwCount].getPoints());
 		if(statusPlayIn && statusCanFinish) {
 			this.playerPoints -= this.playerDarts[this.playerDarts.length - this.throwCount].getPoints();
 		}
