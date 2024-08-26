@@ -16,18 +16,20 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 	private int baseY;
 	
 	private final double percentageArrowHeadHeight = 0.23;
-	private final double []percentageArrowHeadWidth = {0.498,0.502};
+	private final double []percentageArrowHeadWidth = {0.45,0.55};
 	
 	private final double percentageHolderHeight = 0.20 + percentageArrowHeadHeight;
-	private final double []percentageHolderWidth = {0.4975,0.5025};
+	private final double []percentageHolderWidth = {0.45,0.55};
 	
 	private final double percentageBodyHeight = 0.43 + percentageHolderHeight;
-	private final double []percentageBodyWidth = {0.4978,0.502,0.49985,0.5015};
+	private final double []percentageBodyWidth = {0.45,0.55,0.185,0.215};
 	
 	private final double percentageFeatherHeight = 0.12 + percentageBodyHeight;
-	private final double percentageFeatherWidth = 0.008;
+	private final double percentageFeatherWidth = 1;
+	private final double secondpercentageFeatherHeight = 0.07+percentageFeatherHeight;
 	
 	private double usableHeight;
+	private double usableWidth;
 	int [] xPointsArrowhead;
 	int [] yPointsArrowhead;
 	int nPointsArrowhead = 3; 
@@ -59,21 +61,21 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 		//PfeilSpitze
 		dartArrow2D.setColor(Color.GRAY);;
 		dartArrow2D.fillPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
-		dartArrow2D.setColor(Color.LIGHT_GRAY);
+		dartArrow2D.setColor(Color.GRAY);
 		dartArrow2D.drawPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
 		
 		//Holder
-		dartArrow2D.setColor(Color.RED);
+		dartArrow2D.setColor(new Color(0,135,60));
 		dartArrow2D.fillPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
 		dartArrow2D.drawPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
 				
 		//Wurfköper Griff
-		dartArrow2D.setColor(Color.BLACK);
+		dartArrow2D.setColor(new Color(96,96,96));
 		dartArrow2D.fillPolygon(xPointsBody, yPointsBody, nPointsBody);
 		dartArrow2D.drawPolygon(xPointsBody, yPointsBody, nPointsBody);
 
 		//Federn
-		dartArrow2D.setColor(Color.BLACK);
+		dartArrow2D.setColor(new Color(0,135,60));
 		dartArrow2D.fillPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
 		dartArrow2D.drawPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
 		
@@ -83,21 +85,26 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 		int width = getWidth();
 		int height = getHeight();
 		
+		if(mouseX == 0 && mouseY == 0) {
+			this.centerX = width/2;
+			this.baseY = height/2;
+		}
 		this.centerX = mouseX;
 		this.baseY = mouseY;
 		
 		this.usableHeight = height * 0.2;
+		this.usableWidth = width * 0.0067;
 		
 		xPointsArrowhead = new int[]{
-				(int) Math.round(width * percentageArrowHeadWidth[0]), centerX, (int) Math.round(width * percentageArrowHeadWidth[1])
+				(int) Math.round(centerX-usableWidth * percentageArrowHeadWidth[0]), centerX, (int) Math.round(centerX + usableWidth* percentageArrowHeadWidth[1])
 	    };
 	    yPointsArrowhead = new int[]{
-	            (int) Math.round(usableHeight * percentageArrowHeadHeight + baseY), baseY, (int) Math.round(usableHeight * percentageArrowHeadHeight + baseY)
+	            (int) Math.round(baseY + usableHeight * percentageArrowHeadHeight), baseY, (int) Math.round(baseY + usableHeight * percentageArrowHeadHeight)
 	    };
 
 	    xPointsHolder = new int[]{
-	    		(int) Math.round(width * percentageHolderWidth[0]), (int) Math.round(width * percentageHolderWidth[0]),
-	            (int) Math.round(width * percentageHolderWidth[1]), (int) Math.round(width * percentageHolderWidth[1])
+	    		(int) Math.round(centerX-usableWidth * percentageHolderWidth[0]), (int) Math.round(centerX-usableWidth * percentageHolderWidth[0]),
+	            (int) Math.round(centerX+usableWidth * percentageHolderWidth[1]), (int) Math.round(centerX+usableWidth * percentageHolderWidth[1])
 	    };
 	    yPointsHolder = new int[]{
 	            (int) Math.round(usableHeight * percentageArrowHeadHeight + baseY),
@@ -107,8 +114,8 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 	    };
 
 	    xPointsBody = new int[]{
-	            (int) Math.round(width * percentageBodyWidth[0]), (int) Math.round(width * percentageBodyWidth[2]),
-	            (int) Math.round(width * percentageBodyWidth[3]), (int) Math.round(width * percentageBodyWidth[1])
+	            (int) Math.round(centerX - usableWidth * percentageBodyWidth[0]), (int) Math.round(centerX - usableWidth * percentageBodyWidth[2]),
+	            (int) Math.round(centerX + usableWidth * percentageBodyWidth[3]), (int) Math.round(centerX + usableWidth * percentageBodyWidth[1])
 	    };
 	    yPointsBody = new int[]{
 	            (int) Math.round(usableHeight * percentageHolderHeight + baseY),
@@ -118,25 +125,28 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener {
 	    };
 
 	    xPointsFeather = new int[]{
-	            (int) Math.round(width * percentageBodyWidth[2]), (int) Math.round(width * percentageBodyWidth[2]),
-	            (int) Math.round(width * (percentageBodyWidth[0] - percentageFeatherWidth)),
-	            (int) Math.round(width * percentageBodyWidth[2]), 
-	            (int) Math.round(width * percentageBodyWidth[3]), (int) Math.round(width * percentageBodyWidth[3]), 
-	            (int) Math.round(width * (percentageBodyWidth[1] + percentageFeatherWidth)),
-	            (int) Math.round(width * percentageBodyWidth[3])
+	            (int) Math.round(centerX-usableWidth * percentageBodyWidth[2]), 
+	            (int) Math.round(centerX-usableWidth * percentageBodyWidth[2]),
+	            (int) Math.round(centerX-usableWidth * (percentageBodyWidth[0] + percentageFeatherWidth)),
+	            (int) Math.round(centerX-usableWidth * percentageBodyWidth[2]), 
+	            (int) Math.round(centerX+usableWidth * percentageBodyWidth[3]), 
+	            (int) Math.round(centerX+usableWidth * percentageBodyWidth[3]), 
+	            (int) Math.round(centerX+usableWidth * (percentageBodyWidth[1] + percentageFeatherWidth)),
+	            (int) Math.round(centerX+usableWidth * percentageBodyWidth[3])
 	    };
 
 	    yPointsFeather = new int[]{
 	            (int) Math.round(usableHeight * percentageBodyHeight + baseY),
 	            (int) Math.round(usableHeight * percentageFeatherHeight + baseY),
-	            (int) Math.round(usableHeight * percentageFeatherHeight + baseY + baseY * percentageFeatherWidth * 2),
+	            (int) Math.round(usableHeight * secondpercentageFeatherHeight + baseY),
 	            (int) Math.round(usableHeight * percentageBodyHeight + baseY),
 	            (int) Math.round(usableHeight * percentageBodyHeight + baseY),
 	            (int) Math.round(usableHeight * percentageFeatherHeight + baseY),
-	            (int) Math.round(usableHeight * percentageFeatherHeight + baseY + baseY * percentageFeatherWidth * 2),
+	            (int) Math.round(usableHeight * secondpercentageFeatherHeight + baseY),
 	            (int) Math.round(usableHeight * percentageBodyHeight + baseY)
 	   };
 	}
+	
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
