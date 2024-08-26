@@ -1,9 +1,15 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+
+import javax.swing.JPanel;
+
 import java.awt.event.MouseListener;
 
 public class DartArrowGraphic extends JPanel implements MouseMotionListener, MouseListener {
@@ -15,6 +21,7 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 	private int baseY;
 	
 	private boolean shouldDraw = false; // Zustandsvariable
+	private boolean shouldPlace= true; // Zustandsvariable
 	
 	private final double percentageArrowHeadHeight = 0.23;
 	private final double []percentageArrowHeadWidth = {0.45,0.55};
@@ -88,10 +95,6 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 		int width = getWidth();
 		int height = getHeight();
 		
-		if (mouseX == 0 && mouseY == 0) {
-			this.centerX = width / 2;
-			this.baseY = height / 2;
-		}
 		this.centerX = mouseX;
 		this.baseY = mouseY;
 		
@@ -161,16 +164,19 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// Nicht verwendet
+		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// Bei Mausklick Pfeil zeichnen und in die Mitte setzen
-		shouldDraw = true;
-		mouseX = getWidth() / 2;
-		mouseY = getHeight() / 2;
-		repaint();
+		if(shouldPlace){
+			shouldDraw = true;
+			shouldPlace = false;
+			mouseX = getWidth() / 2;
+			mouseY = getHeight() / 2;
+			repaint();
+		}
+
 	}
 
 	@Override
@@ -190,6 +196,7 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// Nicht verwendet
+		shouldDraw = false;
+		shouldPlace = true;
 	}
 }
