@@ -39,7 +39,6 @@ public class PlayerSetupController {
 	    writePlayerSetup();
 	    screenToAdjustDisplay.getGameScreenSideBar().setPlayerTableData(data.preparePlayerDataForTable());
 
-	    // Setze die Label-Texte für das erste Spieler
 	    screenToAdjustDisplay.getGameScreenSideBar().getPlayerPanel().setLabelTexts(
 	        playerNames[0], 
 	        playerColors[0], 
@@ -48,6 +47,7 @@ public class PlayerSetupController {
 	        data.getPlayers()[0].getPlayerDarts()[0].getPoints().toString()
 	    );
 
+<<<<<<< HEAD
 	    if (textFieldFullfilmentCondition && colorPlayerFullfilmentCondition) {
 	        cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
 	    } else {
@@ -68,6 +68,12 @@ public class PlayerSetupController {
 																									data.getPlayers()[0].getPlayerDarts()[0].getPoints().toString()
 																									);
 		cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
+=======
+	    if (textFieldFullfilmentCondition && colorPlayerFullfilmentCondition) cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
+	    if (!textFieldFullfilmentCondition) popUpNotificationTextField();
+	    if (!colorPlayerFullfilmentCondition) popUpNotificationColorPlayer();
+	        
+>>>>>>> 2adc3059297f00b865c67dd72ccbf23f65d94bfb
 	}
 
 	
