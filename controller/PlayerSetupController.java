@@ -47,33 +47,10 @@ public class PlayerSetupController {
 	        data.getPlayers()[0].getPlayerDarts()[0].getPoints().toString()
 	    );
 
-<<<<<<< HEAD
-	    if (textFieldFullfilmentCondition && colorPlayerFullfilmentCondition) {
-	        cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
-	    } else {
-	        if (!textFieldFullfilmentCondition && !colorPlayerFullfilmentCondition) {
-	            popUpNotificationColorPlayer();
-	            popUpNotificationTextField();
-	        } else if (!textFieldFullfilmentCondition) {
-	            popUpNotificationTextField();
-	        } else if (!colorPlayerFullfilmentCondition) {
-	            popUpNotificationColorPlayer();
-	        }
-	    }
-		readPlayerSetup();
-		writePlayerSetup();
-		screenToAdjustDisplay.getGameScreenSideBar().setPlayerTableData(data.preparePlayerDataForTabel());
-		screenToAdjustDisplay.getGameScreenSideBar().getPlayerPanel().setLabelTexts(playerNames[0], playerColors[0], data.getPlayers()[0].getPlayerDarts()[0].getPoints().toString(),
-																									data.getPlayers()[0].getPlayerDarts()[0].getPoints().toString(),
-																									data.getPlayers()[0].getPlayerDarts()[0].getPoints().toString()
-																									);
-		cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
-=======
+
 	    if (textFieldFullfilmentCondition && colorPlayerFullfilmentCondition) cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
 	    if (!textFieldFullfilmentCondition) popUpNotificationTextField();
 	    if (!colorPlayerFullfilmentCondition) popUpNotificationColorPlayer();
-	        
->>>>>>> 2adc3059297f00b865c67dd72ccbf23f65d94bfb
 	}
 
 	
