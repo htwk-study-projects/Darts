@@ -71,9 +71,15 @@ public class GameController extends MouseAdapter{
             dartArrowPanel.setShouldDraw(false);
             dartArrowPanel.setShouldPlace(true);
             dartArrowPanel.setShouldRead(false);
-            System.out.println(dartArrowPanel.getXPostponement() + " " + dartArrowPanel.getYPostponement());
-            this.readThrowVector = new model.MathVector(new double[]{23.7, dartArrowPanel.getXPostponement(), dartArrowPanel.getYPostponement()});
-            System.out.println(this.readThrowVector);
+
+            //System.out.println(data.getCurrentPlayer());
+            data.getCurrentPlayer().playerThrowCurrentDart(new double[] {23.7, dartArrowPanel.getXPostponement(), dartArrowPanel.getYPostponement()});
+            data.getCurrentPlayer().setStatusPlayIn(data.getGameMode().isGameInModeConditionFulfilled(data.getCurrentPlayer().getCurrentThrowMultiplier()));
+            data.getCurrentPlayer().setStatusPlayOut(data.getGameMode().isGameOutModeConditionFulfilled(data.getCurrentPlayer().getCurrentThrowMultiplier()));
+            data.getCurrentPlayer().setStatusCanFinish(data.getGameMode().arePointValidForOutMode(data.getCurrentPlayer().getPlayerPoints(), data.getCurrentPlayer().getCurrentThrowPoints()));      
+            data.getCurrentPlayer().updatePlayerPoints();
+            System.out.println(data.getCurrentPlayer());
+            data.nextTurnPlayer();
         }
     }
 

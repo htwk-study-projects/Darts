@@ -69,7 +69,7 @@ public class DartsGameData {
     public void nextTurnPlayer() {
         Player currentPlayer = players[currentPlayerIndex];
 
-        if (currentPlayer.getStatusFinish() || turnCount >= 3) {
+        if (currentPlayer.getStatusFinish() || turnCount >= 2) {
             turnCount = 0;
             currentPlayerIndex = (currentPlayerIndex + 1) % playerCount;
         } else {

@@ -33,7 +33,6 @@ public class DartsController {
 		this.gameController = new GameController(userView.getGameScreen(), data, cardLayout);
 		
 		cardLayout.show(userView.getContentPane(), "setup");
-		System.out.println(data);
 	}
 	
 }

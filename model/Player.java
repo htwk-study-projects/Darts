@@ -12,14 +12,14 @@ public class Player {
     private int playerPoints;
     private boolean statusPlayIn;
     private boolean statusPlayOut;
-    private boolean statusFinish; //Gewonnen true or false
+    private boolean statusFinish;
     private boolean statusCanFinish;
 
     private Player(String name, Color color, int selectedPoints) {
         this.name = name;
         this.color = color;
         this.playerDarts = DartArrow.createDart(3).clone();
-        this.throwCount = 3;
+        this.throwCount = 0;
         this.playerPoints = selectedPoints;
         this.statusPlayIn = false;
         this.statusPlayOut = false;
@@ -36,27 +36,24 @@ public class Player {
     	}
     	return player;
     }
-    
-  //muss in Abhängigkeit der stati die punkte entweder abziehen oder gleichlassen
-  //setzen der stati erfolgt im Controller durch aufrufen von gameMode-Methodem und settern
-  //ist ein status einmal true bleibt er true	
+ 	
 	public void updatePlayerPoints() {
-		System.out.println(this.playerDarts[this.playerDarts.length -1 - this.throwCount]);
+		//System.out.println(this.playerDarts[this.throwCount]);
 		if(statusPlayIn && statusCanFinish) {
-			this.playerPoints -= this.playerDarts[this.playerDarts.length -1 - this.throwCount].getPoints();
+			this.playerPoints -= this.playerDarts[this.throwCount -1].getPoints();
 		}
 		if(statusPlayOut && this.playerPoints == 0) {
-			setStatusFinish(true);
+			statusFinish = true;
 		}
     }
 	
 	public boolean playerThrowCurrentDart(double [] ThrowParameter) {
-		if(!(throwCount > 0)) {
+		if(!(throwCount < 3)) {
 			return false;
 		}
-		playerDarts[playerDarts.length - throwCount].setThrowParameter(ThrowParameter);
-		playerDarts[playerDarts.length - throwCount].throwDart();
-		this.throwCount--;
+		playerDarts[this.throwCount].setThrowParameter(ThrowParameter);
+		playerDarts[this.throwCount].throwDart();
+		this.throwCount++;
 		return true;
 	}
 	
@@ -69,12 +66,19 @@ public class Player {
 	}
 	
 	public int getCurrentThrowMultiplier() {
-		System.out.println(this.playerDarts[this.playerDarts.length - 1 - this.throwCount]);
-		Integer multiplier = this.playerDarts[this.playerDarts.length - 1 - this.throwCount].getMultiplier();
+		Integer multiplier = this.playerDarts[this.throwCount -1].getMultiplier();
 		if(multiplier != null) {
 			return multiplier;
 		}
 		return 404;
+	}
+	
+	public int getCurrentThrowPoints() {
+		Integer points = this.playerDarts[this.throwCount -1].getPoints();
+		if(points != null) {
+			return points;
+		}
+		return 0;
 	}
     
     public String getName() {
@@ -107,7 +111,7 @@ public class Player {
     }
     
     public boolean getStatusCanFinish() {
-    	return getStatusCanFinish();
+    	return statusCanFinish;
     }
     
     public boolean getStatusFinish() {

@@ -22,15 +22,13 @@ public class DartArrow {
 			darts[i] = new DartArrow();
 		}
 		return darts;
-	}
+	}	
 	
-	
-	
-	/*@Override
+	@Override
 	public String toString() {
 		return "DartArrow [throwParameter=" + Arrays.toString(throwParameter) + ", dartThrow=" + dartThrow + ", points="
 				+ points + ", multiplier=" + multiplier + "]";
-	}*/
+	}
 
 	public void setThrowParameter(double[] tp) {
 		this.throwParameter = tp.clone();
@@ -55,7 +53,6 @@ public class DartArrow {
 		System.out.println(distance + "mm " + angle +"°");
 		this.points = DartboardMathModel.determinePoints(angle, distance);
 		this.multiplier = DartboardMathModel.determineMultiplier(distance);
-		System.out.println("Punkte: " + points + " " + "mutiplier " + multiplier);
 	}
 	
 }
