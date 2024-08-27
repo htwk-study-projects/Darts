@@ -1,5 +1,6 @@
-//package view;
+package view;
 
-//public interface DebugScreenInterface {
-	//GameScreenSideBar getDebugScreenSideBar();
-//}
+public interface DebugScreenInterface {
+	DebugScreenSideBar getDebugScreenSideBar();
+	DartArrowGraphic getDartArrowGraphic();
+}
