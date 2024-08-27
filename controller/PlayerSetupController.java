@@ -35,6 +35,15 @@ public class PlayerSetupController {
 	private void initPlayerSetup() {
 	    readPlayerSetup();
 	    writePlayerSetup();
+	    updateNextScreen();
+
+	    if (textFieldFullfillmentCondition() && colorPlayerFullfilmentCondition()) cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
+	    if (!textFieldFullfillmentCondition()) popUpNotificationTextField();
+	    if (!colorPlayerFullfilmentCondition()) popUpNotificationColorPlayer();
+	}
+
+	private void updateNextScreen() {
+		screenToAdjustDisplay.getGameScreenSideBar().setGameNameLabel(gameName);
 	    screenToAdjustDisplay.getGameScreenSideBar().setPlayerTableData(data.preparePlayerDataForTable());
 	    screenToAdjustDisplay.getGameScreenSideBar().getPlayerPanel().setLabelTexts(
 	        playerNames[0], 
@@ -43,12 +52,8 @@ public class PlayerSetupController {
 	        data.getPlayers()[0].getPlayerDarts()[0].getPoints().toString(),
 	        data.getPlayers()[0].getPlayerDarts()[0].getPoints().toString()
 	    );
-
-	    if (textFieldFullfillmentCondition() && colorPlayerFullfilmentCondition()) cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
-	    if (!textFieldFullfillmentCondition()) popUpNotificationTextField();
-	    if (!colorPlayerFullfilmentCondition()) popUpNotificationColorPlayer();
 	}
-
+	
 	
 	private void writePlayerSetup() {
 		this.data.setGameName(gameName);
