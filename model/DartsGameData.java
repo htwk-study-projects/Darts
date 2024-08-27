@@ -63,22 +63,17 @@ public class DartsGameData {
     
 
     public Player getCurrentPlayer() {
-        while (true) {
-            Player currentPlayer = players[currentPlayerIndex];
-            
-          
-            if (currentPlayer.getStatusFinish() == true) {
-                currentPlayerIndex = (currentPlayerIndex + 1) % playerCount; 
-                continue; 
-            }
-            
+        return players[currentPlayerIndex];
+    }
+
+    public void nextTurnPlayer() {
+        Player currentPlayer = players[currentPlayerIndex];
+
+        if (currentPlayer.getStatusFinish() || turnCount >= 3) {
+            turnCount = 0;
+            currentPlayerIndex = (currentPlayerIndex + 1) % playerCount;
+        } else {
             turnCount++;
-            if (turnCount >= 3) { 
-                turnCount = 0;
-                currentPlayerIndex = (currentPlayerIndex + 1) % playerCount;
-            }
-            
-            return currentPlayer;
         }
     }
     

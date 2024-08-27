@@ -22,7 +22,6 @@ public class DartsGUI extends JFrame {
 	private PlayerSetupScreen playerSetupScreen;
 	private GameScreen gameScreen;
 	private SaveScreen saveScreen;
-	private DartArrowGraphic dartarrow;
 	private DebugScreen debugScreen;
 
 	
@@ -36,9 +35,6 @@ public class DartsGUI extends JFrame {
 		this.setMinimumSize(new Dimension(1400, 920));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		
-		//this.dartarrow = new DartArrowGraphic();
-		//this.add(dartarrow,"arrow");
 		
 		this.homeScreen = new HomeScreen();
 		this.add(homeScreen, "home");
