@@ -31,7 +31,6 @@ public class PlayerSetupController {
 		screenToControl.getPlayButton().addActionListener(e -> initPlayerSetup());
 	}
 	
-	
 	private void initPlayerSetup() {
 	    readPlayerSetup();
 	    writePlayerSetup();

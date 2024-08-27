@@ -63,6 +63,7 @@ public class GameController extends MouseAdapter{
         if(dartArrowPanel.isShouldPlace()){
             dartArrowPanel.setShouldDraw(true);
             dartArrowPanel.setShouldPlace(false);
+            updateCurrentPlayerPanel();
             dartArrowPanel.setMouseX(dartArrowPanel.getWidth() / 2);
             dartArrowPanel.setMouseY(dartArrowPanel.getHeight() / 2);
             dartArrowPanel.repaint();
@@ -79,6 +80,8 @@ public class GameController extends MouseAdapter{
             data.getCurrentPlayer().setStatusCanFinish(data.getGameMode().arePointValidForOutMode(data.getCurrentPlayer().getPlayerPoints(), data.getCurrentPlayer().getCurrentThrowPoints()));      
             data.getCurrentPlayer().updatePlayerPoints();
             System.out.println(data.getCurrentPlayer());
+            updateCurrentPlayerPanel();
+            updatePlayerTable();
             data.nextTurnPlayer();
         }
     }
