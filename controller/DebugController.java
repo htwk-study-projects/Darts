@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.CardLayout;
 
+import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 
 public class DebugController {
@@ -10,6 +11,9 @@ public class DebugController {
 	 private view.DebugScreenSideBar debugScreenSideBar;
 	 private model.DartsGameData data;	
 	 
+	 private int pointsInput;
+	 private ButtonModel selectedButton;
+	 private String selectButtonString;
 	 
 	 private double distanceInput;
 	 private int angleInput;
@@ -26,6 +30,8 @@ public class DebugController {
 		
 		debugScreenInterface.getDebugScreenSideBar().getPlaceDistanceAngleButton().addActionListener(e->writeDistanceAndAngle());
 		debugScreenInterface.getDebugScreenSideBar().getPlaceVectorButton().addActionListener(e->writeVectors());
+		debugScreenInterface.getDebugScreenSideBar().getCreatePlayerButton().addActionListener(e->writeGameSetupAndPoints());
+
 	}
 	
 	public void writeVectors() {
@@ -44,6 +50,30 @@ public class DebugController {
 		int points = model.DartboardMathModel.determinePoints(angleInput,distanceInput);
 		popUpNotificationAngleAndDistance(angleInput,distanceInput,points);
 	}
+	
+	public void writeGameSetupAndPoints() {
+		readGameSetupAndPoints();
+		data.setGameMode(pointsInput, selectButtonString, selectButtonString);
+	}
+	
+	public void readGameSetupAndPoints() {
+		readGameSetup();
+		readPoints();
+	}
+	
+	public void readGameSetup() {
+		ButtonModel selectedButton = debugScreenSideBar.getModeRadioButton().getSelection();
+		selectButtonString = selectedButton.getActionCommand();
+	}
+	
+	public void readPoints() {
+		String pointsString = debugScreenSideBar.getPlayerPointsTextField().getText();
+		pointsInput = Integer.parseInt(pointsString);
+	}
+	
+	
+	
+	
 	public void readDistanceAndAngle() {
 		readDistance();
 		readAngle();
