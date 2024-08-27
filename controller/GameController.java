@@ -57,6 +57,8 @@ public class GameController extends MouseAdapter{
             dartArrowPanel.repaint();
         }
     }
+	
+	//Problem, bei erstellen eines weiteren spiels nach dem ersten funktioniert das playerpanel nicht mehr
 
     @Override
     public void mouseClicked(MouseEvent e) {
