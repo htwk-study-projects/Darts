@@ -3,25 +3,30 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class DebugScreenSideBar extends JPanel {
 
-	private Bar sectorMultiplierBar;
-	private Line sectorLine;
-	private Line multiplierLine;
-	private JLabel sectorMultiplierTitle;
-	private JLabel sectorLabel;
-	private JLabel multiplierLabel;
-    private JTextField sectorTextField;
-    private JTextField multiplierTextField;
-    private Line sectorMultiplierButtonLine;
-    private JButton placeSectorMultiplierButton;
+	private Bar playerModeBar;
+	private Line gameSetupLine;
+	private Line playerPointsLine;
+	private JLabel SetupLabel;
+	private JLabel gameSetupLabel;
+	private JLabel playerSetupLabel;
+    private JRadioButton StraightRadioButton;
+    private JRadioButton DoubleRadioButton;
+    private JRadioButton TripleRadioButton;
+    private JTextField playerPointsTextField;
+    private Line createPlayerButtonLine;
+    private JButton createPlayerButton;
+    private ButtonGroup mode;
     
     private Bar distanceAngleBar;
     private Line distanceLine;
@@ -56,24 +61,35 @@ public class DebugScreenSideBar extends JPanel {
     public DebugScreenSideBar() {
     	this.setLayout(new BorderLayout());
        
-    	sectorMultiplierTitle = new JLabel("Mir Sektor und Multiplikator", SwingConstants.CENTER);
+    	SetupLabel = new JLabel("Game Setup und Player Setup", SwingConstants.CENTER);
         
-        sectorLabel = new JLabel("Sektor:");
-        sectorTextField = new JTextField(10);
-        sectorLine = new Line(new JComponent[]{sectorLabel, sectorTextField});
-        sectorLine.setOpaque(false);
+        gameSetupLabel = new JLabel("Game Setup:");
         
-        multiplierLabel = new JLabel("Multip.:");
-        multiplierTextField = new JTextField(10);
-        multiplierLine = new Line(new JComponent[]{multiplierLabel, multiplierTextField});
-        multiplierLine.setOpaque(false);
+      
+        this.StraightRadioButton = createRadioButton("Straight", "straight", true);
+        this.DoubleRadioButton = createRadioButton("Double", "double", false);
+        this.TripleRadioButton = createRadioButton("Triple", "triple", false);
         
-        placeSectorMultiplierButton = new JButton("Pfeil platzieren");
-        sectorMultiplierButtonLine = new Line(new JComponent[]{new TransparentPanel(), placeSectorMultiplierButton, new TransparentPanel()});
-        sectorMultiplierButtonLine.setOpaque(false);
+        mode = new ButtonGroup();
         
-        sectorMultiplierBar = new Bar(new JComponent[]{sectorMultiplierTitle, sectorLine, multiplierLine, sectorMultiplierButtonLine});  
-        sectorMultiplierBar.setOpaque(false);
+        mode.add(StraightRadioButton);
+        mode.add(DoubleRadioButton);
+        mode.add(TripleRadioButton);
+        
+        gameSetupLine = new Line(new JComponent[]{gameSetupLabel, StraightRadioButton,DoubleRadioButton,TripleRadioButton});
+        gameSetupLine.setOpaque(false);
+        
+        playerSetupLabel = new JLabel("Punkte: ");
+        playerPointsTextField = new JTextField(10);
+        playerPointsLine = new Line(new JComponent[]{playerSetupLabel,playerPointsTextField,});
+        playerPointsLine.setOpaque(false);
+        
+        createPlayerButton = new JButton("Spieler erstellen");
+        createPlayerButtonLine = new Line(new JComponent[]{new TransparentPanel(), createPlayerButton, new TransparentPanel()});
+        createPlayerButtonLine.setOpaque(false);
+        
+        playerModeBar = new Bar(new JComponent[]{SetupLabel, gameSetupLine, playerPointsLine, createPlayerButtonLine});  
+        playerModeBar.setOpaque(false);
 
         
         distaneAngleTitle = new JLabel("Mit Distance und Winkel", SwingConstants.CENTER);
@@ -124,13 +140,15 @@ public class DebugScreenSideBar extends JPanel {
         BreakLine = new Line(new JComponent[] { new TransparentPanel(), backButton, new TransparentPanel() });
         BreakLine.setBackground(DartsGUI.BACKGROUND_COLOR);
 
-        JComponent[] sideBarElements = {new TransparentPanel(), sectorMultiplierBar, distanceAngleBar, vectorBar,new TransparentPanel(), BreakLine};
+        JComponent[] sideBarElements = {new TransparentPanel(), playerModeBar, distanceAngleBar, vectorBar,new TransparentPanel(), BreakLine};
         mainBar = new Bar(sideBarElements);
         mainBar.setBackground(DartsGUI.BACKGROUND_COLOR);
         
-        JComponent[] labels = {sectorMultiplierTitle, sectorLabel, multiplierLabel, distaneAngleTitle, distanceLabel, angleLabel, vectorTitle, vectorXLabel, vectorYLabel, vectorZLabel};
-        DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, labels);
-        JButton[] buttons = {placeSectorMultiplierButton, placeDistanceAngleButton, placeVectorButton, backButton};
+        JComponent[] labels = {SetupLabel, gameSetupLabel, playerSetupLabel, distaneAngleTitle, distanceLabel, angleLabel, vectorTitle, vectorXLabel, vectorYLabel, vectorZLabel};
+        DartsGUI.fontAdjust(DartsGUI.FONT_BIG, labels);
+        JComponent[] radioButtons = {StraightRadioButton,DoubleRadioButton,TripleRadioButton};
+        DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, radioButtons);
+        JButton[] buttons = {createPlayerButton, placeDistanceAngleButton, placeVectorButton, backButton};
         DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, buttons);
         
         this.add(mainBar);
@@ -142,18 +160,6 @@ public class DebugScreenSideBar extends JPanel {
 
 	public void setDistanceTextField(JTextField distanceTextField) {
 		this.distanceTextField = distanceTextField;
-	}
-
-	public JTextField getSectorTextField() {
-		return sectorTextField;
-	}
-
-	public JTextField getMultiplierTextField() {
-		return multiplierTextField;
-	}
-
-	public JButton getPlaceSectorMultiplierButton() {
-		return placeSectorMultiplierButton;
 	}
 
 	public JTextField getAngleTextField() {
@@ -183,6 +189,26 @@ public class DebugScreenSideBar extends JPanel {
 	public JButton getBackButton() {
 		return backButton;
 	}
+	
+	public JButton getCreatePlayerButton() {
+		return createPlayerButton;
+	}
+	
+	public JTextField getPlayerPointsTextField () {
+		return playerPointsTextField;
+		
+	}
+	
+	public ButtonGroup getModeRadioButton() {
+		return mode;
+	}
+	
+	private JRadioButton createRadioButton(String text, String actionCommand, boolean isSelected) {
+        JRadioButton radioButton = new JRadioButton(text);
+        radioButton.setActionCommand(actionCommand);
+        radioButton.setSelected(isSelected);
+        return radioButton;
+    }
     
 
     
