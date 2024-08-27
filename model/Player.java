@@ -45,7 +45,7 @@ public class Player {
 		if(statusPlayIn && statusCanFinish) {
 			this.playerPoints -= this.playerDarts[this.playerDarts.length -1 - this.throwCount].getPoints();
 		}
-		if(statusPlayOut) {
+		if(statusPlayOut && this.playerPoints == 0) {
 			setStatusFinish(true);
 		}
     }

@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class DebugScreen extends JPanel implements GameScreenInterface {
+public class DebugScreen extends JPanel implements DebugScreenInterface {
 
     private GridBagConstraints screenDivisionConstraints = new GridBagConstraints();
     
@@ -29,7 +29,6 @@ public class DebugScreen extends JPanel implements GameScreenInterface {
         this.setScreenDivisionConstrains(0, 0, 3, 3, 4, 4, GridBagConstraints.BOTH);
         boardAndArrowPanel.add(board, screenDivisionConstraints);
         
-        // Noch experimentell __________________
         dartArrow = new DartArrowGraphic();
         dartArrow.setOpaque(false);
         this.setScreenDivisionConstrains(0, 0, 3, 3, 4, 4, GridBagConstraints.BOTH);
@@ -37,7 +36,6 @@ public class DebugScreen extends JPanel implements GameScreenInterface {
         
         boardAndArrowPanel.setComponentZOrder(board, 1);
         boardAndArrowPanel.setComponentZOrder(dartArrow, 0);
-        // Noch experimentell __________________
         
         this.setScreenDivisionConstrains(0, 0, 3, 3, 20, 20, GridBagConstraints.BOTH);
         this.add(boardAndArrowPanel, screenDivisionConstraints);
@@ -59,15 +57,14 @@ public class DebugScreen extends JPanel implements GameScreenInterface {
         screenDivisionConstraints.weighty = weightY;
         screenDivisionConstraints.fill = fill;
     }
-
+    
+    @Override
     public DebugScreenSideBar getDebugScreenSideBar() {
         return sideBar;
     }
 
-
-	public GameScreenSideBar getGameScreenSideBar() {
-		return null;
-
-	
+	@Override
+	public DartArrowGraphic getDartArrowGraphic() {
+		return dartArrow;
 	}
 }

@@ -8,104 +8,132 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class DebugScreenSideBar extends JPanel {
 
+	private Bar sectorMultiplierBar;
+	private Line sectorLine;
+	private Line multiplierLine;
+	private JLabel sectorMultiplierTitle;
+	private JLabel sectorLabel;
+	private JLabel multiplierLabel;
     private JTextField sectorTextField;
     private JTextField multiplierTextField;
+    private Line sectorMultiplierButtonLine;
+    private JButton placeSectorMultiplierButton;
+    
+    private Bar distanceAngleBar;
+    private Line distanceLine;
+    private Line angleLine;
+    private JLabel distaneAngleTitle;
+    private JLabel distanceLabel;
+    private JLabel angleLabel;
     private JTextField distanceTextField;
     private JTextField angleTextField;
+    private Line distancebuttonLine;
+    private JButton placeDistanceAngleButton;
+    
+    private Bar vectorBar;
+    private Line vectorXLine;
+    private Line vectorYLine;
+    private Line vectorZLine;
+    private JLabel vectorTitle;
+    private JLabel vectorXLabel;
+    private JLabel vectorYLabel;
+    private JLabel vectorZLabel;
     private JTextField vectorXTextField;
     private JTextField vectorYTextField;
-    private JButton placeSectorMultiplierButton;
-    private JButton placeDistanceAngleButton;
+    private JTextField vectorZTextField;
+    private Line vectorButtonLine;
     private JButton placeVectorButton;
-    private Line startBreakLine;
-    protected JButton backButton; // Zurück Button
+    
+    private Line BreakLine;
+    protected JButton backButton;
+    
+    private Bar mainBar;
 
     public DebugScreenSideBar() {
     	this.setLayout(new BorderLayout());
-
-        // Labels erstellen
-        JLabel sectorLabel = new JLabel("Sektor:");
-        JLabel multiplierLabel = new JLabel("Multiplikator:");
-        JLabel distanceLabel = new JLabel("Distanz:");
-        JLabel angleLabel = new JLabel("Winkel:");
-        JLabel vectorXLabel = new JLabel("Wurfvektor X:");
-        JLabel vectorYLabel = new JLabel("Wurfvektor Y:");
-
-        // Fonts anpassen
-        JComponent[] labels = {sectorLabel, multiplierLabel, distanceLabel, angleLabel, vectorXLabel, vectorYLabel};
-        DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, labels);
-
-        // Eingabefelder erstellen
+       
+    	sectorMultiplierTitle = new JLabel("Mir Sektor und Multiplikator", SwingConstants.CENTER);
+        
+        sectorLabel = new JLabel("Sektor:");
         sectorTextField = new JTextField(10);
+        sectorLine = new Line(new JComponent[]{sectorLabel, sectorTextField});
+        sectorLine.setOpaque(false);
+        
+        multiplierLabel = new JLabel("Multip.:");
         multiplierTextField = new JTextField(10);
-        distanceTextField = new JTextField(10);
-        angleTextField = new JTextField(10);
-        vectorXTextField = new JTextField(10);
-        vectorYTextField = new JTextField(10);
-
-        // Buttons erstellen
+        multiplierLine = new Line(new JComponent[]{multiplierLabel, multiplierTextField});
+        multiplierLine.setOpaque(false);
+        
         placeSectorMultiplierButton = new JButton("Pfeil platzieren");
-        placeDistanceAngleButton = new JButton("Pfeil platzieren");
-        placeVectorButton = new JButton("Pfeil platzieren");
-        backButton = new JButton("Zurück");
-        startBreakLine = new Line(new JComponent[] { new TransparentPanel(), backButton, new TransparentPanel() });
-        startBreakLine.setBackground(DartsGUI.BACKGROUND_COLOR);
-
-        // Schriftart der Buttons setzen
-        JButton[] buttons = {placeSectorMultiplierButton, placeDistanceAngleButton, placeVectorButton, backButton};
-        for (JButton button : buttons) {
-            button.setFont(DartsGUI.FONT_NORMAL);
-        }
-
-        // Bar für die erste Gruppe (Sektor & Multiplikator)
-        Bar sectorMultiplierBar = new Bar(new JComponent[]{
-            createLine(sectorLabel, sectorTextField),
-            createLine(multiplierLabel, multiplierTextField),
-            placeSectorMultiplierButton
-        });
+        sectorMultiplierButtonLine = new Line(new JComponent[]{new TransparentPanel(), placeSectorMultiplierButton, new TransparentPanel()});
+        sectorMultiplierButtonLine.setOpaque(false);
+        
+        sectorMultiplierBar = new Bar(new JComponent[]{sectorMultiplierTitle, sectorLine, multiplierLine, sectorMultiplierButtonLine});  
         sectorMultiplierBar.setOpaque(false);
 
-        // Bar für die zweite Gruppe (Distanz & Winkel)
-        Bar distanceAngleBar = new Bar(new JComponent[]{
-            createLine(distanceLabel, distanceTextField),
-            createLine(angleLabel, angleTextField),
-            placeDistanceAngleButton
-        });
+        
+        distaneAngleTitle = new JLabel("Mit Distance und Winkel", SwingConstants.CENTER);
+        
+        distanceLabel = new JLabel("Distanz:");
+        distanceTextField = new JTextField(10);
+        distanceLine = new Line(new JComponent[] {distanceLabel,distanceTextField});
+        distanceLine.setOpaque(false);
+        
+        angleLabel = new JLabel("Winkel:");
+        angleTextField = new JTextField(10);
+        angleLine = new Line(new JComponent[] {angleLabel, angleTextField});
+        angleLine.setOpaque(false);
+        
+        placeDistanceAngleButton = new JButton("Pfeil platzieren");
+        distancebuttonLine = new Line(new JComponent[]{new TransparentPanel(), placeDistanceAngleButton, new TransparentPanel()});
+        distancebuttonLine.setOpaque(false);
+        
+        distanceAngleBar = new Bar(new JComponent[] {distaneAngleTitle, distanceLine, angleLine, distancebuttonLine});
         distanceAngleBar.setOpaque(false);
 
-        // Bar für die dritte Gruppe (Wurfvektor X & Y)
-        Bar vectorBar = new Bar(new JComponent[]{
-            createLine(vectorXLabel, vectorXTextField),
-            createLine(vectorYLabel, vectorYTextField),
-            placeVectorButton
-        });
+        
+        vectorTitle = new JLabel("Mit Wurfvektor", SwingConstants.CENTER);
+        
+        vectorXLabel = new JLabel("X:");
+        vectorXTextField = new JTextField(10);      
+        vectorXLine = new Line(new JComponent[] {vectorXLabel, vectorXTextField});
+        vectorXLine.setOpaque(false);
+        
+        vectorYLabel = new JLabel("Y:");
+        vectorYTextField = new JTextField(10);
+        vectorYLine = new Line(new JComponent[] {vectorYLabel, vectorYTextField});
+        vectorYLine.setOpaque(false);
+        
+        vectorZLabel = new JLabel("Z:");
+        vectorZTextField = new JTextField(10);      
+        vectorZLine = new Line(new JComponent[] {vectorZLabel, vectorZTextField});
+        vectorZLine.setOpaque(false);
+        
+        placeVectorButton = new JButton("Pfeil platzieren");
+        vectorButtonLine = new Line(new JComponent[]{new TransparentPanel(), placeVectorButton, new TransparentPanel()});
+        vectorButtonLine.setOpaque(false);
+        
+        vectorBar = new Bar(new JComponent[]{vectorTitle, vectorXLine, vectorYLine, vectorZLine, vectorButtonLine});
         vectorBar.setOpaque(false);
+        
+        backButton = new JButton("Zurück");
+        BreakLine = new Line(new JComponent[] { new TransparentPanel(), backButton, new TransparentPanel() });
+        BreakLine.setBackground(DartsGUI.BACKGROUND_COLOR);
 
-        // Hauptbar erstellen, die alle anderen Bars und den Zurück-Button enthält
-        Bar mainBar = new Bar(new JComponent[]{
-            new TransparentPanel(), // Abstandhalter
-            sectorMultiplierBar,
-            new TransparentPanel(), // Abstandhalter
-            distanceAngleBar,
-            new TransparentPanel(), // Abstandhalter
-            vectorBar,
-            new TransparentPanel(), // Abstandhalter
-            startBreakLine
-            
-        });
+        JComponent[] sideBarElements = {new TransparentPanel(), sectorMultiplierBar, distanceAngleBar, vectorBar,new TransparentPanel(), BreakLine};
+        mainBar = new Bar(sideBarElements);
         mainBar.setBackground(DartsGUI.BACKGROUND_COLOR);
         
+        JComponent[] labels = {sectorMultiplierTitle, sectorLabel, multiplierLabel, distaneAngleTitle, distanceLabel, angleLabel, vectorTitle, vectorXLabel, vectorYLabel, vectorZLabel};
+        DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, labels);
+        JButton[] buttons = {placeSectorMultiplierButton, placeDistanceAngleButton, placeVectorButton, backButton};
+        DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, buttons);
+        
         this.add(mainBar);
-    }
-
-    // Hilfsmethode zum Erstellen einer Line
-    private Line createLine(JComponent label, JComponent textField) {
-        Line line = new Line(new JComponent[]{label, textField});
-        line.setOpaque(false); // Line transparent setzen
-        return line;
     }
 
     

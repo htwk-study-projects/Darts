@@ -20,8 +20,8 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 	private int centerX;
 	private int baseY;
 	
-	private boolean shouldDraw = false; // Zustandsvariable
-	private boolean shouldPlace= true; // Zustandsvariable
+	private boolean shouldDraw; // Zustandsvariable
+	private boolean shouldPlace; // Zustandsvariable
 	
 	private final double percentageArrowHeadHeight = 0.23;
 	private final double []percentageArrowHeadWidth = {0.45,0.55};
@@ -55,15 +55,18 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 	int nPointsFeather = 8;
 
 	public DartArrowGraphic() {
-		this.addMouseMotionListener(this);
+		shouldPlace = true;
+		shouldDraw = false;
 		this.addMouseListener(this); // MouseListener hinzufügen
+		this.addMouseMotionListener(this);
+		
 		updatePoints();
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		if (shouldDraw) { // Nur zeichnen, wenn shouldDraw true ist
+		if(shouldDraw){
 			updatePoints();
 			Graphics2D dartArrow2D = (Graphics2D) g;		
 	        dartArrow2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -155,10 +158,10 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// Pfeilposition bei Dragging aktualisieren und neu zeichnen
 		mouseX = e.getX();
         mouseY = e.getY();
-        shouldDraw = true; // Sicherstellen, dass gezeichnet wird
+        shouldDraw = true;
+        shouldPlace = false;
         repaint();
 	}
 
@@ -176,7 +179,6 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 			mouseY = getHeight() / 2;
 			repaint();
 		}
-
 	}
 
 	@Override
