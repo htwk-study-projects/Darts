@@ -47,8 +47,8 @@ public class GameScreenCurrentPlayerPanel extends JPanel {
     	this.throw1Label.setText(firstThrow);
     	this.throw2Label.setText(secondThrow);
     	this.throw3Label.setText(thirdThrow);
-    	
-    	this.repaint();
+    	this.revalidate();
+        this.repaint();
     }
 
 }

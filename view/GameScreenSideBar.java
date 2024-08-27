@@ -39,6 +39,15 @@ public class GameScreenSideBar extends JPanel {
 
         this.setLayout(new BorderLayout());
 
+        
+        gameNameLabel = new JLabel("Spielname", SwingConstants.CENTER);
+        gameNameLabel.setFont(DartsGUI.FONT_NORMAL);
+     
+
+        JLabel instructionLabel1 = new JLabel("Tippe auf den Bildschirm damit der Dartpfeil erscheint", SwingConstants.CENTER);
+        JLabel instructionLabel2 = new JLabel("Platziere den Dartpfeil auf die gewünschte Wurfposition", SwingConstants.CENTER);
+        JLabel instructionLabel3 = new JLabel("Tippe ein weiteres Mal zum Werfen des Dartpfeils", SwingConstants.CENTER);
+
         // Dummy Table
         playerTableData = new Object[][]{
             {Color.RED, "501", "Spieler 1"},
@@ -81,15 +90,6 @@ public class GameScreenSideBar extends JPanel {
         instructionPanel = new JPanel(new GridLayout(5,1,1,1));
         instructionPanel.setOpaque(false);
       
-        
-        gameNameLabel = new JLabel("Spielname", SwingConstants.CENTER);
-        gameNameLabel.setFont(DartsGUI.FONT_NORMAL);
-     
-
-        JLabel instructionLabel1 = new JLabel("Tippe auf den Bildschirm damit der Dartpfeil erscheint", SwingConstants.CENTER);
-        JLabel instructionLabel2 = new JLabel("Platziere den Dartpfeil auf die gewünschte Wurfposition", SwingConstants.CENTER);
-        JLabel instructionLabel3 = new JLabel("Tippe ein weiteres Mal zum Werfen des Dartpfeils", SwingConstants.CENTER);
-
         JComponent[] labels= {instructionLabel1,instructionLabel2,instructionLabel3};
         DartsGUI.fontAdjust(DartsGUI.FONT_SMALL, labels);
         instructionPanel.add(gameNameLabel);
@@ -152,5 +152,7 @@ public class GameScreenSideBar extends JPanel {
     
     public void setGameNameLabel(String string) {
     	this.gameNameLabel.setText(string);
+    	this.revalidate();
+        this.repaint();
     }
 }
