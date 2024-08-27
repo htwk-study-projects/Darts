@@ -37,7 +37,6 @@ public class PlayerSetupController {
 	private void initPlayerSetup() {
 	    readPlayerSetup();
 	    writePlayerSetup();
-	    screenToAdjustDisplay.getGameScreenSideBar().setPlayerTableData(data.preparePlayerDataForTabel());
 
 	    // Setze die Label-Texte für das erste Spieler
 	    screenToAdjustDisplay.getGameScreenSideBar().getPlayerPanel().setLabelTexts(
