@@ -98,6 +98,10 @@ public class Player {
         return throwCount;
     }
     
+    public void setThrowCount(int newCount) {
+    	this.throwCount = newCount;
+    }
+    
     public int getPlayerPoints() {
         return playerPoints;
     }

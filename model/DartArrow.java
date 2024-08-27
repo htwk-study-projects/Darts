@@ -10,7 +10,7 @@ public class DartArrow {
 	private Integer multiplier;
 	
 	private DartArrow() {
-		this.throwParameter = null;
+		this.throwParameter = new double[3];
 		this.dartThrow = null;
 		this.points = 0;
 		this.multiplier = null;
