@@ -136,5 +136,54 @@ public class DebugScreenSideBar extends JPanel {
         this.add(mainBar);
     }
 
+	public JTextField getDistanceTextField() {
+		return distanceTextField;
+	}
+
+	public void setDistanceTextField(JTextField distanceTextField) {
+		this.distanceTextField = distanceTextField;
+	}
+
+	public JTextField getSectorTextField() {
+		return sectorTextField;
+	}
+
+	public JTextField getMultiplierTextField() {
+		return multiplierTextField;
+	}
+
+	public JButton getPlaceSectorMultiplierButton() {
+		return placeSectorMultiplierButton;
+	}
+
+	public JTextField getAngleTextField() {
+		return angleTextField;
+	}
+
+	public JButton getPlaceDistanceAngleButton() {
+		return placeDistanceAngleButton;
+	}
+
+	public JTextField getVectorXTextField() {
+		return vectorXTextField;
+	}
+
+	public JTextField getVectorYTextField() {
+		return vectorYTextField;
+	}
+
+	public JTextField getVectorZTextField() {
+		return vectorZTextField;
+	}
+
+	public JButton getPlaceVectorButton() {
+		return placeVectorButton;
+	}
+
+	public JButton getBackButton() {
+		return backButton;
+	}
+    
+
     
 }

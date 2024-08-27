@@ -12,14 +12,14 @@ public class DartsController {
 	private SetupController setupController;
 	private PlayerSetupController playerSetupController;
 	private GameController gameController;
+	private DebugController debugController;
 	
 	public DartsController() {
 		this.userView = new view.DartsGUI();		
 		this.cardLayout = userView.getCardLayout();
 		
 		userView.getHomeScreen().getPlayButton().addActionListener(e -> initDataAndController());
-		
-
+		this.debugController = new DebugController(userView.getDebugScreen(),data);
 	}
 
 	public view.DartsGUI getUserView() {

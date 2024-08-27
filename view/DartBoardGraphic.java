@@ -62,6 +62,8 @@ public class DartBoardGraphic extends JPanel {
         drawBoundaryLinesAndLabels(dartBoardTwoD);
         drawBullseye(dartBoardTwoD);
         drawBoundaryCircles(dartBoardTwoD);
+        drawDartHit(dartBoardTwoD,0,170);
+        
     }
     
     private void widthHeightInit() {
@@ -144,5 +146,21 @@ public class DartBoardGraphic extends JPanel {
         for (int diameter : adjustedBoardDiameters) {
         	targetPlace.drawOval(CenterX - diameter / 2, CenterY - diameter / 2, diameter, diameter);
         }
+    }
+    
+    private void drawDartHit(Graphics2D targetPlace, double xDart, double yDart) {
+    	
+    	double middlePointX = CenterX;
+    	double middlePointY = CenterY;
+    	double scalingFactor = 300/170;
+    	double scalingX = middlePointX + (xDart * scalingFactor);
+        double scalingY = middlePointY - (yDart* scalingFactor);
+    	int sizeHit = 5;
+    	System.out.println(scalingX + " " + scalingY);
+    	
+    	targetPlace.setColor(GREY);
+    	targetPlace.drawLine((int) Math.round(scalingX - sizeHit),(int) Math.round(scalingY - sizeHit),(int) Math.round(scalingX + sizeHit), (int) Math.round(scalingY + sizeHit));
+    	targetPlace.drawLine((int) Math.round(scalingX - sizeHit),(int) Math.round(scalingY + sizeHit),(int) Math.round(scalingX + sizeHit), (int) Math.round(scalingY - sizeHit));
+    	
     }
 }
