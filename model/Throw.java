@@ -36,6 +36,9 @@ public class Throw {
 	
 	public int computeAngleOnDartBoard() {
 		return DARTBOARD_ANGLE_VECTOR.intersectionAngleAntiClockwise(impactVector);
-
+	}
+	
+	public MathVector getImpactVector() {
+		return impactVector;
 	}
 }

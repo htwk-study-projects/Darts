@@ -20,8 +20,9 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 	private int centerX;
 	private int baseY;
 	
-	private boolean shouldDraw; // Zustandsvariable
-	private boolean shouldPlace; // Zustandsvariable
+	private boolean shouldDraw;
+	private boolean shouldPlace;
+	private boolean shouldRead;
 	
 	private final double percentageArrowHeadHeight = 0.23;
 	private final double []percentageArrowHeadWidth = {0.45,0.55};
@@ -57,6 +58,7 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 	public DartArrowGraphic() {
 		shouldPlace = true;
 		shouldDraw = false;
+		shouldRead = false;
 		this.addMouseListener(this); // MouseListener hinzufügen
 		this.addMouseMotionListener(this);
 		
@@ -158,11 +160,15 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		mouseX = e.getX();
-        mouseY = e.getY();
-        shouldDraw = true;
-        shouldPlace = false;
-        repaint();
+		if(shouldDraw) {
+			mouseX = e.getX();
+	        mouseY = e.getY();
+	        shouldDraw = true;
+	        shouldPlace = false;
+			shouldRead = true;
+	        repaint();
+		}
+
 	}
 
 	@Override
@@ -178,6 +184,11 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 			mouseX = getWidth() / 2;
 			mouseY = getHeight() / 2;
 			repaint();
+		}
+		if(shouldRead) {
+			shouldDraw = false;
+			shouldPlace = true;
+			shouldRead = false;
 		}
 	}
 
@@ -198,7 +209,8 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		shouldDraw = false;
 		shouldPlace = true;
+		shouldDraw = false;
+		shouldRead = false;
 	}
 }

@@ -27,6 +27,13 @@ public class GameController{
 
 	
 	private void updateCurrentPlayerPanel() {
-		//currentPlayerPanel.setLabelTexts(data.getCurrentPlayer().getName());
+		currentPlayerPanel.setLabelTexts(data.getCurrentPlayer().getName(), data.getCurrentPlayer().getColor(), 
+										 data.getCurrentPlayer().getPlayerDarts()[0].getPoints().toString(),
+										 data.getCurrentPlayer().getPlayerDarts()[1].getPoints().toString(),
+										 data.getCurrentPlayer().getPlayerDarts()[2].getPoints().toString());
+	}
+	
+	private void updatePlayerTable() {
+		
 	}
 }

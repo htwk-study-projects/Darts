@@ -15,6 +15,7 @@ public class DARTS {
 		model.Player [] Test = model.Player.createPlayer(new String[]{"Test"}, new Color[] {Color.BLUE}, GameMode.getGamePoints());
 		System.out.println(Test[0]);
 		Test[0].playerThrowCurrentDart(new double []{23.7,0,60});
+		System.out.println(Test[0].getPlayerDarts()[0].getDartThrow().getImpactVector());
 		System.out.println(Test[0].getPlayerDarts()[0]);
 		Test[0].setStatusPlayIn(GameMode.isGameInModeConditionFulfilled(Test[0].getCurrentThrowMultiplier()));
 		Test[0].setStatusPlayOut(GameMode.isGameOutModeConditionFulfilled(Test[0].getCurrentThrowMultiplier()));
