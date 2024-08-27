@@ -47,10 +47,10 @@ public class PlayerSetupController {
 	        data.getPlayers()[0].getPlayerDarts()[0].getPoints().toString()
 	    );
 
+
 	    if (textFieldFullfilmentCondition && colorPlayerFullfilmentCondition) cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
 	    if (!textFieldFullfilmentCondition) popUpNotificationTextField();
 	    if (!colorPlayerFullfilmentCondition) popUpNotificationColorPlayer();
-	        
 	}
 
 	
