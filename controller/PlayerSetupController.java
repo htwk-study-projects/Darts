@@ -126,7 +126,6 @@ public class PlayerSetupController {
 	    JComboBox<view.ColorIcon>[] colorInputs = screenToControl.getPlayerNameInput().getColorInputs();
 	    this.playerColors = new Color[this.data.getPlayerCount()];
 
-	    // Set zum Speichern der einzigartigen Farben
 	    Set<Color> uniqueColors = new HashSet<>();
 
 	    boolean differentColor = true;
