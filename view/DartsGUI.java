@@ -110,4 +110,7 @@ public class DartsGUI extends JFrame {
 		return gameScreen;
 	}
 
+	public DebugScreen getDebugScreen() {
+		return debugScreen;
+	}
 }
