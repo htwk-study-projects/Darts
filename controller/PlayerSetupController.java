@@ -38,6 +38,7 @@ public class PlayerSetupController {
 	    readPlayerSetup();
 	    writePlayerSetup();
 	    screenToAdjustDisplay.getGameScreenSideBar().setPlayerTableData(data.preparePlayerDataForTable());
+
 	    screenToAdjustDisplay.getGameScreenSideBar().getPlayerPanel().setLabelTexts(
 	        playerNames[0], 
 	        playerColors[0], 
