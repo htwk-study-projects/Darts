@@ -14,7 +14,7 @@ public class DartsGUI extends JFrame {
 	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 60);
 	protected final static Font FONT_BIG = new Font("Impact", Font.BOLD, 22);
 	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 16);
-	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 10);
+	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 13);
 	protected static final Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
 	
 	private HomeScreen homeScreen;
