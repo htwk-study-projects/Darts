@@ -30,7 +30,7 @@ public class DebugController {
 		
 		debugScreenInterface.getDebugScreenSideBar().getPlaceDistanceAngleButton().addActionListener(e->writeDistanceAndAngle());
 		debugScreenInterface.getDebugScreenSideBar().getPlaceVectorButton().addActionListener(e->writeVectors());
-		debugScreenInterface.getDebugScreenSideBar().getCreatePlayerButton().addActionListener(e->writeGameSetupAndPoints());
+		//debugScreenInterface.getDebugScreenSideBar().getCreatePlayerButton().addActionListener(e->writeGameSetupAndPoints());
 
 	}
 	
