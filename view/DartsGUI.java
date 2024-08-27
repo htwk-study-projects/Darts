@@ -14,7 +14,7 @@ public class DartsGUI extends JFrame {
 	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 60);
 	protected final static Font FONT_BIG = new Font("Impact", Font.BOLD, 22);
 	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 16);
-	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 10);
+	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 13);
 	protected static final Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
 	
 	private HomeScreen homeScreen;
@@ -22,7 +22,6 @@ public class DartsGUI extends JFrame {
 	private PlayerSetupScreen playerSetupScreen;
 	private GameScreen gameScreen;
 	private SaveScreen saveScreen;
-	private DartArrowGraphic dartarrow;
 	private DebugScreen debugScreen;
 
 	
@@ -36,9 +35,6 @@ public class DartsGUI extends JFrame {
 		this.setMinimumSize(new Dimension(1400, 920));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		
-		//this.dartarrow = new DartArrowGraphic();
-		//this.add(dartarrow,"arrow");
 		
 		this.homeScreen = new HomeScreen();
 		this.add(homeScreen, "home");

@@ -1,32 +1,86 @@
 package controller;
 
 import java.awt.CardLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.JPanel;
-
-public class GameController{
+public class GameController extends MouseAdapter{
 	
 	private view.GameScreenInterface screenToControl;
-	private model.DartsGameData data;	
+	private view.DartArrowGraphic dartArrowPanel;
+	private view.GameScreenCurrentPlayerPanel currentPlayerPanel;
 	private CardLayout cardLayout;
 	
-	private JPanel dartArrowPanel;
-	private view.GameScreenCurrentPlayerPanel currentPlayerPanel;
-	//mauszeiger als startpunkt von wo aus der pfeil gemalt wird nehmen
-	//dann per mousemotionlistener verschiebbar, ändernung zum ausgangspunkt als y und z koordinaten für den WurfVektor
-	// auftreffpunkt werte für grafik skalieren und dort x zeichnen
+	private model.DartsGameData data;	
+
+	private model.MathVector readThrowVector;
+	
+
+
 	
 	public GameController(view.GameScreenInterface game, model.DartsGameData data, CardLayout cardLayout) {
 		this.screenToControl = game;
 		this.data = data;
 		this.cardLayout = cardLayout;
-		//this.dartArrowPanel = game.getD
+		this.dartArrowPanel = game.getDartArrow();
 		this.currentPlayerPanel = game.getGameScreenSideBar().getPlayerPanel();
+		
+		this.dartArrowPanel.addMouseListener(this);
+        this.dartArrowPanel.addMouseMotionListener(this);
 		
 	}
 
 	
 	private void updateCurrentPlayerPanel() {
-		//currentPlayerPanel.setLabelTexts(data.getCurrentPlayer().getName());
+		currentPlayerPanel.setLabelTexts(data.getCurrentPlayer().getName(), data.getCurrentPlayer().getColor(), 
+										 data.getCurrentPlayer().getPlayerDarts()[0].getPoints().toString(),
+										 data.getCurrentPlayer().getPlayerDarts()[1].getPoints().toString(),
+										 data.getCurrentPlayer().getPlayerDarts()[2].getPoints().toString());
 	}
+	
+	private void updatePlayerTable() {
+		screenToControl.getGameScreenSideBar().setPlayerTableData(data.preparePlayerDataForTable());
+	}
+	
+	private void readArrowData() {
+		
+	}
+	
+	@Override
+    public void mouseDragged(MouseEvent e) {
+        if(dartArrowPanel.isShouldDraw()) {
+            dartArrowPanel.setMouseX(e.getX());
+            dartArrowPanel.setMouseY(e.getY());
+            dartArrowPanel.setShouldDraw(true);
+            dartArrowPanel.setShouldPlace(false);
+            dartArrowPanel.setShouldRead(true);
+            dartArrowPanel.repaint();
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(dartArrowPanel.isShouldPlace()){
+            dartArrowPanel.setShouldDraw(true);
+            dartArrowPanel.setShouldPlace(false);
+            dartArrowPanel.setMouseX(dartArrowPanel.getWidth() / 2);
+            dartArrowPanel.setMouseY(dartArrowPanel.getHeight() / 2);
+            dartArrowPanel.repaint();
+        }
+        if(dartArrowPanel.isShouldRead()) {
+            dartArrowPanel.setShouldDraw(false);
+            dartArrowPanel.setShouldPlace(true);
+            dartArrowPanel.setShouldRead(false);
+            System.out.println(dartArrowPanel.getXPostponement() + " " + dartArrowPanel.getYPostponement());
+            this.readThrowVector = new model.MathVector(new double[]{23.7, dartArrowPanel.getXPostponement(), dartArrowPanel.getYPostponement()});
+            System.out.println(this.readThrowVector);
+        }
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        dartArrowPanel.setShouldPlace(true);
+        dartArrowPanel.setShouldDraw(false);
+        dartArrowPanel.setShouldRead(false);
+    }
 }

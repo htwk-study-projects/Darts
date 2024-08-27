@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public class MathVector {
 	
 	private final double[] vectorComponents;
@@ -9,10 +11,6 @@ public class MathVector {
 		if (components == null || components.length == 0) throw new IllegalArgumentException("Das Komponentenarray darf nicht null oder leer sein.");
 		this.vectorComponents = components.clone();
 		this.length = components.length;
-	}
-	
-	public double[] getVectorComponents() {
-		return vectorComponents.clone();
 	}
 	
 	public MathVector scalarMult(double scalar) {
@@ -62,5 +60,14 @@ public class MathVector {
 	    
 	    if(vector2.vectorComponents[2] < 0) theta = 360 - theta; //DartBoard xy-Area is mirror
 	    return (int) theta;
+	}
+	
+	@Override
+	public String toString() {
+		return "MathVector [vectorComponents=" + Arrays.toString(vectorComponents) + "]";
+	}
+	
+	public double[] getVectorComponents() {
+		return vectorComponents.clone();
 	}
 }

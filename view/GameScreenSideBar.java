@@ -2,14 +2,16 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-
+import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
@@ -21,11 +23,12 @@ public class GameScreenSideBar extends JPanel {
     protected JButton backButton;
     
     private Object[][] playerTableData;
-    DefaultTableModel tableModel ;
-    JTable table;
-    JScrollPane scrollPane;
-    JPanel scrollPaneContainer ;
-    TransparentPanel leftSpace;
+    private DefaultTableModel tableModel ;
+    private JTable table;
+    private JScrollPane scrollPane;
+    private JPanel scrollPaneContainer;
+    private TransparentPanel leftSpace;
+    private JPanel instructionPanel;
     
     private GameScreenCurrentPlayerPanel playerPanel;
     
@@ -71,10 +74,34 @@ public class GameScreenSideBar extends JPanel {
 
         // Leeres Panel links, um Platz zu schaffen
         TransparentPanel leftSpace = new TransparentPanel();
-        leftSpace.setPreferredSize(new java.awt.Dimension(70, 0)); // Anpassen für den gewünschten Abstand
+        leftSpace.setPreferredSize(new java.awt.Dimension(80, 0)); // Anpassen für den gewünschten Abstand
+        
+        instructionPanel = new JPanel(new GridLayout(5,1,1,1));
+        instructionPanel.setOpaque(false);
+      
+        
+        JLabel gameNameLabel = new JLabel("Spielname", SwingConstants.CENTER);
+        gameNameLabel.setFont(DartsGUI.FONT_NORMAL);
+     
 
+        JLabel instructionLabel1 = new JLabel("Tippe auf den Bildschirm damit der Dartpfeil erscheint", SwingConstants.CENTER);
+        JLabel instructionLabel2 = new JLabel("Platziere den Dartpfeil auf die gewünschte Wurfposition", SwingConstants.CENTER);
+        JLabel instructionLabel3 = new JLabel("Tippe ein weiteres Mal zum Werfen des Dartpfeils", SwingConstants.CENTER);
+
+        JComponent[] labels= {instructionLabel1,instructionLabel2,instructionLabel3};
+        DartsGUI.fontAdjust(DartsGUI.FONT_SMALL, labels);
+        instructionPanel.add(gameNameLabel);
+        instructionPanel.add(instructionLabel1);
+        instructionPanel.add(instructionLabel2);
+        instructionPanel.add(instructionLabel3);
+      
+        
+        
+        scrollPaneContainer.add(instructionPanel, BorderLayout.WEST); // Instructions on the left
         scrollPaneContainer.add(leftSpace, BorderLayout.WEST); // Platzhalter links
         scrollPaneContainer.add(scrollPane, BorderLayout.CENTER); // scrollPane in die Mitte
+        
+       
 
         saveButton = new JButton("Speichern");
         backButton = new JButton("Zurück");
@@ -87,8 +114,8 @@ public class GameScreenSideBar extends JPanel {
         playerPanel = new GameScreenCurrentPlayerPanel();
         playerPanel.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von playerPanel auf Grau setzen
         
-        JComponent[] test = {new TransparentPanel(), scrollPaneContainer, playerPanel, buttonLine};
-        Bar Table = new Bar(test);
+        JComponent[] components = {instructionPanel, scrollPaneContainer, playerPanel, new TransparentPanel(), buttonLine};
+        Bar Table = new Bar(components);
         Table.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von Table auf Grau setzen
         
         this.add(Table, BorderLayout.CENTER);
@@ -111,6 +138,7 @@ public class GameScreenSideBar extends JPanel {
     public GameScreenCurrentPlayerPanel getPlayerPanel() {
 		return playerPanel;
 	}
+    
     
     public void setPlayerTableData(Object[][] data) {
     	this.playerTableData = data.clone();

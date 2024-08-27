@@ -12,7 +12,11 @@ import javax.swing.JPanel;
 
 import java.awt.event.MouseListener;
 
-public class DartArrowGraphic extends JPanel implements MouseMotionListener, MouseListener {
+public class DartArrowGraphic extends JPanel {
+	
+	
+	private int width;
+	private int height;
 	
 	private int mouseX;
     private int mouseY;
@@ -20,8 +24,9 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 	private int centerX;
 	private int baseY;
 	
-	private boolean shouldDraw; // Zustandsvariable
-	private boolean shouldPlace; // Zustandsvariable
+	private boolean shouldDraw;
+	private boolean shouldPlace;
+	private boolean shouldRead;
 	
 	private final double percentageArrowHeadHeight = 0.23;
 	private final double []percentageArrowHeadWidth = {0.45,0.55};
@@ -57,17 +62,16 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 	public DartArrowGraphic() {
 		shouldPlace = true;
 		shouldDraw = false;
-		this.addMouseListener(this); // MouseListener hinzufügen
-		this.addMouseMotionListener(this);
+		shouldRead = false;
 		
-		updatePoints();
+		updateCoordinates();
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		if(shouldDraw){
-			updatePoints();
+			updateCoordinates();
 			Graphics2D dartArrow2D = (Graphics2D) g;		
 	        dartArrow2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -94,9 +98,9 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 		}
 	}
 	
-	private void updatePoints() {
-		int width = getWidth();
-		int height = getHeight();
+	private void updateCoordinates() {
+		width = getWidth();
+		height = getHeight();
 		
 		this.centerX = mouseX;
 		this.baseY = mouseY;
@@ -155,50 +159,52 @@ public class DartArrowGraphic extends JPanel implements MouseMotionListener, Mou
 	            (int) Math.round(usableHeight * percentageBodyHeight + baseY)
 	   };
 	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		mouseX = e.getX();
-        mouseY = e.getY();
-        shouldDraw = true;
-        shouldPlace = false;
-        repaint();
+	
+	public int getXPostponement() {
+		return mouseX - (width/2);
+	}
+	
+	public int getYPostponement() {
+		return (height/2) - mouseY;
 	}
 
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		
-	}
+	public int getMouseX() {
+        return mouseX;
+    }
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if(shouldPlace){
-			shouldDraw = true;
-			shouldPlace = false;
-			mouseX = getWidth() / 2;
-			mouseY = getHeight() / 2;
-			repaint();
-		}
-	}
+    public void setMouseX(int mouseX) {
+        this.mouseX = mouseX;
+    }
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// Nicht verwendet
-	}
+    public int getMouseY() {
+        return mouseY;
+    }
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// Nicht verwendet
-	}
+    public void setMouseY(int mouseY) {
+        this.mouseY = mouseY;
+    }
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// Nicht verwendet
-	}
+    public boolean isShouldDraw() {
+        return shouldDraw;
+    }
 
-	@Override
-	public void mouseExited(MouseEvent e) {
-		shouldDraw = false;
-		shouldPlace = true;
-	}
+    public void setShouldDraw(boolean shouldDraw) {
+        this.shouldDraw = shouldDraw;
+    }
+
+    public boolean isShouldPlace() {
+        return shouldPlace;
+    }
+
+    public void setShouldPlace(boolean shouldPlace) {
+        this.shouldPlace = shouldPlace;
+    }
+
+    public boolean isShouldRead() {
+        return shouldRead;
+    }
+
+    public void setShouldRead(boolean shouldRead) {
+        this.shouldRead = shouldRead;
+    }
 }

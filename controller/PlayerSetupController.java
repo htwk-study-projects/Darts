@@ -21,8 +21,6 @@ public class PlayerSetupController {
 	private String[] playerNames;
 	private Color[] playerColors;
 	private String gameName;
-	private boolean textFieldFullfilmentCondition = false;
-	private boolean colorPlayerFullfilmentCondition = false;
 	
 	public PlayerSetupController(view.PlayerSetupScreenInterface playerSetup, view.GameScreenInterface adjustDisplay, model.DartsGameData data, CardLayout cardLayout) {
 		this.screenToControl = playerSetup;
@@ -38,7 +36,6 @@ public class PlayerSetupController {
 	    readPlayerSetup();
 	    writePlayerSetup();
 	    screenToAdjustDisplay.getGameScreenSideBar().setPlayerTableData(data.preparePlayerDataForTable());
-
 	    screenToAdjustDisplay.getGameScreenSideBar().getPlayerPanel().setLabelTexts(
 	        playerNames[0], 
 	        playerColors[0], 
@@ -47,10 +44,9 @@ public class PlayerSetupController {
 	        data.getPlayers()[0].getPlayerDarts()[0].getPoints().toString()
 	    );
 
-
-	    if (textFieldFullfilmentCondition && colorPlayerFullfilmentCondition) cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
-	    if (!textFieldFullfilmentCondition) popUpNotificationTextField();
-	    if (!colorPlayerFullfilmentCondition) popUpNotificationColorPlayer();
+	    if (textFieldFullfillmentCondition() && colorPlayerFullfilmentCondition()) cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
+	    if (!textFieldFullfillmentCondition()) popUpNotificationTextField();
+	    if (!colorPlayerFullfilmentCondition()) popUpNotificationColorPlayer();
 	}
 
 	
@@ -79,38 +75,16 @@ public class PlayerSetupController {
 		}
 	}
 	
-	private void textFieldFullfillmentCondition() {
-		
-		JTextField[] nameInputs =  screenToControl.getPlayerNameInput().getNameInputs();
-		gameName = screenToControl.getPlayerNameInput().getGameNameField().getText();
-		
-		this.playerNames = new String[this.data.getPlayerCount()];
-		
-		boolean allFieldFilled = true;
-		
-		for(int i=0; i< playerNames.length; i++) {
-			playerNames[i] = nameInputs[i].getText();
-			
-			if(playerNames[i].isEmpty()) {
-				allFieldFilled = false;
-				break;
-			}
+	private boolean textFieldFullfillmentCondition() {
+		for(int i=0; i< playerNames.length; i++) {			
+			if(playerNames[i].isEmpty()) return false;
 		}
-		if(gameName.isEmpty()) {
-			allFieldFilled = false;
-		}
+		if(gameName.isEmpty()) return false;	
+		return true;	
+	}
 		
-		setTextFieldFullfillmentCondition(allFieldFilled);
-	
-	}
-	
-	private void setTextFieldFullfillmentCondition(boolean textField) {
-		 this.textFieldFullfilmentCondition = textField;
-	}
-	
-	
 	private void popUpNotificationTextField() {
-		JOptionPane.showMessageDialog(null, "Bitte füll alle TextFelder aus!", "WICHTIGER HINWEIS!", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Bitte füll alle Text Felder aus!", "WICHTIGER HINWEIS!", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	private void readPlayerColors() {
@@ -122,37 +96,12 @@ public class PlayerSetupController {
 		}
 	}
 	
-	private void colorPlayerFullfilmentCondition() {
-	    JComboBox<view.ColorIcon>[] colorInputs = screenToControl.getPlayerNameInput().getColorInputs();
-	    this.playerColors = new Color[this.data.getPlayerCount()];
-
-	    // Set zum Speichern der einzigartigen Farben
+	private boolean colorPlayerFullfilmentCondition() {
 	    Set<Color> uniqueColors = new HashSet<>();
-
-	    boolean differentColor = true;
-
-	    for (int i = 0; i < playerNames.length; i++) {
-	        view.ColorIcon selectedColorIcon = (view.ColorIcon) colorInputs[i].getSelectedItem();
-	        if (selectedColorIcon != null) {
-	            Color color = selectedColorIcon.getColor();
-	            playerColors[i] = color;
-
-	            if (!uniqueColors.add(color)) {
-	                differentColor = false;
-	             
-	                break; 
-	            }
-	        } else {
-	            differentColor = false;
-	            break; 
-	        }
+	    for (int i = 0; i < playerColors.length; i++) {
+	            if (!uniqueColors.add(playerColors[i])) return false ;
 	    }
-
-	    setColorPlayerFullfillmentCondition(differentColor);
-	}
-	
-	private void setColorPlayerFullfillmentCondition(boolean color) {
-		this.colorPlayerFullfilmentCondition = color;
+	    return true;
 	}
 	
 	private void popUpNotificationColorPlayer() {
