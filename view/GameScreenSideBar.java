@@ -22,6 +22,8 @@ public class GameScreenSideBar extends JPanel {
     protected JButton saveButton;
     protected JButton backButton;
     
+    private JLabel gameNameLabel;
+    
     private Object[][] playerTableData;
     private DefaultTableModel tableModel ;
     private JTable table;
@@ -73,14 +75,14 @@ public class GameScreenSideBar extends JPanel {
   
 
         // Leeres Panel links, um Platz zu schaffen
-        TransparentPanel leftSpace = new TransparentPanel();
+        leftSpace = new TransparentPanel();
         leftSpace.setPreferredSize(new java.awt.Dimension(80, 0)); // Anpassen für den gewünschten Abstand
         
         instructionPanel = new JPanel(new GridLayout(5,1,1,1));
         instructionPanel.setOpaque(false);
       
         
-        JLabel gameNameLabel = new JLabel("Spielname", SwingConstants.CENTER);
+        gameNameLabel = new JLabel("Spielname", SwingConstants.CENTER);
         gameNameLabel.setFont(DartsGUI.FONT_NORMAL);
      
 
@@ -146,5 +148,9 @@ public class GameScreenSideBar extends JPanel {
         setTabelSettings(table);
         this.revalidate();
         this.repaint();
+    }
+    
+    public void setGameNameLabel(String string) {
+    	this.gameNameLabel.setText(string);
     }
 }

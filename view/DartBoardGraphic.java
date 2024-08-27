@@ -156,7 +156,6 @@ public class DartBoardGraphic extends JPanel {
     	double scalingX = middlePointX + (xDart * scalingFactor);
         double scalingY = middlePointY - (yDart* scalingFactor);
     	int sizeHit = 5;
-    	System.out.println(scalingX + " " + scalingY);
     	
     	targetPlace.setColor(GREY);
     	targetPlace.drawLine((int) Math.round(scalingX - sizeHit),(int) Math.round(scalingY - sizeHit),(int) Math.round(scalingX + sizeHit), (int) Math.round(scalingY + sizeHit));

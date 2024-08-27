@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class MathVector {
 	
-	private final double[] vectorComponents;
-	private final int length;
+	private double[] vectorComponents;
+	private int length;
 	
 	public MathVector(double[] components) {
 		if (components == null || components.length == 0) throw new IllegalArgumentException("Das Komponentenarray darf nicht null oder leer sein.");
