@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -19,6 +20,7 @@ import javax.swing.table.TableCellRenderer;
 public class GameScreenSideBar extends JPanel {
 
 	private Line buttonLine;
+	private Bar strengthBarBar;
     protected JButton saveButton;
     protected JButton backButton;
     
@@ -33,6 +35,7 @@ public class GameScreenSideBar extends JPanel {
     private JPanel instructionPanel;
     
     private GameScreenCurrentPlayerPanel playerPanel;
+    private StrengthBarPanel strengthBar;
     
 
     public GameScreenSideBar() {
@@ -108,15 +111,19 @@ public class GameScreenSideBar extends JPanel {
         saveButton = new JButton("Speichern");
         backButton = new JButton("Zurück");
     	JButton[] setupButtons = {saveButton, backButton};
-		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
+		DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, setupButtons);
         JButton[] buttons = {saveButton, backButton};
         buttonLine = new Line(buttons);
         buttonLine.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von buttonLine auf Grau setzen
 
         playerPanel = new GameScreenCurrentPlayerPanel();
-        playerPanel.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von playerPanel auf Grau setzen
+        strengthBar = new StrengthBarPanel();
+        JComponent[] sbarelements = {strengthBar, new TransparentPanel()};
+        strengthBarBar = new Bar (sbarelements);
+        strengthBarBar.setBackground(DartsGUI.BACKGROUND_COLOR);
+        playerPanel.setBackground(DartsGUI.BACKGROUND_COLOR); 
         
-        JComponent[] components = {instructionPanel, scrollPaneContainer, playerPanel, new TransparentPanel(), buttonLine};
+        JComponent[] components = {instructionPanel, scrollPaneContainer, playerPanel, strengthBarBar, buttonLine};
         Bar Table = new Bar(components);
         Table.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von Table auf Grau setzen
         
