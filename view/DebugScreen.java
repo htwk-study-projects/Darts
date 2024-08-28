@@ -13,6 +13,7 @@ public class DebugScreen extends JPanel implements DebugScreenInterface {
     private JPanel boardAndArrowPanel;
     private DartBoardGraphic board;
     private DartArrowGraphic dartArrow;
+
     
     private DebugScreenSideBar sideBar;
 
@@ -66,5 +67,10 @@ public class DebugScreen extends JPanel implements DebugScreenInterface {
 	@Override
 	public DartArrowGraphic getDartArrowGraphic() {
 		return dartArrow;
+	}
+	
+	@Override
+	public DartBoardGraphic getBoard() {
+		return board;
 	}
 }

@@ -31,10 +31,14 @@ public class GameController extends MouseAdapter{
 
 	
 	private void updateCurrentPlayerPanel() {
+		
 		currentPlayerPanel.setLabelTexts(data.getCurrentPlayer().getName(), data.getCurrentPlayer().getColor(), 
 										 data.getCurrentPlayer().getPlayerDarts()[0].getPoints().toString(),
 										 data.getCurrentPlayer().getPlayerDarts()[1].getPoints().toString(),
 										 data.getCurrentPlayer().getPlayerDarts()[2].getPoints().toString());
+		
+		screenToControl.getDartArrow().setColorFeatherAndHolder(data.getCurrentPlayer().getColor());
+		screenToControl.getBoard().setColorHit(data.getCurrentPlayer().getColor());
 	}
 	
 	private void updatePlayerTable() {
@@ -101,4 +105,5 @@ public class GameController extends MouseAdapter{
 			e1.printStackTrace();
 		}
     }
+    
 }
