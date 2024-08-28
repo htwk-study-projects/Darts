@@ -163,6 +163,12 @@ public class DartArrowGraphic extends JPanel {
 	   };
 	}
 	
+	public void setMouseXY(int mouseX, int mouseY) {
+		this.mouseX = mouseX;
+		this.mouseY = mouseY;
+		repaint();
+	}
+	
 	public int getXPostponement() {
 		return mouseX - (width/2);
 	}
@@ -175,16 +181,8 @@ public class DartArrowGraphic extends JPanel {
         return mouseX;
     }
 
-    public void setMouseX(int mouseX) {
-        this.mouseX = mouseX;
-    }
-
     public int getMouseY() {
         return mouseY;
-    }
-
-    public void setMouseY(int mouseY) {
-        this.mouseY = mouseY;
     }
 
     public boolean isShouldDraw() {

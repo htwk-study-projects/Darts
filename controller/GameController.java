@@ -11,6 +11,7 @@ public class GameController extends MouseAdapter{
 	private view.DartArrowGraphic dartArrowPanel;
 	private view.DartBoardGraphic dartBoardPanel;
 	private view.GameScreenCurrentPlayerPanel currentPlayerPanel;
+	private view.ThrowStrengthInputPanel throwStrengthPanel;
 	private CardLayout cardLayout;
 	
 	private model.DartsGameData data;	
@@ -23,20 +24,20 @@ public class GameController extends MouseAdapter{
 		this.dartBoardPanel = game.getBoard();
 		this.currentPlayerPanel = game.getGameScreenSideBar().getPlayerPanel();
 		this.currentPlayerPanel.setLabelTexts("", Color.black, "", "", "");
+		this.throwStrengthPanel = game.getGameScreenSideBar().getStrengthInput();
 		
 		this.dartArrowPanel.addMouseListener(this);
         this.dartArrowPanel.addMouseMotionListener(this);
 		
 	}
-
 	
-	private void updateCurrentPlayerPanel() {
-		
+	private void updateCurrentPlayerPanel() {		
 		currentPlayerPanel.setLabelTexts(data.getCurrentPlayer().getName(), data.getCurrentPlayer().getColor(), 
 										 data.getCurrentPlayer().getPlayerDarts()[0].getPoints().toString(),
 										 data.getCurrentPlayer().getPlayerDarts()[1].getPoints().toString(),
 										 data.getCurrentPlayer().getPlayerDarts()[2].getPoints().toString());
-		
+		throwStrengthPanel.resetCharging();
+		throwStrengthPanel.setInputColor(data.getCurrentPlayer().getColor());
 		screenToControl.getDartArrow().setColorFeatherAndHolder(data.getCurrentPlayer().getColor());
 		screenToControl.getBoard().setColorHit(data.getCurrentPlayer().getColor());
 	}
@@ -48,12 +49,10 @@ public class GameController extends MouseAdapter{
 	@Override
     public void mouseDragged(MouseEvent e) {
         if(dartArrowPanel.isShouldDraw()) {
-            dartArrowPanel.setMouseX(e.getX());
-            dartArrowPanel.setMouseY(e.getY());
             dartArrowPanel.setShouldDraw(true);
             dartArrowPanel.setShouldPlace(false);
             dartArrowPanel.setShouldRead(true);
-            dartArrowPanel.repaint();
+            dartArrowPanel.setMouseXY(e.getX(), e.getY());
         }
     }
 
@@ -63,9 +62,7 @@ public class GameController extends MouseAdapter{
             dartArrowPanel.setShouldDraw(true);
             dartArrowPanel.setShouldPlace(false);
             updateCurrentPlayerPanel();
-            dartArrowPanel.setMouseX(dartArrowPanel.getWidth() / 2);
-            dartArrowPanel.setMouseY(dartArrowPanel.getHeight() / 2);
-            dartArrowPanel.repaint();
+            dartArrowPanel.setMouseXY(dartArrowPanel.getWidth() / 2, dartArrowPanel.getHeight() / 2);
         }
         if(dartArrowPanel.isShouldRead()) {
             dartArrowPanel.setShouldDraw(false);
@@ -74,8 +71,8 @@ public class GameController extends MouseAdapter{
             
             double[] readThrowParameters = readAndScaleThrowParameters();
             data.currentPlayerTakeTurn(readThrowParameters);
-            System.out.println(data.getCurrentPlayer());
             this.dartBoardPanel.drawDartHit(data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[1], data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[2]);
+            System.out.println(data.getCurrentPlayer());
             updateCurrentPlayerPanel();
             updatePlayerTable();
             data.nextTurnPlayer();
@@ -91,11 +88,14 @@ public class GameController extends MouseAdapter{
     }
     
     private double[] readAndScaleThrowParameters() {
-    	double scalingFactor = (170.0*2.0) / (double)screenToControl.getBoard().getAdjustedBoardDiameters()[2];
-    	double yPostponementForThrow = (dartArrowPanel.getXPostponement() * scalingFactor) / (237.0 / 23.7);
-    	double zPostponementForThrow = (dartArrowPanel.getYPostponement() * scalingFactor) / (237.0 / 23.7);
     	
-    	return new double[] {23.7, yPostponementForThrow, zPostponementForThrow};
+    	double xComponentForThrow = throwStrengthPanel.getCurrentStrength();
+    	if (xComponentForThrow == 0) xComponentForThrow = 1;
+    	double scalingFactor = (170.0*2.0) / (double)screenToControl.getBoard().getAdjustedBoardDiameters()[2];
+    	double yPostponementForThrow = (dartArrowPanel.getXPostponement() * scalingFactor) / (237.0 / xComponentForThrow);
+    	double zPostponementForThrow = (dartArrowPanel.getYPostponement() * scalingFactor) / (237.0 / xComponentForThrow);
+    	
+    	return new double[] {xComponentForThrow, yPostponementForThrow, zPostponementForThrow};
     }
     
     private void mouseClickBreak(int time) {

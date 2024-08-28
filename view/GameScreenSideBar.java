@@ -34,7 +34,7 @@ public class GameScreenSideBar extends JPanel {
     private JPanel instructionPanel;
     
     private GameScreenCurrentPlayerPanel playerPanel;
-    private StrengthBarPanel strengthBar;
+    private ThrowStrengthInputPanel strengthInput;
     
 
     public GameScreenSideBar() {
@@ -67,7 +67,7 @@ public class GameScreenSideBar extends JPanel {
 
         table = new JTable(tableModel) {
             public TableCellRenderer getCellRenderer(int row, int column) {
-                if (column == 0) { // Erste Spalte (Spieler mit Kästchen) bekommt speziellen Renderer
+                if (column == 0) { 
                     return new IconRendererForTable();
                 }
                 return super.getCellRenderer(row, column);
@@ -78,7 +78,7 @@ public class GameScreenSideBar extends JPanel {
 
         scrollPane = new JScrollPane(table);
         scrollPane.setOpaque(false);
-        scrollPane.getViewport().setOpaque(false); // Tabelle selbst bleibt transparent
+        scrollPane.getViewport().setOpaque(false); 
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
        
         scrollPaneContainer = new JPanel(new BorderLayout());
@@ -87,7 +87,7 @@ public class GameScreenSideBar extends JPanel {
 
         // Leeres Panel links, um Platz zu schaffen
         leftSpace = new TransparentPanel();
-        leftSpace.setPreferredSize(new java.awt.Dimension(80, 0)); // Anpassen für den gewünschten Abstand
+        leftSpace.setPreferredSize(new java.awt.Dimension(80, 0)); 
         
         instructionPanel = new JPanel(new GridLayout(5,1,1,1));
         instructionPanel.setOpaque(false);
@@ -101,9 +101,9 @@ public class GameScreenSideBar extends JPanel {
       
         
         
-        scrollPaneContainer.add(instructionPanel, BorderLayout.WEST); // Instructions on the left
-        scrollPaneContainer.add(leftSpace, BorderLayout.WEST); // Platzhalter links
-        scrollPaneContainer.add(scrollPane, BorderLayout.CENTER); // scrollPane in die Mitte
+        scrollPaneContainer.add(instructionPanel, BorderLayout.WEST); 
+        scrollPaneContainer.add(leftSpace, BorderLayout.WEST); 
+        scrollPaneContainer.add(scrollPane, BorderLayout.CENTER);
         
        
 
@@ -116,11 +116,11 @@ public class GameScreenSideBar extends JPanel {
         buttonLine.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von buttonLine auf Grau setzen
 
         playerPanel = new GameScreenCurrentPlayerPanel();
-        strengthBar = new StrengthBarPanel();
-        JComponent[] sbarelements = {strengthBar, new TransparentPanel(), new TransparentPanel(), new TransparentPanel()};
+        strengthInput = new ThrowStrengthInputPanel();
+        JComponent[] sbarelements = {strengthInput, new TransparentPanel(), new TransparentPanel(), new TransparentPanel()};
         strengthBarBar = new Bar (sbarelements);
         strengthBarBar.setBackground(DartsGUI.BACKGROUND_COLOR);
-        strengthBar.requestFocusInWindow();
+        strengthInput.requestFocusInWindow();
         playerPanel.setBackground(DartsGUI.BACKGROUND_COLOR); 
         
      
@@ -150,6 +150,9 @@ public class GameScreenSideBar extends JPanel {
 		return playerPanel;
 	}
     
+    public ThrowStrengthInputPanel getStrengthInput() {
+    	return strengthInput;
+    }
     
     public void setPlayerTableData(Object[][] data) {
     	this.playerTableData = data.clone();
