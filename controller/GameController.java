@@ -71,6 +71,7 @@ public class GameController extends MouseAdapter{
             double[] readThrowParameters = readAndScaleThrowParameters();
             data.currentPlayerTakeTurn(readThrowParameters);
             System.out.println(data.getCurrentPlayer());
+            this.dartBoardPanel.drawDartHit(data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[1], data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[2]);
             updateCurrentPlayerPanel();
             updatePlayerTable();
             data.nextTurnPlayer();
@@ -88,7 +89,7 @@ public class GameController extends MouseAdapter{
     private double[] readAndScaleThrowParameters() {
     	double scalingFactor = (170.0*2.0) / (double)screenToControl.getBoard().getAdjustedBoardDiameters()[2];
     	double yPostponementForThrow = (dartArrowPanel.getXPostponement() * scalingFactor) / (237.0 / 23.7);
-    	double zPostponementForThrow = (dartArrowPanel.getYPostponement() * scalingFactor) / ((237.0 / 23.7) * 0.1);
+    	double zPostponementForThrow = (dartArrowPanel.getYPostponement() * scalingFactor) / (237.0 / 23.7);
     	
     	return new double[] {23.7, yPostponementForThrow, zPostponementForThrow};
     }

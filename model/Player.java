@@ -57,6 +57,13 @@ public class Player {
 		return true;
 	}
 	
+	public MathVector getCurrentImpactPoint() {
+		MathVector impactPoint = this.playerDarts[this.throwCount -1].getDartThrow().getImpactVector();
+		if(impactPoint != null) {
+			return impactPoint;
+		}
+		return new MathVector(new double[] {1000, 1000, 1000});
+	}
 
 	@Override
 	public String toString() {
