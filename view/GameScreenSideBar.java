@@ -2,7 +2,6 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -118,10 +117,13 @@ public class GameScreenSideBar extends JPanel {
 
         playerPanel = new GameScreenCurrentPlayerPanel();
         strengthBar = new StrengthBarPanel();
-        JComponent[] sbarelements = {strengthBar, new TransparentPanel()};
+        JComponent[] sbarelements = {strengthBar, new TransparentPanel(), new TransparentPanel(), new TransparentPanel()};
         strengthBarBar = new Bar (sbarelements);
         strengthBarBar.setBackground(DartsGUI.BACKGROUND_COLOR);
+        strengthBar.requestFocusInWindow();
         playerPanel.setBackground(DartsGUI.BACKGROUND_COLOR); 
+        
+     
         
         JComponent[] components = {instructionPanel, scrollPaneContainer, playerPanel, strengthBarBar, buttonLine};
         Bar Table = new Bar(components);
