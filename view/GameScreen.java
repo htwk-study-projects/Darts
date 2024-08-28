@@ -76,5 +76,10 @@ public class GameScreen extends JPanel implements GameScreenInterface{
 	public DartArrowGraphic getDartArrow() {
 		return dartArrow;
 	}
+
+	@Override
+	public DartBoardGraphic getBoard() {
+		return board;
+	}
 	
 }

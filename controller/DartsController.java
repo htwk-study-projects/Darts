@@ -27,7 +27,12 @@ public class DartsController {
 		return userView;
 	}
 	
+	public model.DartsGameData getData(){
+		return data;
+	}
+	
 	private void initDataAndController() {
+		this.data.resetData();
 		this.setupController = new SetupController(userView.getSetupScreen(), userView.getPlayerSetupScreen(), data, cardLayout);
 		this.playerSetupController = new PlayerSetupController(userView.getPlayerSetupScreen(), userView.getGameScreen(), data, cardLayout);
 		this.gameController = new GameController(userView.getGameScreen(), data, cardLayout);

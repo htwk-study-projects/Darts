@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.Color;
-
 import controller.DartsController;
 
 public class DARTS {
@@ -10,7 +8,7 @@ public class DARTS {
 		
 		DartsController dartsGame = new DartsController();
 		dartsGame.getUserView().setVisible(true);	
-		
+		System.out.println(dartsGame.getData());
         
 	}
 

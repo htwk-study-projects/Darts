@@ -1,12 +1,10 @@
 package model;
 
 import java.awt.Color;
+import java.util.Arrays;
 
 public class DartsGameData {
     
-    private static int gameIDCounter = 0;
-    
-    private int gameID;
     private String gameName;
     private int playerCount;
     private Player[] players;
@@ -15,16 +13,19 @@ public class DartsGameData {
     private int turnCount = 0; // Zähler für die Züge eines Spielers
 
     public DartsGameData(){
-        setGameIDCounter(10);
-        this.gameID = gameIDCounter;
-        gameIDCounter++;
-    }
-    
-    public static void setGameIDCounter(int gameIDCounter) {
-        DartsGameData.gameIDCounter = gameIDCounter;
+    	
     }
 
-    public void setGameName(String gameName) {
+    @Override
+	public String toString() {
+		return "DartsGameData [gameName=" + gameName + ", playerCount=" + playerCount + ", players="
+				+ Arrays.toString(players) + ", gameMode=" + gameMode + ", currentPlayerIndex=" + currentPlayerIndex
+				+ ", turnCount=" + turnCount + "]";
+	}
+
+
+
+	public void setGameName(String gameName) {
         this.gameName = gameName;
     }
 
@@ -35,10 +36,6 @@ public class DartsGameData {
 
     public void setGameMode(int gamePoints, String inMode, String outMode) {
         this.gameMode = new GameMode(gamePoints, inMode, outMode);
-    }
-
-    public int getGameID() {
-        return gameID;
     }
 
     public String getGameName() {
@@ -86,6 +83,14 @@ public class DartsGameData {
         return playerDataForTable;
     }
     
+    public void resetData() {
+    	this.gameName = null;
+    	this.playerCount = 0;
+    	this.players = null;
+    	this.gameMode = null;
+    	this.currentPlayerIndex = 0;
+    	this.turnCount = 0;
+    }
 
 }
 

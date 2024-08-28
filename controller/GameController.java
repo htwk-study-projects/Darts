@@ -9,6 +9,7 @@ public class GameController extends MouseAdapter{
 	
 	private view.GameScreenInterface screenToControl;
 	private view.DartArrowGraphic dartArrowPanel;
+	private view.DartBoardGraphic dartBoardPanel;
 	private view.GameScreenCurrentPlayerPanel currentPlayerPanel;
 	private CardLayout cardLayout;
 	
@@ -19,6 +20,7 @@ public class GameController extends MouseAdapter{
 		this.data = data;
 		this.cardLayout = cardLayout;
 		this.dartArrowPanel = game.getDartArrow();
+		this.dartBoardPanel = game.getBoard();
 		this.currentPlayerPanel = game.getGameScreenSideBar().getPlayerPanel();
 		this.currentPlayerPanel.setLabelTexts("", Color.black, "", "", "");
 		
@@ -78,7 +80,7 @@ public class GameController extends MouseAdapter{
             data.getCurrentPlayer().setStatusCanFinish(data.getGameMode().arePointValidForOutMode(data.getCurrentPlayer().getPlayerPoints(), data.getCurrentPlayer().getCurrentThrowPoints()));      
             data.getCurrentPlayer().updatePlayerPoints();
             System.out.println(data.getCurrentPlayer());
-            //updateCurrentPlayerPanel();
+            updateCurrentPlayerPanel();
             updatePlayerTable();
             data.nextTurnPlayer();
         }
