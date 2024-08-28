@@ -31,9 +31,6 @@ public class GameController extends MouseAdapter{
 
 	
 	private void updateCurrentPlayerPanel() {
-		System.out.println(data + " " +"Updating panel for player: " + data.getCurrentPlayer().getName() + " " + data.getCurrentPlayer().getColor() + " " + data.getCurrentPlayer().getPlayerDarts()[0].getPoints().toString()
-				+ " " + data.getCurrentPlayer().getPlayerDarts()[1].getPoints().toString() + " " +
-				 data.getCurrentPlayer().getPlayerDarts()[2].getPoints().toString());
 		currentPlayerPanel.setLabelTexts(data.getCurrentPlayer().getName(), data.getCurrentPlayer().getColor(), 
 										 data.getCurrentPlayer().getPlayerDarts()[0].getPoints().toString(),
 										 data.getCurrentPlayer().getPlayerDarts()[1].getPoints().toString(),
@@ -55,8 +52,6 @@ public class GameController extends MouseAdapter{
             dartArrowPanel.repaint();
         }
     }
-	
-	//Problem, bei erstellen eines weiteren spiels nach dem ersten funktioniert das playerpanel nicht mehr
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -72,17 +67,14 @@ public class GameController extends MouseAdapter{
             dartArrowPanel.setShouldDraw(false);
             dartArrowPanel.setShouldPlace(true);
             dartArrowPanel.setShouldRead(false);
-            System.out.println(data);
-            System.out.println(dartArrowPanel.getMouseX() + " " + dartArrowPanel.getMouseY());
-            data.getCurrentPlayer().playerThrowCurrentDart(new double[] {23.7, dartArrowPanel.getXPostponement(), dartArrowPanel.getYPostponement()});
-            data.getCurrentPlayer().setStatusPlayIn(data.getGameMode().isGameInModeConditionFulfilled(data.getCurrentPlayer().getCurrentThrowMultiplier()));
-            data.getCurrentPlayer().setStatusPlayOut(data.getGameMode().isGameOutModeConditionFulfilled(data.getCurrentPlayer().getCurrentThrowMultiplier()));
-            data.getCurrentPlayer().setStatusCanFinish(data.getGameMode().arePointValidForOutMode(data.getCurrentPlayer().getPlayerPoints(), data.getCurrentPlayer().getCurrentThrowPoints()));      
-            data.getCurrentPlayer().updatePlayerPoints();
+            
+            double[] readThrowParameters = readAndScaleThrowParameters();
+            data.currentPlayerTakeTurn(readThrowParameters);
             System.out.println(data.getCurrentPlayer());
             updateCurrentPlayerPanel();
             updatePlayerTable();
             data.nextTurnPlayer();
+            mouseClickBreak(1000);
         }
     }
 
@@ -91,5 +83,21 @@ public class GameController extends MouseAdapter{
         dartArrowPanel.setShouldPlace(true);
         dartArrowPanel.setShouldDraw(false);
         dartArrowPanel.setShouldRead(false);
+    }
+    
+    private double[] readAndScaleThrowParameters() {
+    	double scalingFactor = (170.0*2.0) / (double)screenToControl.getBoard().getAdjustedBoardDiameters()[2];
+    	double yPostponementForThrow = (dartArrowPanel.getXPostponement() * scalingFactor) / (237.0 / 23.7);
+    	double zPostponementForThrow = (dartArrowPanel.getYPostponement() * scalingFactor) / ((237.0 / 23.7) * 0.1);
+    	
+    	return new double[] {23.7, yPostponementForThrow, zPostponementForThrow};
+    }
+    
+    private void mouseClickBreak(int time) {
+    	try {
+			Thread.sleep(time);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
     }
 }

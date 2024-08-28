@@ -31,6 +31,8 @@ public class DartBoardGraphic extends JPanel {
     private int[] adjustedBoardDiameters;
     private int fontSize;
     
+    private Graphics2D dartBoardTwoD;
+    
     public DartBoardGraphic(double visibilityMultiplier) {
     	this.visibility *= visibilityMultiplier;
     	this.setColors();
@@ -48,7 +50,7 @@ public class DartBoardGraphic extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D dartBoardTwoD = (Graphics2D) g;
+        dartBoardTwoD = (Graphics2D) g;
 
         widthHeightInit();
         adjustedMAXBoardDiameter = (int) (Math.min(panelWidth, panelHeight) * (BOARDSIZE_PANELSIZE_RELATION)); // Board-Durchmesser relativ zur Panelgröße // bestimmt boarddurchmesser, anhand ob x oder y-wert kleiner ist, da sonst das board mit Rand überlappen würde 
@@ -62,7 +64,7 @@ public class DartBoardGraphic extends JPanel {
         drawBoundaryLinesAndLabels(dartBoardTwoD);
         drawBullseye(dartBoardTwoD);
         drawBoundaryCircles(dartBoardTwoD);
-        drawDartHit(dartBoardTwoD,0,12);
+        //drawDartHit(dartBoardTwoD,0,12);
         
     }
     
@@ -148,16 +150,21 @@ public class DartBoardGraphic extends JPanel {
         }
     }
     
-    private void drawDartHit(Graphics2D targetPlace, double xDart, double yDart) {
+    public void drawDartHit(double xDart, double yDart) {
 
     	double scalingFactor = (double)this.adjustedBoardDiameters[2]/(170.0*2.0);
     	double scalingX = CenterX + (xDart * scalingFactor);
         double scalingY = CenterY - (yDart * scalingFactor);
     	int sizeHit = 5;
     	
-    	targetPlace.setColor(GREY);
-    	targetPlace.drawLine((int) Math.round(scalingX - sizeHit),(int) Math.round(scalingY - sizeHit),(int) Math.round(scalingX + sizeHit), (int) Math.round(scalingY + sizeHit));
-    	targetPlace.drawLine((int) Math.round(scalingX - sizeHit),(int) Math.round(scalingY + sizeHit),(int) Math.round(scalingX + sizeHit), (int) Math.round(scalingY - sizeHit));
+    	dartBoardTwoD.setColor(GREY);
+    	dartBoardTwoD.drawLine((int) Math.round(scalingX - sizeHit),(int) Math.round(scalingY - sizeHit),(int) Math.round(scalingX + sizeHit), (int) Math.round(scalingY + sizeHit));
+    	dartBoardTwoD.drawLine((int) Math.round(scalingX - sizeHit),(int) Math.round(scalingY + sizeHit),(int) Math.round(scalingX + sizeHit), (int) Math.round(scalingY - sizeHit));
+    	repaint();
     	
+    }
+    
+    public int[] getAdjustedBoardDiameters() {
+    	return adjustedBoardDiameters;
     }
 }

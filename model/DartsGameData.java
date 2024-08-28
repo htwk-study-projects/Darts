@@ -23,7 +23,13 @@ public class DartsGameData {
 				+ ", turnCount=" + turnCount + "]";
 	}
 
-
+    public void currentPlayerTakeTurn(double[] throwParameters) {
+    	this.getCurrentPlayer().playerThrowCurrentDart(throwParameters);
+    	this.getCurrentPlayer().setStatusPlayIn(this.gameMode.isGameInModeConditionFulfilled(this.getCurrentPlayer().getCurrentThrowMultiplier()));
+        this.getCurrentPlayer().setStatusPlayOut(this.gameMode.isGameOutModeConditionFulfilled(this.getCurrentPlayer().getCurrentThrowMultiplier()));
+        this.getCurrentPlayer().setStatusCanFinish(this.gameMode.arePointValidForOutMode(this.getCurrentPlayer().getPlayerPoints(), this.getCurrentPlayer().getCurrentThrowPoints()));      
+        this.getCurrentPlayer().updatePlayerPoints();
+    }
 
 	public void setGameName(String gameName) {
         this.gameName = gameName;
