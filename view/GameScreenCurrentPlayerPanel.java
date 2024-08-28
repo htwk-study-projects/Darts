@@ -36,10 +36,20 @@ public class GameScreenCurrentPlayerPanel extends JPanel {
 
         JComponent[] labels= {playerNameLabel,throw1Label,throw2Label,throw3Label};
         DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, labels);
+        
+        initializeThrowLabels();
+        
         add(throw1Label);
         add(throw2Label);
         add(throw3Label);
     }
+    
+    private void initializeThrowLabels() {
+        throw1Label.setText("Nicht geworfen");
+        throw2Label.setText("Nicht geworfen");
+        throw3Label.setText("Nicht geworfen");
+    }
+    
     
     public void setLabelTexts(String name, Color color, String firstThrow, String secondThrow, String thirdThrow) {
     	this.playerNameLabel.setText(name);
@@ -50,5 +60,8 @@ public class GameScreenCurrentPlayerPanel extends JPanel {
     	this.revalidate();
         this.repaint();
     }
+    
+ 
+    
 
 }
