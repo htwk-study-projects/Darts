@@ -71,6 +71,7 @@ public class GameController extends MouseAdapter{
             dartArrowPanel.setShouldPlace(true);
             dartArrowPanel.setShouldRead(false);
             System.out.println(data);
+            System.out.println(dartArrowPanel.getMouseX() + " " + dartArrowPanel.getMouseY());
             data.getCurrentPlayer().playerThrowCurrentDart(new double[] {23.7, dartArrowPanel.getXPostponement(), dartArrowPanel.getYPostponement()});
             data.getCurrentPlayer().setStatusPlayIn(data.getGameMode().isGameInModeConditionFulfilled(data.getCurrentPlayer().getCurrentThrowMultiplier()));
             data.getCurrentPlayer().setStatusPlayOut(data.getGameMode().isGameOutModeConditionFulfilled(data.getCurrentPlayer().getCurrentThrowMultiplier()));

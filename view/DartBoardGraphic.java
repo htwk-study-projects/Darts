@@ -9,10 +9,10 @@ import javax.swing.JPanel;
 
 public class DartBoardGraphic extends JPanel {
 
-    private final static int[] DIAMETERS = {760, 750, 640, 600, 390, 350, 50, 20};
+    private final static int[] DIAMETERS = {2180, 2140, 1700, 1620, 1070, 990, 160, 64}; // {760, 750, 640, 600, 390, 350, 50, 20}
     private final static double ANGLELINES = 2 * Math.PI / 20;
     private final static String[] NUMBERS = {"20", "1", "18", "4", "13", "6", "10", "15", "2", "17", "3", "19", "7", "16", "8", "11", "14", "9", "12", "5"};
-    private final static double BOARDSIZE_PANELSIZE_RELATION = 3.2/4.0;
+    private final static double BOARDSIZE_PANELSIZE_RELATION = 3.9/4.0;
     private final static float STROKE_WIDTH = 2.6f;
     
     private int visibility = 255;
@@ -62,7 +62,7 @@ public class DartBoardGraphic extends JPanel {
         drawBoundaryLinesAndLabels(dartBoardTwoD);
         drawBullseye(dartBoardTwoD);
         drawBoundaryCircles(dartBoardTwoD);
-        drawDartHit(dartBoardTwoD,0,170);
+        drawDartHit(dartBoardTwoD,0,12);
         
     }
     
@@ -137,25 +137,27 @@ public class DartBoardGraphic extends JPanel {
     		int textWidth = targetPlace.getFontMetrics().stringWidth(NUMBERS[i]);
     		int textHeight = targetPlace.getFontMetrics().getHeight();
 
-    		targetPlace.drawString(NUMBERS[i], x_number - textWidth / 2, y_number + textHeight / 3); 
+    		targetPlace.drawString(NUMBERS[i], x_number - textWidth / 2, y_number + textHeight / 4); 
     	}
     }
     
     private void drawBoundaryCircles(Graphics2D targetPlace) {
-    	targetPlace.setColor(WHITE);
+    	targetPlace.setColor(Color.BLUE);
         for (int diameter : adjustedBoardDiameters) {
         	targetPlace.drawOval(CenterX - diameter / 2, CenterY - diameter / 2, diameter, diameter);
         }
     }
     
     private void drawDartHit(Graphics2D targetPlace, double xDart, double yDart) {
-    	
-    	double middlePointX = CenterX;
-    	double middlePointY = CenterY;
-    	double scalingFactor = 300/170;
-    	double scalingX = middlePointX + (xDart * scalingFactor);
-        double scalingY = middlePointY - (yDart* scalingFactor);
+    	System.out.println(this.adjustedBoardDiameters[2]);
+    	double scalingFactor = (double)this.adjustedBoardDiameters[2]/(170.0*2.0);
+    	System.out.println(this.adjustedBoardDiameters[2]/(170*2));
+    	double scalingX = CenterX + (xDart * scalingFactor);
+    	System.out.println(xDart * scalingFactor);
+        double scalingY = CenterY - (yDart * scalingFactor);
+        System.out.println(yDart * scalingFactor);
     	int sizeHit = 5;
+    	System.out.println(scalingX + " " + scalingY);
     	
     	targetPlace.setColor(GREY);
     	targetPlace.drawLine((int) Math.round(scalingX - sizeHit),(int) Math.round(scalingY - sizeHit),(int) Math.round(scalingX + sizeHit), (int) Math.round(scalingY + sizeHit));
