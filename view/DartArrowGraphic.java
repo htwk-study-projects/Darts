@@ -28,6 +28,8 @@ public class DartArrowGraphic extends JPanel {
 	private boolean shouldPlace;
 	private boolean shouldRead;
 	
+	private Color colorFeatherAndHolder;
+	
 	private final double percentageArrowHeadHeight = 0.23;
 	private final double []percentageArrowHeadWidth = {0.45,0.55};
 	
@@ -63,6 +65,7 @@ public class DartArrowGraphic extends JPanel {
 		shouldPlace = true;
 		shouldDraw = false;
 		shouldRead = false;
+		colorFeatherAndHolder = Color.GRAY; //DUMMY
 		
 		updateCoordinates();
 	}
@@ -82,7 +85,7 @@ public class DartArrowGraphic extends JPanel {
 			dartArrow2D.drawPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
 			
 			// Holder
-			dartArrow2D.setColor(new Color(0,135,60));
+			dartArrow2D.setColor(colorFeatherAndHolder);
 			dartArrow2D.fillPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
 			dartArrow2D.drawPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
 					
@@ -92,7 +95,7 @@ public class DartArrowGraphic extends JPanel {
 			dartArrow2D.drawPolygon(xPointsBody, yPointsBody, nPointsBody);
 
 			// Federn
-			dartArrow2D.setColor(new Color(0,135,60));
+			dartArrow2D.setColor(colorFeatherAndHolder);
 			dartArrow2D.fillPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
 			dartArrow2D.drawPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
 		}
@@ -206,5 +209,9 @@ public class DartArrowGraphic extends JPanel {
 
     public void setShouldRead(boolean shouldRead) {
         this.shouldRead = shouldRead;
+    }
+    public void setColorFeatherAndHolder(Color colorFeatherAndHolder) {
+    	this.colorFeatherAndHolder = colorFeatherAndHolder;
+    	repaint();
     }
 }

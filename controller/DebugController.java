@@ -4,13 +4,18 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 
-public class DebugController {
+public class DebugController extends MouseAdapter {
 	
-	 private view.DebugScreenInterface debugScreenInterface;
+	private view.DebugScreenInterface screenToControl;
+	private view.DartArrowGraphic debugArrow;
+	private view.DartBoardGraphic debugBoard;
+	
 	 private view.DebugScreenSideBar debugScreenSideBar;
 	 private model.DartsGameData data;	
 	 
@@ -24,17 +29,22 @@ public class DebugController {
 	 private double vectorXInput;
 	 private double vectorYInput;
 	 private double vectorZInput;
+	 
 	
 	 
 	
 	public DebugController(view.DebugScreenInterface debug, model.DartsGameData data) {
-		this.debugScreenInterface = debug;
-		this.debugScreenSideBar = debugScreenInterface.getDebugScreenSideBar();
+		this.screenToControl = debug;
 		this.data = data;
+		this.debugScreenSideBar = debug.getDebugScreenSideBar();
+		this.debugArrow = debug.getDartArrowGraphic();
+		this.debugBoard = debug.getBoard();
+		this.debugArrow.addMouseListener(this);
+        this.debugArrow.addMouseMotionListener(this);
 		
-		debugScreenInterface.getDebugScreenSideBar().getPlaceDistanceAngleButton().addActionListener(e->writeDistanceAndAngle());
-		debugScreenInterface.getDebugScreenSideBar().getPlaceVectorButton().addActionListener(e->writeVectors());
-		debugScreenInterface.getDebugScreenSideBar().getCreatePlayerButton().addActionListener(e->displayPointsAndWriteSetup());
+        screenToControl.getDebugScreenSideBar().getPlaceDistanceAngleButton().addActionListener(e->writeDistanceAndAngle());
+        screenToControl.getDebugScreenSideBar().getPlaceVectorButton().addActionListener(e->writeVectors());
+        screenToControl.getDebugScreenSideBar().getCreatePlayerButton().addActionListener(e->displayPointsAndWriteSetup());
 
 	}
 	
@@ -63,8 +73,10 @@ public class DebugController {
 	public void writeGameSetupAndPoints() {
 		readGameSetupAndPoints();
 		data.setGameMode(pointsInput, selectButtonString, selectButtonString);
-		model.Player.createPlayer(new String [] {"DebugPlayer"}, new Color [] {Color.red}, pointsInput);
-		data.setPlayers(new String [] {"DebugPlayer"}, new Color [] {Color.red}, pointsInput);
+		model.Player.createPlayer(new String [] {"DebugPlayer"}, new Color [] {Color.GRAY}, pointsInput);
+		data.setPlayers(new String [] {"DebugPlayer"}, new Color [] {Color.GRAY}, pointsInput);
+		screenToControl.getDartArrowGraphic().setColorFeatherAndHolder(data.getCurrentPlayer().getColor());
+		screenToControl.getBoard().setColorHit(data.getCurrentPlayer().getColor());
 	}
 	
 	public void readGameSetupAndPoints() {
@@ -128,12 +140,12 @@ public class DebugController {
 	
 	public void displayPoints() {
     	String points = debugScreenSideBar.getPlayerPointsTextField().getText();
-    	debugScreenInterface.getDebugScreenSideBar().getDisplayPointsLabel().setText("Erstellter Spieler mit: " + points + " Punkten");
+    	screenToControl.getDebugScreenSideBar().getDisplayPointsLabel().setText("Erstellter Spieler mit: " + points + " Punkten");
     }
 	
 	public void updateDisplayPoints() {
 		int points = data.getCurrentPlayer().getPlayerPoints();
-		debugScreenInterface.getDebugScreenSideBar().getDisplayPointsLabel().setText("Punkte übrig: " + points);
+		screenToControl.getDebugScreenSideBar().getDisplayPointsLabel().setText("Punkte übrig: " + points);
 	}
 	
 	private void popUpNotificationVectors(double vectorX,double vectorY, double vectorZ,int points) {
@@ -150,5 +162,64 @@ public class DebugController {
 		JOptionPane.showMessageDialog(null, "Du hast Geweonnen!", "GEWONNEN!", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	
+	@Override
+    public void mouseDragged(MouseEvent e) {
+        if(debugArrow.isShouldDraw()) {
+        	debugArrow.setMouseX(e.getX());
+        	debugArrow.setMouseY(e.getY());
+        	debugArrow.setShouldDraw(true);
+        	debugArrow.setShouldPlace(false);
+        	debugArrow.setShouldRead(true);
+        	debugArrow.repaint();
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(debugArrow.isShouldPlace()){
+        	debugArrow.setShouldDraw(true);
+        	debugArrow.setShouldPlace(false);
+        	debugArrow.setMouseX(debugArrow.getWidth() / 2);
+        	debugArrow.setMouseY(debugArrow.getHeight() / 2);
+        	debugArrow.repaint();
+        }
+        if(debugArrow.isShouldRead()) {
+        	debugArrow.setShouldDraw(false);
+        	debugArrow.setShouldPlace(true);
+        	debugArrow.setShouldRead(false);
+            
+            double[] readThrowParameters = readAndScaleThrowParameters();
+            data.currentPlayerTakeTurn(readThrowParameters);
+            System.out.println(data.getCurrentPlayer());
+            this.debugBoard.drawDartHit(data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[1], data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[2]);
+            updateDisplayPoints();
+            data.nextTurnPlayer();
+            mouseClickBreak(1000);
+        }
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    	debugArrow.setShouldPlace(true);
+    	debugArrow.setShouldDraw(false);
+    	debugArrow.setShouldRead(false);
+    }
+    
+    private double[] readAndScaleThrowParameters() {
+    	double scalingFactor = (170.0*2.0) / (double)screenToControl.getBoard().getAdjustedBoardDiameters()[2];
+    	double yPostponementForThrow = (debugArrow.getXPostponement() * scalingFactor) / (237.0 / 23.7);
+    	double zPostponementForThrow = (debugArrow.getYPostponement() * scalingFactor) / (237.0 / 23.7);
+    	
+    	return new double[] {23.7, yPostponementForThrow, zPostponementForThrow};
+    }
+    
+    private void mouseClickBreak(int time) {
+    	try {
+			Thread.sleep(time);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+    }
 	
 }

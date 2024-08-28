@@ -31,6 +31,8 @@ public class DartBoardGraphic extends JPanel {
     private int[] adjustedBoardDiameters;
     private int fontSize;
     
+    private Color colorHIt;
+    
     private Integer lastHitX;
     private Integer lastHitY;
   
@@ -68,7 +70,7 @@ public class DartBoardGraphic extends JPanel {
         //drawDartHit(dartBoardTwoD,0,12);
         if (lastHitX != null && lastHitY != null) {
             int sizeHit = 5;
-            dartBoardTwoD.setColor(Color.GRAY);
+            dartBoardTwoD.setColor(colorHIt);
             dartBoardTwoD.drawLine(lastHitX - sizeHit, lastHitY - sizeHit, lastHitX + sizeHit, lastHitY + sizeHit);
             dartBoardTwoD.drawLine(lastHitX - sizeHit, lastHitY + sizeHit, lastHitX + sizeHit, lastHitY - sizeHit);
         }
@@ -171,5 +173,9 @@ public class DartBoardGraphic extends JPanel {
     
     public int[] getAdjustedBoardDiameters() {
     	return adjustedBoardDiameters;
+    }
+    
+    public void setColorHit(Color colorHIt) {
+    	this.colorHIt = colorHIt;
     }
 }

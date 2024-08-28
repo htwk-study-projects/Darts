@@ -36,6 +36,7 @@ public class PlayerSetupController {
 	    writePlayerSetup();
 	    updateNextScreen();
 
+	    System.out.print("Test");
 	    if (textFieldFullfillmentCondition() && colorPlayerFullfilmentCondition()) cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
 	    if (!textFieldFullfillmentCondition()) popUpNotificationTextField();
 	    if (!colorPlayerFullfilmentCondition()) popUpNotificationColorPlayer();
