@@ -17,14 +17,16 @@ public class DebugScreenSideBar extends JPanel {
 	private Bar playerModeBar;
 	private Line gameSetupLine;
 	private Line playerPointsLine;
-	private JLabel SetupLabel;
+	private JLabel setupLabel;
 	private JLabel gameSetupLabel;
 	private JLabel playerSetupLabel;
+	private JLabel displayPointsLabel;
     private JRadioButton StraightRadioButton;
     private JRadioButton DoubleRadioButton;
     private JRadioButton TripleRadioButton;
     private JTextField playerPointsTextField;
     private Line createPlayerButtonLine;
+    private Line displayPointsLine;
     private JButton createPlayerButton;
     private ButtonGroup mode;
     
@@ -53,7 +55,8 @@ public class DebugScreenSideBar extends JPanel {
     private Line vectorButtonLine;
     private JButton placeVectorButton;
     
-    private Line BreakLine;
+    private Line breakLine;
+    private Bar breakBar;
     protected JButton backButton;
     
     private Bar mainBar;
@@ -61,7 +64,7 @@ public class DebugScreenSideBar extends JPanel {
     public DebugScreenSideBar() {
     	this.setLayout(new BorderLayout());
        
-    	SetupLabel = new JLabel("Game Setup und Player Setup", SwingConstants.CENTER);
+    	setupLabel = new JLabel("Game Setup und Player Setup", SwingConstants.CENTER);
         
         gameSetupLabel = new JLabel("Game Setup:");
         
@@ -88,7 +91,11 @@ public class DebugScreenSideBar extends JPanel {
         createPlayerButtonLine = new Line(new JComponent[]{new TransparentPanel(), createPlayerButton, new TransparentPanel()});
         createPlayerButtonLine.setOpaque(false);
         
-        playerModeBar = new Bar(new JComponent[]{SetupLabel, gameSetupLine, playerPointsLine, createPlayerButtonLine});  
+        displayPointsLabel = new JLabel("");
+        displayPointsLine = new Line(new JComponent[]{displayPointsLabel});
+        displayPointsLine.setOpaque(false);
+        
+        playerModeBar = new Bar(new JComponent[]{setupLabel, gameSetupLine, playerPointsLine,createPlayerButtonLine,displayPointsLine});  
         playerModeBar.setOpaque(false);
 
         
@@ -137,14 +144,16 @@ public class DebugScreenSideBar extends JPanel {
         vectorBar.setOpaque(false);
         
         backButton = new JButton("Zurück");
-        BreakLine = new Line(new JComponent[] { new TransparentPanel(), backButton, new TransparentPanel() });
-        BreakLine.setBackground(DartsGUI.BACKGROUND_COLOR);
+        breakLine = new Line(new JComponent[] { new TransparentPanel(), backButton, new TransparentPanel() });
+        breakLine.setBackground(DartsGUI.BACKGROUND_COLOR);
+        breakBar = new Bar(new JComponent [] {new TransparentPanel(),backButton});
+        breakBar.setOpaque(false);
 
-        JComponent[] sideBarElements = {new TransparentPanel(), playerModeBar, distanceAngleBar, vectorBar,new TransparentPanel(), BreakLine};
+        JComponent[] sideBarElements = {setupLabel,playerModeBar, distanceAngleBar, vectorBar, breakBar};
         mainBar = new Bar(sideBarElements);
         mainBar.setBackground(DartsGUI.BACKGROUND_COLOR);
         
-        JComponent[] labels = {SetupLabel, gameSetupLabel, playerSetupLabel, distaneAngleTitle, distanceLabel, angleLabel, vectorTitle, vectorXLabel, vectorYLabel, vectorZLabel};
+        JComponent[] labels = {setupLabel, gameSetupLabel,displayPointsLabel, playerSetupLabel, distaneAngleTitle, distanceLabel, angleLabel, vectorTitle, vectorXLabel, vectorYLabel, vectorZLabel};
         DartsGUI.fontAdjust(DartsGUI.FONT_BIG, labels);
         JComponent[] radioButtons = {StraightRadioButton,DoubleRadioButton,TripleRadioButton};
         DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, radioButtons);
@@ -201,6 +210,10 @@ public class DebugScreenSideBar extends JPanel {
 	
 	public ButtonGroup getModeRadioButton() {
 		return mode;
+	}
+	
+	public JLabel getDisplayPointsLabel() {
+		return displayPointsLabel;
 	}
 	
 	private JRadioButton createRadioButton(String text, String actionCommand, boolean isSelected) {
