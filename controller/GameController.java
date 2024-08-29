@@ -76,7 +76,6 @@ public class GameController extends MouseAdapter{
             updateCurrentPlayerPanel();
             updatePlayerTable();
             data.nextTurnPlayer();
-            mouseClickBreak(1000);
         }
     }
 
@@ -110,14 +109,6 @@ public class GameController extends MouseAdapter{
         boolean shouldAdd = cosineValue >= 0; 
 
         return shouldAdd ? deviation : -deviation;
-    }
-    
-    private void mouseClickBreak(int time) {
-    	try {
-			Thread.sleep(time);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
     }
     
 }

@@ -38,7 +38,6 @@ public class Player {
     }
  	
 	public void updatePlayerPoints() {
-		//System.out.println(this.playerDarts[this.throwCount]);
 		if(statusPlayIn && statusCanFinish) {
 			this.playerPoints -= this.playerDarts[this.throwCount -1].getPoints();
 		}
@@ -130,7 +129,7 @@ public class Player {
     }
    
     public void setStatusPlayIn(boolean statusPlayIn) {
-		this.statusPlayIn = statusPlayIn;
+		if(!this.statusPlayIn) this.statusPlayIn = statusPlayIn;
 	}
 
 	public void setStatusPlayOut(boolean statusPlayOut) {
