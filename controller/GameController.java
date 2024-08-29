@@ -73,7 +73,6 @@ public class GameController extends MouseAdapter{
             double[] readThrowParameters = readAndScaleThrowParameters();
             data.currentPlayerTakeTurn(readThrowParameters);
             this.dartBoardPanel.setDartHitCoordinates(data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[1], data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[2]);
-            System.out.println(data.getCurrentPlayer());
             updateCurrentPlayerData();
             updatePlayerTable();
             data.nextTurnPlayer();
