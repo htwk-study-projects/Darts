@@ -18,9 +18,10 @@ public class DartsController {
 		this.userView = new view.DartsGUI();		
 		this.cardLayout = userView.getCardLayout();
 		this.data = new model.DartsGameData();
+		this.debugController = new DebugController(userView.getDebugScreen(),data);
 		
 		userView.getHomeScreen().getPlayButton().addActionListener(e -> initDataAndController());
-		this.debugController = new DebugController(userView.getDebugScreen(),data);
+		userView.getHomeScreen().getDebugButton().addActionListener(e -> resetForDebug());
 	}
 
 	public view.DartsGUI getUserView() {
@@ -37,6 +38,11 @@ public class DartsController {
 		this.playerSetupController = new PlayerSetupController(userView.getPlayerSetupScreen(), userView.getGameScreen(), data, cardLayout);
 		this.gameController = new GameController(userView.getGameScreen(), data, cardLayout);
 		cardLayout.show(userView.getContentPane(), "setup");
+	}
+	
+	private void resetForDebug() {
+		this.data.resetData();
+		cardLayout.show(userView.getContentPane(), "debug");
 	}
 	
 }

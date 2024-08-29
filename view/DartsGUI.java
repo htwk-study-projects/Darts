@@ -21,7 +21,6 @@ public class DartsGUI extends JFrame {
 	private SetupScreen setupScreen;
 	private PlayerSetupScreen playerSetupScreen;
 	private GameScreen gameScreen;
-	private SaveScreen saveScreen;
 	private DebugScreen debugScreen;
 
 	
@@ -48,25 +47,17 @@ public class DartsGUI extends JFrame {
 		this.gameScreen = new GameScreen();
 		this.add(gameScreen, "game");
 		
-		this.saveScreen = new SaveScreen();
-		this.add (saveScreen, "save");
 		
 		this.debugScreen = new DebugScreen();
 		this.add (debugScreen, "debug");
 		
-		homeScreen.loadButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "save"));
-		homeScreen.debugButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "debug"));
 		homeScreen.exitButton.addActionListener(e -> System.exit(0));
 
 		setupScreen.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
 			
 		playerSetupScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "setup"));
 		
-		gameScreen.saveButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
 		gameScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
-		
-		saveScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
-		saveScreen.loadingButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "game"));
 		
 		debugScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
 		
