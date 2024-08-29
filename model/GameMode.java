@@ -59,6 +59,7 @@ public class GameMode {
 		}
 	}
 	
+	//problematisch, punkte werden auch bei nicht erfüllterm outMode abgezogen wenn es genau auf 0 geht
 	public boolean arePointValidForOutMode(int currentPlayerPoints, int currentThrowPoints) {
 		if(currentPlayerPoints - currentThrowPoints >= outMode || currentPlayerPoints - currentThrowPoints == 0 ){
 			return true;
