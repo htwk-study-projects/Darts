@@ -23,7 +23,7 @@ public class GameController extends MouseAdapter{
 		this.dartArrowPanel = game.getDartArrow();
 		this.dartBoardPanel = game.getBoard();
 		this.currentPlayerPanel = game.getGameScreenSideBar().getPlayerPanel();
-		this.currentPlayerPanel.resetThrowLabels();;
+		this.currentPlayerPanel.resetThrowLabels();
 		this.throwStrengthPanel = game.getGameScreenSideBar().getStrengthInput();
 		
 		this.dartArrowPanel.addMouseListener(this);
@@ -35,9 +35,10 @@ public class GameController extends MouseAdapter{
 		model.Player currentPlayer = data.getCurrentPlayer();
 		Color currentPlayerColor = currentPlayer.getColor();
 		int[] currentPlayerThrowPoints = {currentPlayer .getPlayerDarts()[0].getPoints(), currentPlayer .getPlayerDarts()[1].getPoints(), currentPlayer.getPlayerDarts()[2].getPoints()};
+		
 		currentPlayerPanel.setLabelTexts(currentPlayer.getName(), currentPlayerColor, data.getTurnCount(), currentPlayerThrowPoints);
 		throwStrengthPanel.resetCharging();
-		throwStrengthPanel.setInputColor(currentPlayerColor );
+		throwStrengthPanel.setInputColor(currentPlayerColor);
 		screenToControl.getDartArrow().setColorFeatherAndHolder(currentPlayerColor );
 		screenToControl.getBoard().setColorHit(currentPlayerColor );
 	}
@@ -61,7 +62,6 @@ public class GameController extends MouseAdapter{
         if(dartArrowPanel.isShouldPlace()){
             dartArrowPanel.setShouldDraw(true);
             dartArrowPanel.setShouldPlace(false);
-            updateCurrentPlayerData();
             resetDisplayedPlayerDataIfNecessary();
             dartArrowPanel.setMouseXY(dartArrowPanel.getWidth() / 2, dartArrowPanel.getHeight() / 2);
         }
@@ -117,6 +117,7 @@ public class GameController extends MouseAdapter{
     private void resetDisplayedPlayerDataIfNecessary() {    	
     	 if (data.getTurnCount() == 0) {
     		 dartBoardPanel.clearDartHit();
+             updateCurrentPlayerData();
     		 currentPlayerPanel.resetThrowLabels();
          }
     }
