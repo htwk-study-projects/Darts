@@ -50,7 +50,6 @@ public class DartArrow {
 		dartThrow = new Throw(throwParameter[0],throwParameter[1],throwParameter[2]);
 		double distance = dartThrow.computeDistanceToDartBoardCenter();
 		int angle = dartThrow.computeAngleOnDartBoard();
-		System.out.println(distance + "mm " + angle +"°");
 		this.points = DartboardMathModel.determinePoints(angle, distance);
 		this.multiplier = DartboardMathModel.determineMultiplier(distance);
 	}

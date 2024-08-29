@@ -42,12 +42,17 @@ public class GameScreenSideBar extends JPanel {
 
         
         gameNameLabel = new JLabel("Spielname", SwingConstants.CENTER);
-        gameNameLabel.setFont(DartsGUI.FONT_NORMAL);
      
-
         JLabel instructionLabel1 = new JLabel("Tippe auf den Bildschirm damit der Dartpfeil erscheint", SwingConstants.CENTER);
-        JLabel instructionLabel2 = new JLabel("Platziere den Dartpfeil auf die gewünschte Wurfposition", SwingConstants.CENTER);
-        JLabel instructionLabel3 = new JLabel("Tippe ein weiteres Mal zum Werfen des Dartpfeils", SwingConstants.CENTER);
+        JLabel instructionLabel2 = new JLabel("Platziere den Dartpfeil mit gedrueckter Maustaste auf die gewünschte Wurfposition", SwingConstants.CENTER);
+        JLabel instructionLabel3 = new JLabel("Stelle mit der Leertaste deine Wurfstärke ein", SwingConstants.CENTER);
+        JLabel instructionLabel4 = new JLabel("Tippe ein weiteres Mal zum Werfen des Dartpfeils", SwingConstants.CENTER);
+        JComponent[] labels = {gameNameLabel, instructionLabel1,instructionLabel2,instructionLabel3, instructionLabel4, new TransparentPanel()};
+        DartsGUI.fontAdjust(DartsGUI.FONT_SMALL, labels);
+        gameNameLabel.setFont(DartsGUI.FONT_NORMAL);
+
+        instructionPanel = new Bar(labels);
+        instructionPanel.setOpaque(false);
 
         // Dummy Table
         playerTableData = new Object[][]{
@@ -57,10 +62,9 @@ public class GameScreenSideBar extends JPanel {
             {Color.YELLOW, "501", "Spieler 4"},
         };
 
-        // Custom TableModel, um die Bearbeitung zu verhindern
         tableModel = new DefaultTableModel(playerTableData, new Object[]{"", "", ""}) {
             public boolean isCellEditable(int row, int column) {
-                return false; // Alle Zellen sind nicht editierbar
+                return false;
             }
         };
 
@@ -83,29 +87,13 @@ public class GameScreenSideBar extends JPanel {
         scrollPaneContainer = new JPanel(new BorderLayout());
         scrollPaneContainer.setOpaque(false);
   
-
-        // Leeres Panel links, um Platz zu schaffen
         leftSpace = new TransparentPanel();
-        leftSpace.setPreferredSize(new java.awt.Dimension(80, 0)); 
-        
-        instructionPanel = new JPanel(new GridLayout(5,1,1,1));
-        instructionPanel.setOpaque(false);
-      
-        JComponent[] labels= {instructionLabel1,instructionLabel2,instructionLabel3};
-        DartsGUI.fontAdjust(DartsGUI.FONT_SMALL, labels);
-        instructionPanel.add(gameNameLabel);
-        instructionPanel.add(instructionLabel1);
-        instructionPanel.add(instructionLabel2);
-        instructionPanel.add(instructionLabel3);
-      
-        
+        leftSpace.setPreferredSize(new java.awt.Dimension(80, 0));        
         
         scrollPaneContainer.add(instructionPanel, BorderLayout.WEST); 
         scrollPaneContainer.add(leftSpace, BorderLayout.WEST); 
         scrollPaneContainer.add(scrollPane, BorderLayout.CENTER);
         
-       
-
         backButton = new JButton("Spiel abbrechen");
     	JButton[] setupButtons = {backButton};
 		DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, setupButtons);
@@ -120,8 +108,6 @@ public class GameScreenSideBar extends JPanel {
         strengthBarBar.setBackground(DartsGUI.BACKGROUND_COLOR);
         strengthInput.requestFocusInWindow();
         playerPanel.setBackground(DartsGUI.BACKGROUND_COLOR); 
-        
-     
         
         JComponent[] components = {instructionPanel, scrollPaneContainer, playerPanel, strengthBarBar, buttonLine};
         Bar Table = new Bar(components);
