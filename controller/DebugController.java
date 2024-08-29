@@ -1,9 +1,6 @@
 package controller;
 
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -30,7 +27,7 @@ public class DebugController extends MouseAdapter {
 	 private double vectorYInput;
 	 private double vectorZInput;
 	 
-	
+	//eingaben noch sichern falls buchstabe eingegeben wird
 	 
 	
 	public DebugController(view.DebugScreenInterface debug, model.DartsGameData data) {
@@ -162,7 +159,6 @@ public class DebugController extends MouseAdapter {
 		JOptionPane.showMessageDialog(null, "Du hast Geweonnen!", "GEWONNEN!", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-	
 	@Override
     public void mouseDragged(MouseEvent e) {
         if(debugArrow.isShouldDraw()) {
@@ -191,7 +187,6 @@ public class DebugController extends MouseAdapter {
             this.debugBoard.setDartHitCoordinates(data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[1], data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[2]);
             updateDisplayPoints();
             data.nextTurnPlayer();
-            mouseClickBreak(1000);
         }
     }
 
@@ -208,14 +203,6 @@ public class DebugController extends MouseAdapter {
     	double zPostponementForThrow = (debugArrow.getYPostponement() * scalingFactor) / (237.0 / 23.7);
     	
     	return new double[] {23.7, yPostponementForThrow, zPostponementForThrow};
-    }
-    
-    private void mouseClickBreak(int time) {
-    	try {
-			Thread.sleep(time);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
     }
 	
 }

@@ -35,12 +35,10 @@ public class GameScreenSideBar extends JPanel {
     private GameScreenCurrentPlayerPanel playerPanel;
     private ThrowStrengthInputPanel strengthInput;
     
-
     public GameScreenSideBar() {
 
         this.setLayout(new BorderLayout());
-
-        
+      
         gameNameLabel = new JLabel("Spielname", SwingConstants.CENTER);
      
         JLabel instructionLabel1 = new JLabel("Tippe auf den Bildschirm damit der Dartpfeil erscheint", SwingConstants.CENTER);
@@ -77,7 +75,6 @@ public class GameScreenSideBar extends JPanel {
             }
         };
         setTabelSettings(table);
-
 
         scrollPane = new JScrollPane(table);
         scrollPane.setOpaque(false);
