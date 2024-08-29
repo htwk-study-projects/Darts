@@ -20,7 +20,6 @@ public class GameScreenSideBar extends JPanel {
 
 	private Line buttonLine;
 	private Bar strengthBarBar;
-    protected JButton saveButton;
     protected JButton backButton;
     
     private JLabel gameNameLabel;
@@ -107,13 +106,12 @@ public class GameScreenSideBar extends JPanel {
         
        
 
-        saveButton = new JButton("Speichern");
-        backButton = new JButton("Zurück");
-    	JButton[] setupButtons = {saveButton, backButton};
+        backButton = new JButton("Spiel abbrechen");
+    	JButton[] setupButtons = {backButton};
 		DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, setupButtons);
-        JButton[] buttons = {saveButton, backButton};
+        JButton[] buttons = {backButton};
         buttonLine = new Line(buttons);
-        buttonLine.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von buttonLine auf Grau setzen
+        buttonLine.setBackground(DartsGUI.BACKGROUND_COLOR);
 
         playerPanel = new GameScreenCurrentPlayerPanel();
         strengthInput = new ThrowStrengthInputPanel();
@@ -127,14 +125,14 @@ public class GameScreenSideBar extends JPanel {
         
         JComponent[] components = {instructionPanel, scrollPaneContainer, playerPanel, strengthBarBar, buttonLine};
         Bar Table = new Bar(components);
-        Table.setBackground(DartsGUI.BACKGROUND_COLOR); // Hintergrund von Table auf Grau setzen
+        Table.setBackground(DartsGUI.BACKGROUND_COLOR);
         
         this.add(Table, BorderLayout.CENTER);
     }
     
     private void setTabelSettings(JTable table) {
         table.setOpaque(false);
-        table.setBackground(new Color(0, 0, 0, 0)); // Vollständig transparent
+        table.setBackground(new Color(0, 0, 0, 0));
         table.setShowGrid(false);
         table.setTableHeader(null);
         table.setFocusable(false);

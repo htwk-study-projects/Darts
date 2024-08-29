@@ -143,7 +143,7 @@ public class DebugScreenSideBar extends JPanel {
         vectorBar = new Bar(new JComponent[]{vectorTitle, vectorXLine, vectorYLine, vectorZLine, vectorButtonLine});
         vectorBar.setOpaque(false);
         
-        backButton = new JButton("Zurück");
+        backButton = new JButton("zum Homescreen");
         breakLine = new Line(new JComponent[] { new TransparentPanel(), backButton, new TransparentPanel() });
         breakLine.setBackground(DartsGUI.BACKGROUND_COLOR);
         breakBar = new Bar(new JComponent [] {new TransparentPanel(),backButton});

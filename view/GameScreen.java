@@ -16,7 +16,6 @@ public class GameScreen extends JPanel implements GameScreenInterface{
 	
 	private GameScreenSideBar sideBar;
 
-	protected JButton saveButton;
 	protected JButton backButton;
 	
 	public GameScreen() {
@@ -51,9 +50,7 @@ public class GameScreen extends JPanel implements GameScreenInterface{
 	     this.setScreenDivisionConstrains(3, 0, 1, 2, 1, 1, GridBagConstraints.BOTH);
 	     this.add(sideBar, screenDivisionConstraints);
 	     
-		 this.saveButton = sideBar.saveButton;
-		 this.backButton = sideBar.backButton;
-		 
+		 this.backButton = sideBar.backButton; 
 	        
 	}
 	

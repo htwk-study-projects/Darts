@@ -35,7 +35,7 @@ public class PlayerSetupScreen extends JPanel implements PlayerSetupScreenInterf
         playerNameInput.setBackground(DartsGUI.BACKGROUND_COLOR);
         
         playButton = new JButton("Weiter");
-        backButton = new JButton("Zurück");
+        backButton = new JButton("zum Game Setup");
         JButton[] setupButtons = {backButton, playButton};
         DartsGUI.fontAdjust(DartsGUI.FONT_BIG, setupButtons);
         startBreakLine = new Line(setupButtons);

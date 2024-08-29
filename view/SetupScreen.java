@@ -168,7 +168,7 @@ public class SetupScreen extends JPanel implements SetupScreenInterface{
 	
 	private void createStartBreakBar() {
 		this.startButton = new JButton("Weiter");		
-		this.backButton = new JButton("Zurück");
+		this.backButton = new JButton("zum Homescreen");
 		JButton[] startBreakLineElements = {this.backButton, this.startButton};
 		DartsGUI.fontAdjust(DartsGUI.FONT_BIG, startBreakLineElements);
 		this.startBreakLine = new Line(startBreakLineElements);
