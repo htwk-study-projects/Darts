@@ -18,9 +18,12 @@ public class DartsController {
 		this.userView = new view.DartsGUI();		
 		this.cardLayout = userView.getCardLayout();
 		this.data = new model.DartsGameData();
+		this.setupController = new SetupController(userView.getSetupScreen(), userView.getPlayerSetupScreen(), data, cardLayout);
+		this.playerSetupController = new PlayerSetupController(userView.getPlayerSetupScreen(), userView.getGameScreen(), data, cardLayout);
+		this.gameController = new GameController(userView.getGameScreen(), data, cardLayout);
 		this.debugController = new DebugController(userView.getDebugScreen(),data);
 		
-		userView.getHomeScreen().getPlayButton().addActionListener(e -> initDataAndController());
+		userView.getHomeScreen().getPlayButton().addActionListener(e -> resetDataAndShowSetupScreen());
 		userView.getHomeScreen().getDebugButton().addActionListener(e -> resetForDebug());
 	}
 
@@ -32,11 +35,8 @@ public class DartsController {
 		return data;
 	}
 	
-	private void initDataAndController() {
+	private void resetDataAndShowSetupScreen() {
 		this.data.resetData();
-		this.setupController = new SetupController(userView.getSetupScreen(), userView.getPlayerSetupScreen(), data, cardLayout);
-		this.playerSetupController = new PlayerSetupController(userView.getPlayerSetupScreen(), userView.getGameScreen(), data, cardLayout);
-		this.gameController = new GameController(userView.getGameScreen(), data, cardLayout);
 		cardLayout.show(userView.getContentPane(), "setup");
 	}
 	

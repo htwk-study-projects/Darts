@@ -36,10 +36,12 @@ public class PlayerSetupController {
 	    writePlayerSetup();
 	    updateNextScreen();
 
-	    System.out.print("Test");
-	    if (textFieldFullfillmentCondition() && colorPlayerFullfilmentCondition()) cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
-	    if (!textFieldFullfillmentCondition()) popUpNotificationTextField();
-	    if (!colorPlayerFullfilmentCondition()) popUpNotificationColorPlayer();
+	    boolean textFieldsAreValid = textFieldFullfillmentCondition();
+	    boolean colorsAreValid = colorPlayerFullfilmentCondition();
+
+	    if (textFieldsAreValid && colorsAreValid ) cardLayout.show(screenToControl.getRootPane().getContentPane(), "game");
+	    if (!textFieldsAreValid) popUpNotificationTextField();
+	    if (!colorsAreValid) popUpNotificationColorPlayer();
 	}
 
 	private void updateNextScreen() {
