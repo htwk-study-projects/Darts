@@ -95,7 +95,21 @@ public class GameController extends MouseAdapter{
     	double yPostponementForThrow = (dartArrowPanel.getXPostponement() * scalingFactor) / (237.0 / xComponentForThrow);
     	double zPostponementForThrow = (dartArrowPanel.getYPostponement() * scalingFactor) / (237.0 / xComponentForThrow);
     	
+    	xComponentForThrow  += addRandomDeviation(xComponentForThrow);
+    	yPostponementForThrow += addRandomDeviation(yPostponementForThrow);
+    	zPostponementForThrow += addRandomDeviation(zPostponementForThrow);
+    	
     	return new double[] {xComponentForThrow, yPostponementForThrow, zPostponementForThrow};
+    }
+    
+    private double addRandomDeviation(double originalValue) {
+        double percentage = Math.random() * 0.05;
+        double deviation = originalValue * percentage;
+        
+        double cosineValue = Math.cos(System.currentTimeMillis() / 1000.0);
+        boolean shouldAdd = cosineValue >= 0; 
+
+        return shouldAdd ? deviation : -deviation;
     }
     
     private void mouseClickBreak(int time) {
