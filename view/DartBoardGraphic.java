@@ -31,8 +31,7 @@ public class DartBoardGraphic extends JPanel {
     private int[] adjustedBoardDiameters;
     private int fontSize;
     
-    private Color colorHIt;
-    
+    private Color colorHit;    
     private Integer lastHitX;
     private Integer lastHitY;
   
@@ -67,13 +66,7 @@ public class DartBoardGraphic extends JPanel {
         drawBoundaryLinesAndLabels(dartBoardTwoD);
         drawBullseye(dartBoardTwoD);
         drawBoundaryCircles(dartBoardTwoD);
-        //drawDartHit(dartBoardTwoD,0,12);
-        if (lastHitX != null && lastHitY != null) {
-            int sizeHit = 5;
-            dartBoardTwoD.setColor(colorHIt);
-            dartBoardTwoD.drawLine(lastHitX - sizeHit, lastHitY - sizeHit, lastHitX + sizeHit, lastHitY + sizeHit);
-            dartBoardTwoD.drawLine(lastHitX - sizeHit, lastHitY + sizeHit, lastHitX + sizeHit, lastHitY - sizeHit);
-        }
+        drawHitPoint(dartBoardTwoD);
         
     }
     
@@ -159,23 +152,36 @@ public class DartBoardGraphic extends JPanel {
         }
     }
     
-    public void drawDartHit(double xDart, double yDart) {
+    public void setDartHitCoordinates(double xDart, double yDart) {
         double scalingFactor = (double)this.adjustedBoardDiameters[2] / (170.0 * 2.0);
         double scalingX = CenterX + (xDart * scalingFactor);
         double scalingY = CenterY - (yDart * scalingFactor);
-
-        // Store the coordinates
-        this.lastHitX = (int) Math.round(scalingX);
-        this.lastHitY = (int) Math.round(scalingY);
         
-        repaint(); // Trigger repaint, so it will draw the "X" in paintComponent
+        this.lastHitX = (int) Math.round(scalingX);
+        this.lastHitY = (int) Math.round(scalingY);     
+        repaint();
+    }
+    
+    public void clearDartHit() {
+        this.lastHitX = null;
+        this.lastHitY = null;
+        repaint();
+    }
+    
+    private void drawHitPoint(Graphics2D dartBoardTwoD) {
+        if (lastHitX != null && lastHitY != null) {
+            int sizeHit = 5;
+            dartBoardTwoD.setColor(colorHit);
+            dartBoardTwoD.drawLine(lastHitX - sizeHit, lastHitY - sizeHit, lastHitX + sizeHit, lastHitY + sizeHit);
+            dartBoardTwoD.drawLine(lastHitX - sizeHit, lastHitY + sizeHit, lastHitX + sizeHit, lastHitY - sizeHit);
+        }
     }
     
     public int[] getAdjustedBoardDiameters() {
     	return adjustedBoardDiameters;
     }
     
-    public void setColorHit(Color colorHIt) {
-    	this.colorHIt = colorHIt;
+    public void setColorHit(Color colorHit) {
+    	this.colorHit = colorHit;
     }
 }

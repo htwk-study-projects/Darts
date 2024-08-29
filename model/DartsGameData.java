@@ -9,12 +9,8 @@ public class DartsGameData {
     private int playerCount;
     private Player[] players;
     private GameMode gameMode;
-    private int currentPlayerIndex = 0; // Index des aktuellen Spielers
-    private int turnCount = 0; // Zähler für die Züge eines Spielers
-
-    public DartsGameData(){
-    	
-    }
+    private int currentPlayerIndex = 0; 
+    private int turnCount = 0; 
 
     @Override
 	public String toString() {
@@ -67,6 +63,10 @@ public class DartsGameData {
 
     public Player getCurrentPlayer() {
         return players[currentPlayerIndex];
+    }
+    
+    public int getTurnCount() {
+    	return turnCount;
     }
 
     public void nextTurnPlayer() {

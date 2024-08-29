@@ -25,7 +25,7 @@ public class GameScreenCurrentPlayerPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Farbkästchen und Spielername kombinieren
-        playerNameLabel = new JLabel("Spieler 1", playerIcon, SwingConstants.CENTER);
+        playerNameLabel = new JLabel("", playerIcon, SwingConstants.CENTER);
         playerNameLabel.setIconTextGap(10);
 
         add(playerNameLabel);
@@ -36,28 +36,29 @@ public class GameScreenCurrentPlayerPanel extends JPanel {
 
         JComponent[] labels= {playerNameLabel,throw1Label,throw2Label,throw3Label};
         DartsGUI.fontAdjust(DartsGUI.FONT_NORMAL, labels);
-        
-        initializeThrowLabels();
-        
         add(throw1Label);
         add(throw2Label);
         add(throw3Label);
     }
     
-    private void initializeThrowLabels() {
+    public void resetThrowLabels() {
         throw1Label.setText("Nicht geworfen");
         throw2Label.setText("Nicht geworfen");
         throw3Label.setText("Nicht geworfen");
     }
     
     
-    public void setLabelTexts(String name, Color color, String firstThrow, String secondThrow, String thirdThrow) {
-    	this.playerNameLabel.setText(name);
-    	this.playerIcon.setColor(color);
-    	this.throw1Label.setText(firstThrow);
-    	this.throw2Label.setText(secondThrow);
-    	this.throw3Label.setText(thirdThrow);
-    	this.revalidate();
+    public void setLabelTexts(String name, Color color, int throwCount, int[] throwPoints) {
+        this.playerNameLabel.setText(name);
+        this.playerIcon.setColor(color);
+        JLabel[] throwLabels = {throw1Label, throw2Label, throw3Label};
+
+        for (int i = 0; i < throwLabels.length; i++) {
+            if (i < throwCount + 1) throwLabels[i].setText(String.valueOf(throwPoints[i]));
+            else throwLabels[i].setText("Nicht geworfen");
+        }
+        
+        this.revalidate();
         this.repaint();
     }
     

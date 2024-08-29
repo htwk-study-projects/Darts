@@ -23,7 +23,7 @@ public class GameController extends MouseAdapter{
 		this.dartArrowPanel = game.getDartArrow();
 		this.dartBoardPanel = game.getBoard();
 		this.currentPlayerPanel = game.getGameScreenSideBar().getPlayerPanel();
-		this.currentPlayerPanel.setLabelTexts("", Color.black, "", "", "");
+		this.currentPlayerPanel.resetThrowLabels();;
 		this.throwStrengthPanel = game.getGameScreenSideBar().getStrengthInput();
 		
 		this.dartArrowPanel.addMouseListener(this);
@@ -31,15 +31,15 @@ public class GameController extends MouseAdapter{
 		
 	}
 	
-	private void updateCurrentPlayerPanel() {		
-		currentPlayerPanel.setLabelTexts(data.getCurrentPlayer().getName(), data.getCurrentPlayer().getColor(), 
-										 data.getCurrentPlayer().getPlayerDarts()[0].getPoints().toString(),
-										 data.getCurrentPlayer().getPlayerDarts()[1].getPoints().toString(),
-										 data.getCurrentPlayer().getPlayerDarts()[2].getPoints().toString());
+	private void updateCurrentPlayerData() {	
+		model.Player currentPlayer = data.getCurrentPlayer();
+		Color currentPlayerColor = currentPlayer.getColor();
+		int[] currentPlayerThrowPoints = {currentPlayer .getPlayerDarts()[0].getPoints(), currentPlayer .getPlayerDarts()[1].getPoints(), currentPlayer.getPlayerDarts()[2].getPoints()};
+		currentPlayerPanel.setLabelTexts(currentPlayer.getName(), currentPlayerColor, data.getTurnCount(), currentPlayerThrowPoints);
 		throwStrengthPanel.resetCharging();
-		throwStrengthPanel.setInputColor(data.getCurrentPlayer().getColor());
-		screenToControl.getDartArrow().setColorFeatherAndHolder(data.getCurrentPlayer().getColor());
-		screenToControl.getBoard().setColorHit(data.getCurrentPlayer().getColor());
+		throwStrengthPanel.setInputColor(currentPlayerColor );
+		screenToControl.getDartArrow().setColorFeatherAndHolder(currentPlayerColor );
+		screenToControl.getBoard().setColorHit(currentPlayerColor );
 	}
 	
 	private void updatePlayerTable() {
@@ -61,7 +61,8 @@ public class GameController extends MouseAdapter{
         if(dartArrowPanel.isShouldPlace()){
             dartArrowPanel.setShouldDraw(true);
             dartArrowPanel.setShouldPlace(false);
-            updateCurrentPlayerPanel();
+            updateCurrentPlayerData();
+            resetDisplayedPlayerDataIfNecessary();
             dartArrowPanel.setMouseXY(dartArrowPanel.getWidth() / 2, dartArrowPanel.getHeight() / 2);
         }
         if(dartArrowPanel.isShouldRead()) {
@@ -71,9 +72,9 @@ public class GameController extends MouseAdapter{
             
             double[] readThrowParameters = readAndScaleThrowParameters();
             data.currentPlayerTakeTurn(readThrowParameters);
-            this.dartBoardPanel.drawDartHit(data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[1], data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[2]);
+            this.dartBoardPanel.setDartHitCoordinates(data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[1], data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[2]);
             System.out.println(data.getCurrentPlayer());
-            updateCurrentPlayerPanel();
+            updateCurrentPlayerData();
             updatePlayerTable();
             data.nextTurnPlayer();
         }
@@ -87,12 +88,14 @@ public class GameController extends MouseAdapter{
     }
     
     private double[] readAndScaleThrowParameters() {
+    	final double distanceToDartBoard = 237.0;
+    	final double radiusMathDartBoard = 170.0;
     	
     	double xComponentForThrow = throwStrengthPanel.getCurrentStrength();
     	if (xComponentForThrow == 0) xComponentForThrow = 1;
-    	double scalingFactor = (170.0*2.0) / (double)screenToControl.getBoard().getAdjustedBoardDiameters()[2];
-    	double yPostponementForThrow = (dartArrowPanel.getXPostponement() * scalingFactor) / (237.0 / xComponentForThrow);
-    	double zPostponementForThrow = (dartArrowPanel.getYPostponement() * scalingFactor) / (237.0 / xComponentForThrow);
+    	double scalingFactor = (radiusMathDartBoard * 2.0) / (double)screenToControl.getBoard().getAdjustedBoardDiameters()[2];
+    	double yPostponementForThrow = (dartArrowPanel.getXPostponement() * scalingFactor) / (distanceToDartBoard / xComponentForThrow);
+    	double zPostponementForThrow = (dartArrowPanel.getYPostponement() * scalingFactor) / (distanceToDartBoard / xComponentForThrow);
     	
     	xComponentForThrow  += addRandomDeviation(xComponentForThrow);
     	yPostponementForThrow += addRandomDeviation(yPostponementForThrow);
@@ -102,13 +105,20 @@ public class GameController extends MouseAdapter{
     }
     
     private double addRandomDeviation(double originalValue) {
-        double percentage = Math.random() * 0.05;
+        double percentage = Math.random() * 0.07;
         double deviation = originalValue * percentage;
         
         double cosineValue = Math.cos(System.currentTimeMillis() / 1000.0);
         boolean shouldAdd = cosineValue >= 0; 
 
         return shouldAdd ? deviation : -deviation;
+    }
+    
+    private void resetDisplayedPlayerDataIfNecessary() {    	
+    	 if (data.getTurnCount() == 0) {
+    		 dartBoardPanel.clearDartHit();
+    		 currentPlayerPanel.resetThrowLabels();
+         }
     }
     
 }

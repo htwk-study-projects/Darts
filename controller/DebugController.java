@@ -188,7 +188,7 @@ public class DebugController extends MouseAdapter {
             double[] readThrowParameters = readAndScaleThrowParameters();
             data.currentPlayerTakeTurn(readThrowParameters);
             System.out.println(data.getCurrentPlayer());
-            this.debugBoard.drawDartHit(data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[1], data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[2]);
+            this.debugBoard.setDartHitCoordinates(data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[1], data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[2]);
             updateDisplayPoints();
             data.nextTurnPlayer();
             mouseClickBreak(1000);
