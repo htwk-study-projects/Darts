@@ -76,7 +76,7 @@ public class DebugController extends MouseAdapter {
 	}
 	
 	public void readGameSetup() {
-		ButtonModel selectedButton = debugScreenSideBar.getModeRadioButton().getSelection();
+		selectedButton = debugScreenSideBar.getModeRadioButton().getSelection();
 		selectButtonString = selectedButton.getActionCommand();
 	}
 	
@@ -120,7 +120,6 @@ public class DebugController extends MouseAdapter {
 			String vectorXString = debugScreenSideBar.getVectorXTextField().getText();
 			vectorXInput = Double.parseDouble(vectorXString);
 		} catch (NumberFormatException e) {
-			System.out.print("Test");
 		}
 	}
 	
@@ -128,8 +127,7 @@ public class DebugController extends MouseAdapter {
 		try {
 			String vectorYString = debugScreenSideBar.getVectorYTextField().getText();
 			vectorYInput = Double.parseDouble(vectorYString);
-		} catch (NumberFormatException e) {
-			// Fehler wird ignoriert, vectorYInput bleibt unverändert
+		} catch (NumberFormatException e) {	
 		}
 	}
 	
@@ -138,7 +136,6 @@ public class DebugController extends MouseAdapter {
 			String vectorZString = debugScreenSideBar.getVectorZTextField().getText();
 			vectorZInput = Double.parseDouble(vectorZString);
 		} catch (NumberFormatException e) {
-			// Fehler wird ignoriert, vectorZInput bleibt unverändert
 		}
 	}
 	

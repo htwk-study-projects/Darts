@@ -24,6 +24,7 @@ public class PlayerSetupScreen extends JPanel implements PlayerSetupScreenInterf
 
         this.setLayout(new GridLayout(3, 3));
         DartsGUI.gridLayoutFill(this, 3, 3);
+        
         title = new JLabel("Player Setup");
         title.setFont(DartsGUI.FONT_TITLE);
         title.setHorizontalAlignment(SwingConstants.CENTER);
