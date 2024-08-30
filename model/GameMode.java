@@ -9,6 +9,7 @@ public class GameMode {
 	protected static final int DOUBLE_IN_OUT = 2;
 	protected static final int TRIPLE_IN_OUT = 3;
 	private static final Map<String, Integer> IN_OUT_MODES = new HashMap<>();
+	private static final Map<Integer, String> MODE_NAMES = new HashMap<>();
 	
 	private int gamePoints;
 	private int inMode;
@@ -23,12 +24,13 @@ public class GameMode {
 		int[] modeNumbers = {STRAIGHT_IN_OUT, DOUBLE_IN_OUT, TRIPLE_IN_OUT};
 		for(int i = 0; i < modeNames.length; i++) {
 			IN_OUT_MODES.put(modeNames[i], modeNumbers[i]);
+			MODE_NAMES.put(modeNumbers[i], modeNames[i]);
 		}
 	}
 	
 	@Override
 	public String toString() {
-		return "GameMode [gamePoints=" + gamePoints + ", inMode=" + inMode + ", outMode=" + outMode + "]";
+		return " mit In Mode: " + MODE_NAMES.get(inMode) + ", Out Mode: " + MODE_NAMES.get(outMode);
 	}
 
 	public GameMode(int selectedPoints, String inMode, String outMode) {

@@ -44,9 +44,8 @@ public class PlayerSetupController {
 	    if (!colorsAreValid) popUpNotificationColorPlayer();
 	}
 
-	//Kreuz noch resetten
 	private void updateNextScreen() {
-		screenToAdjustDisplay.getGameScreenSideBar().setGameNameLabel(gameName);
+		screenToAdjustDisplay.getGameScreenSideBar().setGameNameLabel(gameName + " " + data.getGameMode());
 	    screenToAdjustDisplay.getGameScreenSideBar().setPlayerTableData(data.preparePlayerDataForTable());
 	    screenToAdjustDisplay.getGameScreenSideBar().getPlayerPanel().setLabelTexts("", null, 0, new int[3]);
 	    screenToAdjustDisplay.getGameScreenSideBar().getPlayerPanel().resetThrowLabels();
