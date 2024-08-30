@@ -153,7 +153,6 @@ public class GameController extends MouseAdapter{
     	dialog.setModal(true);
     	dialog.setVisible(true);
     	
-    	
     	}
     			
     }
