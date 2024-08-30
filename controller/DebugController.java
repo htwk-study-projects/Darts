@@ -55,6 +55,7 @@ public class DebugController extends MouseAdapter {
 		updateDisplayPoints();
 		
 		popUpNotificationVectors(vectorXInput,vectorYInput,vectorZInput,points);
+		System.out.println("Status Finish: " + data.getCurrentPlayer().getStatusFinish());
 		if(data.getCurrentPlayer().getStatusFinish()) popUpNotificationFinish();
 		
 	}
@@ -64,6 +65,7 @@ public class DebugController extends MouseAdapter {
 		
 		int points = model.DartboardMathModel.determinePoints(angleInput,distanceInput);
 		popUpNotificationAngleAndDistance(angleInput,distanceInput,points);
+	
 		
 	}
 	
