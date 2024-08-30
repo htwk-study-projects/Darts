@@ -15,6 +15,7 @@ public class GameScreenCurrentPlayerPanel extends JPanel {
 	private JLabel playerNameLabel;
 	private ColorIcon playerIcon = new ColorIcon(Color.black);
 	
+	private static final String NOT_THROWN_TEXT = "Nicht geworfen";
 	private JLabel throw1Label;
 	private JLabel throw2Label;
     private JLabel throw3Label;
@@ -24,7 +25,7 @@ public class GameScreenCurrentPlayerPanel extends JPanel {
         setLayout(new GridLayout(5, 1, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Farbkästchen und Spielername kombinieren
+        // Icon and Name
         playerNameLabel = new JLabel("", playerIcon, SwingConstants.CENTER);
         playerNameLabel.setIconTextGap(10);
 
@@ -42,9 +43,9 @@ public class GameScreenCurrentPlayerPanel extends JPanel {
     }
     
     public void resetThrowLabels() {
-        throw1Label.setText("Nicht geworfen");
-        throw2Label.setText("Nicht geworfen");
-        throw3Label.setText("Nicht geworfen");
+        throw1Label.setText(NOT_THROWN_TEXT);
+        throw2Label.setText(NOT_THROWN_TEXT);
+        throw3Label.setText(NOT_THROWN_TEXT);
     }
     
     
@@ -55,14 +56,10 @@ public class GameScreenCurrentPlayerPanel extends JPanel {
 
         for (int i = 0; i < throwLabels.length; i++) {
             if (i < throwCount + 1) throwLabels[i].setText(String.valueOf(throwPoints[i]));
-            else throwLabels[i].setText("Nicht geworfen");
+            else throwLabels[i].setText(NOT_THROWN_TEXT);
         }
-        
         this.revalidate();
         this.repaint();
-    }
-    
- 
-    
+    } 
 
 }

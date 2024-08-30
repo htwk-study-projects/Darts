@@ -7,9 +7,12 @@ import java.awt.Font;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-public class DartsGUI extends JFrame {
+public class DartsGUI extends JFrame implements DartsGUIInterface{
 	
-	private CardLayout cardLayout;  // Instanzvariable für CardLayout
+	/**
+	 * The CardLayout used for managing the layout of different screens in the application.
+	 */
+	private CardLayout cardLayout;
 	
 	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 60);
 	protected final static Font FONT_BIG = new Font("Impact", Font.BOLD, 22);

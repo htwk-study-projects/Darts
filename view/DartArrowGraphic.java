@@ -13,8 +13,7 @@ import javax.swing.JPanel;
 import java.awt.event.MouseListener;
 
 public class DartArrowGraphic extends JPanel {
-	
-	
+
 	private int width;
 	private int height;
 	
@@ -40,8 +39,8 @@ public class DartArrowGraphic extends JPanel {
 	private final double []percentageBodyWidth = {0.45,0.55,0.185,0.215};
 	
 	private final double percentageFeatherHeight = 0.12 + percentageBodyHeight;
-	private final double percentageFeatherWidth = 1;
-	private final double secondpercentageFeatherHeight = 0.07+percentageFeatherHeight;
+	private final double percentageFeatherWidth = 1.0;
+	private final double secondpercentageFeatherHeight = 0.07 + percentageFeatherHeight;
 	
 	private double usableHeight;
 	private double usableWidth;
@@ -78,23 +77,23 @@ public class DartArrowGraphic extends JPanel {
 			Graphics2D dartArrow2D = (Graphics2D) g;		
 	        dartArrow2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-			// Pfeilspitze
+			//ArrowHead
 			dartArrow2D.setColor(Color.GRAY);
 			dartArrow2D.fillPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
 			dartArrow2D.setColor(Color.GRAY);
 			dartArrow2D.drawPolygon(xPointsArrowhead, yPointsArrowhead, nPointsArrowhead);
 			
-			// Holder
+			//Holder
 			dartArrow2D.setColor(colorFeatherAndHolder);
 			dartArrow2D.fillPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
 			dartArrow2D.drawPolygon(xPointsHolder, yPointsHolder, nPointsHolder);
 					
-			// Wurfkörper Griff
+			//Body
 			dartArrow2D.setColor(new Color(96,96,96));
 			dartArrow2D.fillPolygon(xPointsBody, yPointsBody, nPointsBody);
 			dartArrow2D.drawPolygon(xPointsBody, yPointsBody, nPointsBody);
 
-			// Federn
+			//Feathers
 			dartArrow2D.setColor(colorFeatherAndHolder);
 			dartArrow2D.fillPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
 			dartArrow2D.drawPolygon(xPointsFeather, yPointsFeather, nPointsFeather);
