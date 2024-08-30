@@ -2,6 +2,10 @@ package model;
 
 import java.util.Arrays;
 
+/**
+ * The {@code MathVector} class represents a mathematical vector and provides operations for vector manipulation.
+ * This class supports vector addition, scalar multiplication, dot product calculation, distance measurement and a special intersectionangle calculation.
+ */
 public class MathVector {
 	
 	private double[] vectorComponents;
@@ -52,13 +56,19 @@ public class MathVector {
 		}
 		return scalarProd;
 	}
-	
-	public int intersectionAngleAntiClockwise(MathVector vector2) {
+
+	/**
+	 * Computes the counterclockwise angle between this vector and another vector. The method is specialized for our dartboard representation.
+	 * 
+	 * @param vector2 the vector to compute the angle with
+	 * @return the counterclockwise angle in degrees between this vector and the specified vector
+	 */
+	public int intersectionAngleCounterClockwise(MathVector vector2) {
 		double cosTheta = this.dotProd(vector2) / (this.vectorSize() * vector2.vectorSize());
 		cosTheta = Math.max(-1, Math.min(1, cosTheta));
 	    double theta =  Math.toDegrees(Math.acos(cosTheta));
 	    
-	    if(vector2.vectorComponents[2] < 0) theta = 360 - theta; //DartBoard xy-Area is mirror
+	    if(vector2.vectorComponents[2] < 0) theta = 360 - theta; //dartboard is divided into two halves by the xy plane.
 	    return (int) theta;
 	}
 	
