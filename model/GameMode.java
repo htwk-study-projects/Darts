@@ -46,7 +46,7 @@ public class GameMode {
 	public boolean isGameInModeConditionFulfilled(int hitMultiplier) {
 		switch(inMode) {
 			case STRAIGHT_IN_OUT: return true;
-			case DOUBLE_IN_OUT: return DOUBLE_IN_OUT == hitMultiplier;
+			case DOUBLE_IN_OUT: return DOUBLE_IN_OUT == hitMultiplier || hitMultiplier == -1;
 			case TRIPLE_IN_OUT: return TRIPLE_IN_OUT == hitMultiplier;
 			default: return false;
 		}
@@ -55,7 +55,7 @@ public class GameMode {
 	public boolean isGameOutModeConditionFulfilled(int hitMultiplier) {
 		switch(outMode) {
 			case STRAIGHT_IN_OUT: return true;
-			case DOUBLE_IN_OUT: return DOUBLE_IN_OUT == hitMultiplier;
+			case DOUBLE_IN_OUT: return DOUBLE_IN_OUT == hitMultiplier || hitMultiplier == -1;
 			case TRIPLE_IN_OUT: return TRIPLE_IN_OUT == hitMultiplier;
 			default: return false;
 		}
