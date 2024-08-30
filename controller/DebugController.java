@@ -170,7 +170,7 @@ public class DebugController extends MouseAdapter {
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if (debugArrow.isShouldDraw()) {
+		if(debugArrow.isShouldDraw()){
 			debugArrow.setShouldDraw(true);
 			debugArrow.setShouldPlace(false);
 			debugArrow.setShouldRead(true);
@@ -180,12 +180,12 @@ public class DebugController extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (debugArrow.isShouldPlace()) {
+		if(debugArrow.isShouldPlace()) {
 			debugArrow.setShouldDraw(true);
 			debugArrow.setShouldPlace(false);
 			debugArrow.setMouseXY(debugArrow.getWidth() / 2, debugArrow.getHeight() / 2);
 		}
-		if (debugArrow.isShouldRead()) {
+		if(debugArrow.isShouldRead()) {
 			debugArrow.setShouldDraw(false);
 			debugArrow.setShouldPlace(true);
 			debugArrow.setShouldRead(false);

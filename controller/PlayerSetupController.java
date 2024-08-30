@@ -63,8 +63,6 @@ public class PlayerSetupController {
 		readGameName();
 		readPlayerNames();
 		readPlayerColors();
-		textFieldFullfillmentCondition();
-		colorPlayerFullfilmentCondition();
 	}
 	
 	private void readGameName() {

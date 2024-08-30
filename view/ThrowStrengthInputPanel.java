@@ -10,6 +10,12 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * ThrowStrengthInputPanel is a custom JPanel that visually represents the charging
+ * of throwing strength. The user can press and hold the space bar to increase the strength,
+ * which is displayed as a filled rectangle that grows horizontally. The strength charging stops
+ * either when the maximum strength is reached or when the space bar is released.
+ */
 public class ThrowStrengthInputPanel extends JPanel {
 
     private static final double MAX_STRENGTH = 47.4;

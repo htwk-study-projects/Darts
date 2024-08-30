@@ -28,7 +28,7 @@ public class PlayerNameInput extends JPanel implements PlayerNameInputInterface{
 	 private static final ColorIcon BLACK = new ColorIcon(new Color(64,64,64));
 	 private static final ColorIcon GREY = new ColorIcon(new Color(130,134,137));
 	 
-	 private static final ColorIcon[] OPTIONS = {YELLOW,RED,ORANGE,VIOLETT,PINK,BLUE,LIGHTBLUE,GREEN,LIGHTGREEN,BLACK,GREY};
+	 private static final ColorIcon[] OPTIONS = {YELLOW, RED, ORANGE, VIOLETT, PINK, BLUE, LIGHTBLUE, GREEN, LIGHTGREEN, BLACK, GREY};
 
 	 private Line gameNameLine;
 	 private JTextField gameNameField;
@@ -91,9 +91,7 @@ public class PlayerNameInput extends JPanel implements PlayerNameInputInterface{
 		
 	    JComponent[] Labels = {gameNameLabel, player1Label, player2Label, player3Label, player4Label};
 	    DartsGUI.fontAdjust(DartsGUI.FONT_BIG, Labels);
-	    
-	    
-	    
+	    	    
 	    adjustplayerNameInputBarElements();
 	    for(JComponent component : playerNameInputBarElements) {
 			component.setOpaque(false);	
@@ -140,6 +138,5 @@ public class PlayerNameInput extends JPanel implements PlayerNameInputInterface{
 	public JTextField getGameNameField() {
 		return gameNameField;
 	}
-	
 	
 }

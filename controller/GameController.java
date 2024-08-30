@@ -38,7 +38,7 @@ public class GameController extends MouseAdapter{
 		this.dartArrowPanel.addMouseListener(this);
         this.dartArrowPanel.addMouseMotionListener(this);
         
-        homeWinnerButton.addActionListener(e->popUpNotificationWinnercloseDialog());
+        homeWinnerButton.addActionListener(e->popUpNotificationWinnerCloseDialog());
 		
 	}
 	
@@ -133,7 +133,7 @@ public class GameController extends MouseAdapter{
          }
     }
     
-    private void popUpNotificationWinnercloseDialog() {
+    private void popUpNotificationWinnerCloseDialog() {
     	dialog.setVisible(false);
     	cardLayout.show(screenToControl.getRootPane().getContentPane(), "home");
     	

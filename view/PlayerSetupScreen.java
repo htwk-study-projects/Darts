@@ -14,12 +14,11 @@ public class PlayerSetupScreen extends JPanel implements PlayerSetupScreenInterf
     
     private Line startBreakLine;
     private Bar startBreakBar;
-    protected JButton playButton;
+    private JButton playButton;
     protected JButton backButton;
     
     private PlayerNameInput playerNameInput;
 
-    
     public PlayerSetupScreen() {
 
         this.setLayout(new GridLayout(3, 3));
@@ -51,12 +50,10 @@ public class PlayerSetupScreen extends JPanel implements PlayerSetupScreenInterf
         startBreakBar.barPlacementInGridLayout(this, 7);
     }
 
-
 	@Override
 	public JButton getPlayButton() {
 		return playButton;
 	}
-
 
 	@Override
 	public PlayerNameInput getPlayerNameInput() {
