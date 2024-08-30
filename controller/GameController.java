@@ -5,6 +5,11 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 public class GameController extends MouseAdapter{
 	
 	private view.GameScreenInterface screenToControl;
@@ -13,6 +18,10 @@ public class GameController extends MouseAdapter{
 	private view.GameScreenCurrentPlayerPanel currentPlayerPanel;
 	private view.ThrowStrengthInputPanel throwStrengthPanel;
 	private CardLayout cardLayout;
+	
+	private JButton homeWinnerButton = new JButton("Back zum Startbildschirm");
+	private JDialog dialog = new JDialog();
+	
 	
 	private model.DartsGameData data;	
 	
@@ -28,6 +37,8 @@ public class GameController extends MouseAdapter{
 		
 		this.dartArrowPanel.addMouseListener(this);
         this.dartArrowPanel.addMouseMotionListener(this);
+        
+        homeWinnerButton.addActionListener(e->popUpNotificationWinnercloseDialog());
 		
 	}
 	
@@ -41,6 +52,8 @@ public class GameController extends MouseAdapter{
 		throwStrengthPanel.setInputColor(currentPlayerColor);
 		screenToControl.getDartArrow().setColorFeatherAndHolder(currentPlayerColor );
 		screenToControl.getBoard().setColorHit(currentPlayerColor );
+		System.out.print(data.getCurrentPlayer().getStatusFinish());
+		popUpNotificationWinner();
 	}
 	
 	private void updatePlayerTable() {
@@ -120,5 +133,30 @@ public class GameController extends MouseAdapter{
     		 currentPlayerPanel.resetThrowLabels();
          }
     }
+    
+    private void popUpNotificationWinnercloseDialog() {
+    	
+    	dialog.setVisible(false);
+    	cardLayout.show(screenToControl.getRootPane().getContentPane(), "home");
+    	
+    }
+    
+    private void popUpNotificationWinner() {
+    	
+    	if(data.getCurrentPlayer().getStatusFinish()) {
+    		
+    	JComponent[] buttons = {homeWinnerButton};
+    	String popUpWinner = "Spieler: " + data.getCurrentPlayer().getName() + " hat Gewonnen!";
+    	final JOptionPane optionPane = new JOptionPane(popUpWinner,JOptionPane.INFORMATION_MESSAGE,JOptionPane.DEFAULT_OPTION,null,buttons,null);
+    	dialog = optionPane.createDialog("Du hast Gewonnen!");
+    	dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+    	dialog.setModal(true);
+    	dialog.setVisible(true);
+    	
+    	
+    	}
+    			
+    }
+
     
 }
