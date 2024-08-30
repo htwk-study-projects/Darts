@@ -88,7 +88,7 @@ public class PlayerSetupController {
 	}
 		
 	private void popUpNotificationTextField() {
-		JOptionPane.showMessageDialog(null, "Bitte füll alle Text Felder aus!", "WICHTIGER HINWEIS!", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Bitte fuell alle Textfelder aus!", "WICHTIGER HINWEIS!", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	private void readPlayerColors() {
@@ -109,7 +109,7 @@ public class PlayerSetupController {
 	}
 	
 	private void popUpNotificationColorPlayer() {
-		JOptionPane.showMessageDialog(null, "Bitte wähl unterschiedliche Farben aus!", "WICHTIGER HINWEIS!", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Bitte waehl unterschiedliche Farben aus!", "WICHTIGER HINWEIS!", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	
