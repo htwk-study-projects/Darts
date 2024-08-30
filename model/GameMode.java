@@ -50,6 +50,7 @@ public class GameMode {
 		this.outMode = IN_OUT_MODES.get(outMode.toLowerCase());
 	}
 	
+
 	public int getGamePoints() {
 		return this.gamePoints;
 	}

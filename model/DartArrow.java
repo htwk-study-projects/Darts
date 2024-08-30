@@ -36,6 +36,7 @@ public class DartArrow {
 		return darts;
 	}	
 	
+	
 	@Override
 	public String toString() {
 		return "DartArrow [throwParameter=" + Arrays.toString(throwParameter) + ", dartThrow=" + dartThrow + ", points="
