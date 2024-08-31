@@ -38,7 +38,7 @@ public class GameController extends MouseAdapter{
 		this.dartArrowPanel.addMouseListener(this);
         this.dartArrowPanel.addMouseMotionListener(this);
         
-        homeWinnerButton.addActionListener(e->popUpNotificationWinnercloseDialog());
+        homeWinnerButton.addActionListener(e->popUpNotificationWinnerCloseDialog());
 		
 	}
 	
@@ -52,8 +52,6 @@ public class GameController extends MouseAdapter{
 		throwStrengthPanel.setInputColor(currentPlayerColor);
 		screenToControl.getDartArrow().setColorFeatherAndHolder(currentPlayerColor );
 		screenToControl.getBoard().setColorHit(currentPlayerColor );
-		System.out.print(data.getCurrentPlayer().getStatusFinish());
-		popUpNotificationWinner();
 	}
 	
 	private void updatePlayerTable() {
@@ -88,6 +86,7 @@ public class GameController extends MouseAdapter{
             this.dartBoardPanel.setDartHitCoordinates(data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[1], data.getCurrentPlayer().getCurrentImpactPoint().getVectorComponents()[2]);
             updateCurrentPlayerData();
             updatePlayerTable();
+    		popUpNotificationWinner();
             data.nextTurnPlayer();
         }
     }
@@ -127,34 +126,29 @@ public class GameController extends MouseAdapter{
     }
     
     private void resetDisplayedPlayerDataIfNecessary() {    	
-    	 if (data.getTurnCount() == 0) {
+    	 if(data.getTurnCount() == 0){
     		 dartBoardPanel.clearDartHit();
              updateCurrentPlayerData();
     		 currentPlayerPanel.resetThrowLabels();
          }
     }
     
-    private void popUpNotificationWinnercloseDialog() {
-    	
+    private void popUpNotificationWinnerCloseDialog() {
     	dialog.setVisible(false);
     	cardLayout.show(screenToControl.getRootPane().getContentPane(), "home");
     	
     }
     
-    private void popUpNotificationWinner() {
-    	
-    	if(data.getCurrentPlayer().getStatusFinish()) {
-    		
-    	JComponent[] buttons = {homeWinnerButton};
-    	String popUpWinner = "Spieler: " + data.getCurrentPlayer().getName() + " hat Gewonnen!";
-    	final JOptionPane optionPane = new JOptionPane(popUpWinner,JOptionPane.INFORMATION_MESSAGE,JOptionPane.DEFAULT_OPTION,null,buttons,null);
-    	dialog = optionPane.createDialog("Du hast Gewonnen!");
-    	dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-    	dialog.setModal(true);
-    	dialog.setVisible(true);
-    	
-    	}
-    			
+    private void popUpNotificationWinner() {   	
+    	if(data.getCurrentPlayer().getStatusFinish()) {	
+    		JComponent[] buttons = {homeWinnerButton};
+    		String popUpWinner = "Spieler: " + data.getCurrentPlayer().getName() + " hat Gewonnen!";
+    		final JOptionPane optionPane = new JOptionPane(popUpWinner,JOptionPane.INFORMATION_MESSAGE,JOptionPane.DEFAULT_OPTION,null,buttons,null);
+    		dialog = optionPane.createDialog("Du hast Gewonnen!");
+    		dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+    		dialog.setModal(true);
+    		dialog.setVisible(true);
+    	}			
     }
 
     

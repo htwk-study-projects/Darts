@@ -20,7 +20,7 @@ public class IconRendererForTable extends DefaultTableCellRenderer {
             String playerName = (String) table.getModel().getValueAt(row, 2);
             label.setText(playerName);
             label.setIcon(new ColorIcon(color));
-            label.setIconTextGap(10); // Abstand zwischen dem Farbkästchen und dem Text auf 5 Pixel setzen
+            label.setIconTextGap(10);
         } else {
             label.setText(value.toString());
         }

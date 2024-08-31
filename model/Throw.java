@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * Represents a dart throw and performs calculations related to its impact on a dartboard.
+ * Provides methods to compute the impact point, distance to the dartboard center, and angle on the dartboard.
+ */
 public class Throw {
 	
 	private final static int DISTANCE_TO_BOARD = 237;
@@ -41,7 +45,7 @@ public class Throw {
 	}
 	
 	public int computeAngleOnDartBoard() {
-		return DARTBOARD_ANGLE_VECTOR.intersectionAngleAntiClockwise(centerToImpactPointVector);
+		return DARTBOARD_ANGLE_VECTOR.intersectionAngleCounterClockwise(centerToImpactPointVector);
 	}
 	
 	public MathVector getImpactVector() {

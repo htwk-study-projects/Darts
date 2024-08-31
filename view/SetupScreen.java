@@ -48,9 +48,7 @@ public class SetupScreen extends JPanel implements SetupScreenInterface{
 	private JRadioButton tripleOut;
 	
 	private Bar setupMenuBar;
-	
 
-	
 	public SetupScreen() {
 		
 		this.setLayout(new GridLayout(3,3));	
@@ -70,8 +68,6 @@ public class SetupScreen extends JPanel implements SetupScreenInterface{
 		setupMenuBar.barPlacementInGridLayout(this, 4);
 		startBreakBar.barPlacementInGridLayout(this, 7);
 	}
-	
-	
 	
 	public ButtonGroup getPlayersGroup() {
 		return playersGroup;

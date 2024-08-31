@@ -76,7 +76,7 @@ public class DebugController extends MouseAdapter {
 	}
 	
 	public void readGameSetup() {
-		ButtonModel selectedButton = debugScreenSideBar.getModeRadioButton().getSelection();
+		selectedButton = debugScreenSideBar.getModeRadioButton().getSelection();
 		selectButtonString = selectedButton.getActionCommand();
 	}
 	
@@ -120,7 +120,6 @@ public class DebugController extends MouseAdapter {
 			String vectorXString = debugScreenSideBar.getVectorXTextField().getText();
 			vectorXInput = Double.parseDouble(vectorXString);
 		} catch (NumberFormatException e) {
-			System.out.print("Test");
 		}
 	}
 	
@@ -128,8 +127,9 @@ public class DebugController extends MouseAdapter {
 		try {
 			String vectorYString = debugScreenSideBar.getVectorYTextField().getText();
 			vectorYInput = Double.parseDouble(vectorYString);
+
 		} catch (NumberFormatException e) {
-		}
+		} 
 	}
 	
 	public void readVectorZ() {
@@ -171,7 +171,7 @@ public class DebugController extends MouseAdapter {
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if (debugArrow.isShouldDraw()) {
+		if(debugArrow.isShouldDraw()){
 			debugArrow.setShouldDraw(true);
 			debugArrow.setShouldPlace(false);
 			debugArrow.setShouldRead(true);
@@ -181,12 +181,12 @@ public class DebugController extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (debugArrow.isShouldPlace()) {
+		if(debugArrow.isShouldPlace()) {
 			debugArrow.setShouldDraw(true);
 			debugArrow.setShouldPlace(false);
 			debugArrow.setMouseXY(debugArrow.getWidth() / 2, debugArrow.getHeight() / 2);
 		}
-		if (debugArrow.isShouldRead()) {
+		if(debugArrow.isShouldRead()) {
 			debugArrow.setShouldDraw(false);
 			debugArrow.setShouldPlace(true);
 			debugArrow.setShouldRead(false);

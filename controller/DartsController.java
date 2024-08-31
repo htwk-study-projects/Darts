@@ -2,9 +2,11 @@ package controller;
 
 import java.awt.CardLayout;
 
+import view.DartsGUIInterface;
+
 public class DartsController {
 	
-	private view.DartsGUI userView;
+	private view.DartsGUIInterface userView;
 	private model.DartsGameData data;
 	
 	private CardLayout cardLayout;
@@ -24,19 +26,15 @@ public class DartsController {
 		this.gameController = new GameController(userView.getGameScreen(), data, cardLayout);
 		this.debugController = new DebugController(userView.getDebugScreen(),data);
 		
-		userView.getHomeScreen().getPlayButton().addActionListener(e -> resetDataAndShowSetupScreen());
+		userView.getHomeScreen().getPlayButton().addActionListener(e -> resetDataAndNavigateSetupScreen());
 		userView.getHomeScreen().getDebugButton().addActionListener(e -> resetForDebug());
 	}
 
-	public view.DartsGUI getUserView() {
+	public DartsGUIInterface getUserView() {
 		return userView;
 	}
 	
-	public model.DartsGameData getData(){
-		return data;
-	}
-	
-	private void resetDataAndShowSetupScreen() {
+	private void resetDataAndNavigateSetupScreen() {
 		this.data.resetData();
 		cardLayout.show(userView.getContentPane(), "setup");
 	}

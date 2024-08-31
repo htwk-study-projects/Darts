@@ -14,16 +14,16 @@ public class PlayerSetupScreen extends JPanel implements PlayerSetupScreenInterf
     
     private Line startBreakLine;
     private Bar startBreakBar;
-    protected JButton playButton;
+    private JButton playButton;
     protected JButton backButton;
     
     private PlayerNameInput playerNameInput;
 
-    
     public PlayerSetupScreen() {
 
         this.setLayout(new GridLayout(3, 3));
         DartsGUI.gridLayoutFill(this, 3, 3);
+        
         title = new JLabel("Player Setup");
         title.setFont(DartsGUI.FONT_TITLE);
         title.setHorizontalAlignment(SwingConstants.CENTER);
@@ -50,12 +50,10 @@ public class PlayerSetupScreen extends JPanel implements PlayerSetupScreenInterf
         startBreakBar.barPlacementInGridLayout(this, 7);
     }
 
-
 	@Override
 	public JButton getPlayButton() {
 		return playButton;
 	}
-
 
 	@Override
 	public PlayerNameInput getPlayerNameInput() {

@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * The {@code DartboardMathModel} class manages the relations between angles, sectors, 
+ * and field values via HashMaps. It provides methods for determining the points 
+ * and multipliers based on the dart throw's angle and distance from the center of the board.
+ */
 public class DartboardMathModel {
 	
 	private final static Integer SECTORNUMBER = 20;
@@ -32,6 +37,13 @@ public class DartboardMathModel {
 		}	
 	}
 	
+	
+	 /**
+     * Generates a list of possible values for a given base sector value.
+     * 
+     * @param baseValue the base value of the sector
+     * @return a list of integers representing possible values for the sector
+     */
 	private static List<Integer> valuesGenerator(Integer baseValue){
 		Integer BULLSEYE = 50;
 		Integer OUTERBULLSEYE = 25;	
@@ -69,6 +81,13 @@ public class DartboardMathModel {
         }
 	}
 	
+	/**
+	 * Determines the points scored based on the angle and distance of the dart throw from the center of the dartboard.
+	 * 
+	 * @param angle the angle at which the dart hit the board
+	 * @param distance the distance of the dart from the center of the board
+	 * @return the points scored based on the calculated sector and multiplier
+	 */
 	public static Integer determinePoints(Integer angle, Double distance) {
 		Integer sector = determineSector(angle);
 		Integer multiplier = determineMultiplier(distance);
@@ -79,6 +98,13 @@ public class DartboardMathModel {
 		return 0;
 	}
 	
+	/**
+	 * Determines the sector based on the angle of the dart throw.
+	 * In the case of a wire hit, the sector is randomly selected between the two adjacent sectors.
+	 * 
+	 * @param angle the angle at which the dart hit the board, between 0° and 360°
+	 * @return the sector corresponding to the angle
+	 */
 	public static Integer determineSector(Integer angle) {
 		Random random = new Random();
 		Integer hitSector;
@@ -92,6 +118,13 @@ public class DartboardMathModel {
 		return ANGLE_SECTOR_RELATION.get(hitSector);
 	}
 	
+	/**
+	 * Determines the multiplier based on the distance of the dart from the center of the board.
+	 * In the case of a wire hit, the multiplier is randomly selected between the two possible multipliers.
+	 * 
+	 * @param distance the distance of the dart from the center of the board
+	 * @return the multiplier corresponding to the distance
+	 */
 	public static Integer determineMultiplier(Double distance) {
 		Random random = new Random();
 		final Integer OutOfBoard = null;

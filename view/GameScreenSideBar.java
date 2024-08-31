@@ -42,7 +42,7 @@ public class GameScreenSideBar extends JPanel {
         gameNameLabel = new JLabel("Spielname", SwingConstants.CENTER);
      
         JLabel instructionLabel1 = new JLabel("Tippe auf den Bildschirm damit der Dartpfeil erscheint", SwingConstants.CENTER);
-        JLabel instructionLabel2 = new JLabel("Platziere den Dartpfeil mit gedrueckter Maustaste auf die gewünschte Wurfposition", SwingConstants.CENTER);
+        JLabel instructionLabel2 = new JLabel("Platziere den Dartpfeil mit gedrueckter Maustaste auf die gewuenschte Wurfposition", SwingConstants.CENTER);
         JLabel instructionLabel3 = new JLabel("Stelle mit der Leertaste deine Wurfstärke ein", SwingConstants.CENTER);
         JLabel instructionLabel4 = new JLabel("Tippe ein weiteres Mal zum Werfen des Dartpfeils", SwingConstants.CENTER);
         JComponent[] labels = {gameNameLabel, instructionLabel1,instructionLabel2,instructionLabel3, instructionLabel4, new TransparentPanel()};

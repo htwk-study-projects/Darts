@@ -3,6 +3,10 @@ package model;
 import java.awt.Color;
 import java.util.Arrays;
 
+/**
+ * The {@code DartsGameData} class manages the state and flow of a darts game.
+ * It handles player data, game mode, and turn management.
+ */
 public class DartsGameData {
     
     private String gameName;
@@ -19,6 +23,12 @@ public class DartsGameData {
 				+ ", turnCount=" + turnCount + "]";
 	}
 
+    /**
+     * Handles the current player's turn by processing their dart throw.
+     * Updates the player's status based on the game mode conditions and updates their points.
+     * 
+     * @param throwParameters an array of doubles representing the parameters for the dart throw
+     */
     public void currentPlayerTakeTurn(double[] throwParameters) {
     	this.getCurrentPlayer().playerThrowCurrentDart(throwParameters);
     	this.getCurrentPlayer().setStatusPlayIn(this.gameMode.isGameInModeConditionFulfilled(this.getCurrentPlayer().getCurrentThrowMultiplier()));
@@ -33,7 +43,7 @@ public class DartsGameData {
 
     public void setPlayers(String[] playerNames, Color[] playerColors, int gamePoints) {
         this.players = Player.createPlayer(playerNames, playerColors, gamePoints);
-        this.playerCount = players.length; // Spieleranzahl setzen
+        this.playerCount = players.length;
     }
 
     public void setGameMode(int gamePoints, String inMode, String outMode) {
@@ -55,7 +65,13 @@ public class DartsGameData {
     public int getPlayerCount() {
         return playerCount;
     }
-
+    
+    /**
+     * Sets the number of players for the game. This method is used for initializing
+     * the player count before creating player objects. Needed for GUI
+     * 
+     * @param playerCount the number of players to set
+     */
     public void setPlayerCount(int playerCount) {
         this.playerCount = playerCount;
     }
@@ -69,6 +85,11 @@ public class DartsGameData {
     	return turnCount;
     }
 
+    /**
+     * Advances to the next player's turn. If the current player has finished or 
+     * the turn count exceeds 2, it resets the turn count and moves to the next player.
+     * 
+     */
     public void nextTurnPlayer() {
         Player currentPlayer = players[currentPlayerIndex];
 
@@ -81,6 +102,13 @@ public class DartsGameData {
         }
     }
     
+    /**
+     * Prepares the player data for display in a table format. This method formats player information 
+     * into a 2D array.
+     * 
+     * @return a 2D array of {@code Object} where each row represents a player, including their color, 
+     *         points, and name
+     */
     public Object[][] preparePlayerDataForTable(){
         Object[][] playerDataForTable = new Object[this.playerCount][3];
         for(int i = 0; i < playerDataForTable.length; i++) {

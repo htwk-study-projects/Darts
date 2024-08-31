@@ -22,11 +22,9 @@ public class HomeScreen extends JPanel {
     private DartBoardGraphic backgroundBoard;
     private Bar homeMenu;
     
-    
-    protected JButton playButton;
-    protected JButton debugButton;
+    private JButton playButton;
+    private JButton debugButton;
     protected JButton exitButton;
-
 
     public HomeScreen() {
     	
@@ -48,7 +46,6 @@ public class HomeScreen extends JPanel {
         playButton = new JButton("Spielen");
         debugButton = new JButton("Debugmodus");
         exitButton = new JButton("Beenden");
-
 
         JComponent[] homeMenuElements = {playButton, debugButton, exitButton, new TransparentPanel()};
         DartsGUI.fontAdjust(DartsGUI.FONT_BIG, homeMenuElements);

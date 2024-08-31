@@ -29,10 +29,7 @@ public class GameScreen extends JPanel implements GameScreenInterface{
 		 board = new DartBoardGraphic(1);
 		 this.setScreenDivisionConstrains(0, 0, 3, 3, 4, 4, GridBagConstraints.BOTH);
 		 boardAndArrowPanel.add(board, screenDivisionConstraints);
-		 
-		 //noch experiementell __________________
-		 
-	     
+			     
 	     dartArrow = new DartArrowGraphic();
 	     dartArrow.setOpaque(false);
 	     this.setScreenDivisionConstrains(0, 0, 3, 3, 4, 4, GridBagConstraints.BOTH);
@@ -40,8 +37,6 @@ public class GameScreen extends JPanel implements GameScreenInterface{
 	     
 	     boardAndArrowPanel.setComponentZOrder(board, 1);
 	     boardAndArrowPanel.setComponentZOrder(dartArrow, 0);
-	     
-	     //noch experiementell __________________
 	     
 	     this.setScreenDivisionConstrains(0, 0, 3, 3, 20, 20, GridBagConstraints.BOTH);
 	     this.add(boardAndArrowPanel, screenDivisionConstraints);

@@ -14,11 +14,6 @@ public class ColorIcon implements Icon {
 	private Color color;
 	private final static int SIZE = 15;
 
-    /**
-     * Constructs a ColorIcon with a specified color.
-     *
-     * @param color The color of the circle
-     */
     public ColorIcon(Color value) {
         this.color = value;
     }

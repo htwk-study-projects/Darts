@@ -55,7 +55,7 @@ public class DartBoardGraphic extends JPanel {
         Graphics2D dartBoardTwoD = (Graphics2D) g;
 
         widthHeightInit();
-        adjustedMAXBoardDiameter = (int) (Math.min(panelWidth, panelHeight) * (BOARDSIZE_PANELSIZE_RELATION)); // Board-Durchmesser relativ zur Panelgröße // bestimmt boarddurchmesser, anhand ob x oder y-wert kleiner ist, da sonst das board mit Rand überlappen würde 
+        adjustedMAXBoardDiameter = (int) (Math.min(panelWidth, panelHeight) * (BOARDSIZE_PANELSIZE_RELATION)); // Board diameter relative to panel size, ensuring no overlap with panel edges
         adjustedBoardDiameters = diameterScaling();
         
         dartBoardNumbersFont = textScaling();
