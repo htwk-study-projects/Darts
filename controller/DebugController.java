@@ -129,7 +129,6 @@ public class DebugController extends MouseAdapter {
 			String vectorYString = debugScreenSideBar.getVectorYTextField().getText();
 			vectorYInput = Double.parseDouble(vectorYString);
 		} catch (NumberFormatException e) {
-			// Fehler wird ignoriert, vectorYInput bleibt unverändert
 		}
 	}
 	
@@ -138,7 +137,6 @@ public class DebugController extends MouseAdapter {
 			String vectorZString = debugScreenSideBar.getVectorZTextField().getText();
 			vectorZInput = Double.parseDouble(vectorZString);
 		} catch (NumberFormatException e) {
-			// Fehler wird ignoriert, vectorZInput bleibt unverändert
 		}
 	}
 	
