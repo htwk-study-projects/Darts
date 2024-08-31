@@ -1,17 +1,24 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
 
+import javax.swing.Icon;
+
+/**
+ * An Icon that is a colored circle.
+ */ 
 public class ColorIcon implements Icon {
     
-	private final Color color;
-    private final static int SIZE = 15;
+	private Color color;
+	private final static int SIZE = 15;
 
     public ColorIcon(Color value) {
         this.color = value;
     }
-
+    
+    @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         g.setColor(color);
         g.fillOval(x, y, SIZE, SIZE);
@@ -26,4 +33,13 @@ public class ColorIcon implements Icon {
     public int getIconHeight() {
         return SIZE;
     }
+    
+	public Color getColor() {
+		return color;
+	}
+	
+    public void setColor(Color color) {
+		this.color = color;
+	}
+
 }

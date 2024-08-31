@@ -2,58 +2,68 @@ package view;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-public class DartsGUI extends JFrame {
+public class DartsGUI extends JFrame implements DartsGUIInterface{
 	
-	private CardLayout cardLayout;  // Instanzvariable für CardLayout
+	/**
+	 * The CardLayout used for managing the layout of different screens in the application.
+	 */
+	private CardLayout cardLayout;
 	
-	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 32);
+	protected final static Font FONT_TITLE = new Font("Impact", Font.BOLD, 60);
 	protected final static Font FONT_BIG = new Font("Impact", Font.BOLD, 22);
-	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 14);
-	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 10);
+	protected final static Font FONT_NORMAL = new Font("Impact", Font.PLAIN, 16);
+	protected final static Font FONT_SMALL = new Font("Impact", Font.PLAIN, 13);
+	protected static final Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
 	
-	public DartsGUI(model.DartsData gameData){
+	private HomeScreen homeScreen;
+	private SetupScreen setupScreen;
+	private PlayerSetupScreen playerSetupScreen;
+	private GameScreen gameScreen;
+	private DebugScreen debugScreen;
+
+	
+	public DartsGUI(){
 		
-		cardLayout = new CardLayout();
+		this.cardLayout = new CardLayout();
 		this.setLayout(cardLayout);
 		this.setTitle("DARTS");	
 		this.setSize(1400, 920);
+		
+		this.setMinimumSize(new Dimension(1400, 920));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
-		//DartArrowGraphic dartarrow = new DartArrowGraphic();
-		//this.add(dartarrow,"arrow");
+		this.homeScreen = new HomeScreen();
+		this.add(homeScreen, "home");
 		
-		HomeScreen home = new HomeScreen();
-		this.add(home, "home");
+		this.setupScreen = new SetupScreen();
+		this.add(setupScreen, "setup");
 		
-		SetupScreen setup = new SetupScreen();
-		this.add(setup, "setup");
+		this.playerSetupScreen = new PlayerSetupScreen();
+		this.add(playerSetupScreen, "player");
 		
-		PlayerSetup setPlayer = new PlayerSetup();
-		this.add(setPlayer, "player");
+		this.gameScreen = new GameScreen();
+		this.add(gameScreen, "game");
 		
-		GameScreen game = new GameScreen();
-		this.add(game, "game");
 		
-		home.playButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "setup"));
-		home.exitButton.addActionListener(e -> System.exit(0));
+		this.debugScreen = new DebugScreen();
+		this.add (debugScreen, "debug");
 		
-		setup.homeButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
-		setup.startButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "player"));
+		homeScreen.exitButton.addActionListener(e -> System.exit(0));
+
+		setupScreen.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
+			
+		playerSetupScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "setup"));
 		
-		setPlayer.homeButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "setup"));
-		setPlayer.startButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "game"));
+		gameScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
 		
-		//game.saveButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "game"));
-		game.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
-		//game.backButton.addActionListener(e -> cardLayout.show(this.getContentPane(), "home"));
+		debugScreen.backButton.addActionListener(e ->cardLayout.show(this.getContentPane(), "home"));
+		
 		
 	}
 	
@@ -70,4 +80,27 @@ public class DartsGUI extends JFrame {
 		}
 	}
 
+	public CardLayout getCardLayout() {
+		return cardLayout;
+	}
+
+	public HomeScreen getHomeScreen() {
+		return homeScreen;
+	}
+
+	public SetupScreen getSetupScreen() {
+		return setupScreen;
+	}
+
+	public PlayerSetupScreen getPlayerSetupScreen() {
+		return playerSetupScreen;
+	}
+
+	public GameScreen getGameScreen() {
+		return gameScreen;
+	}
+
+	public DebugScreen getDebugScreen() {
+		return debugScreen;
+	}
 }

@@ -22,9 +22,8 @@ public class HomeScreen extends JPanel {
     private DartBoardGraphic backgroundBoard;
     private Bar homeMenu;
     
-    
-    protected JButton playButton;
-    protected JButton loadButton;
+    private JButton playButton;
+    private JButton debugButton;
     protected JButton exitButton;
 
     public HomeScreen() {
@@ -45,10 +44,10 @@ public class HomeScreen extends JPanel {
         this.add(title, BorderLayout.NORTH);        
         
         playButton = new JButton("Spielen");
-        loadButton = new JButton("Spiel laden");
+        debugButton = new JButton("Debugmodus");
         exitButton = new JButton("Beenden");
 
-        JComponent[] homeMenuElements = {playButton, loadButton, exitButton};
+        JComponent[] homeMenuElements = {playButton, debugButton, exitButton, new TransparentPanel()};
         DartsGUI.fontAdjust(DartsGUI.FONT_BIG, homeMenuElements);
         homeMenu = new Bar(homeMenuElements);
         homeMenu.setOpaque(false);
@@ -56,7 +55,7 @@ public class HomeScreen extends JPanel {
         JPanel gridPanel = new JPanel();
         gridPanel.setLayout(new GridLayout(3,3));
         DartsGUI.gridLayoutFill(gridPanel, 3, 3);
-        homeMenu.barPlacement(gridPanel, 4);
+        homeMenu.barPlacementInGridLayout(gridPanel, 4);
         gridPanel.setOpaque(false);
         this.setScreenDivisionConstrains(0, 0, 3, 3, 3, 3, GridBagConstraints.BOTH);
         gridBagPanel.add(gridPanel, screenDivisionConstraints);
@@ -76,4 +75,13 @@ public class HomeScreen extends JPanel {
         screenDivisionConstraints.weighty = weightY;
         screenDivisionConstraints.fill = fill;
     }
+    
+    public JButton getPlayButton() {
+    	return this.playButton;
+    }   
+    
+    public JButton getDebugButton() {
+    	return debugButton;
+    }
+    
 }

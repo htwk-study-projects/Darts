@@ -1,28 +1,47 @@
 package controller;
 
+import java.awt.CardLayout;
 
+import view.DartsGUIInterface;
 
 public class DartsController {
 	
-	private view.DartsGUI userView;
-	private model.DartsData data;
+	private view.DartsGUIInterface userView;
+	private model.DartsGameData data;
 	
+	private CardLayout cardLayout;
 	
+	private SetupController setupController;
+	private PlayerSetupController playerSetupController;
+	private GameController gameController;
+	private DebugController debugController;
 	
 	public DartsController() {
-		data = new model.DartsData();
-		userView = new view.DartsGUI(data);
+		this.userView = new view.DartsGUI();		
+		this.cardLayout = userView.getCardLayout();
+		this.data = new model.DartsGameData();
 		
+		this.setupController = new SetupController(userView.getSetupScreen(), userView.getPlayerSetupScreen(), data, cardLayout);
+		this.playerSetupController = new PlayerSetupController(userView.getPlayerSetupScreen(), userView.getGameScreen(), data, cardLayout);
+		this.gameController = new GameController(userView.getGameScreen(), data, cardLayout);
+		this.debugController = new DebugController(userView.getDebugScreen(),data);
+		
+		userView.getHomeScreen().getPlayButton().addActionListener(e -> resetDataAndNavigateSetupScreen());
+		userView.getHomeScreen().getDebugButton().addActionListener(e -> resetForDebug());
 	}
 
-	public view.DartsGUI getUserView() {
+	public DartsGUIInterface getUserView() {
 		return userView;
 	}
-
-	public model.DartsData getData() {
-		return data;
+	
+	private void resetDataAndNavigateSetupScreen() {
+		this.data.resetData();
+		cardLayout.show(userView.getContentPane(), "setup");
 	}
 	
+	private void resetForDebug() {
+		this.data.resetData();
+		cardLayout.show(userView.getContentPane(), "debug");
+	}
 	
-
 }

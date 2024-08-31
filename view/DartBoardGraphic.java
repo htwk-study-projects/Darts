@@ -9,10 +9,10 @@ import javax.swing.JPanel;
 
 public class DartBoardGraphic extends JPanel {
 
-    private final static int[] DIAMETERS = {760, 750, 640, 600, 390, 350, 50, 20};
+    private final static int[] DIAMETERS = {2180, 2140, 1700, 1620, 1070, 990, 160, 64}; // {760, 750, 640, 600, 390, 350, 50, 20}
     private final static double ANGLELINES = 2 * Math.PI / 20;
     private final static String[] NUMBERS = {"20", "1", "18", "4", "13", "6", "10", "15", "2", "17", "3", "19", "7", "16", "8", "11", "14", "9", "12", "5"};
-    private final static double BOARDSIZE_PANELSIZE_RELATION = 3.0/4.0;
+    private final static double BOARDSIZE_PANELSIZE_RELATION = 3.9/4.0;
     private final static float STROKE_WIDTH = 2.6f;
     
     private int visibility = 255;
@@ -31,6 +31,10 @@ public class DartBoardGraphic extends JPanel {
     private int[] adjustedBoardDiameters;
     private int fontSize;
     
+    private Color colorHit;    
+    private Integer lastHitX;
+    private Integer lastHitY;
+  
     public DartBoardGraphic(double visibilityMultiplier) {
     	this.visibility *= visibilityMultiplier;
     	this.setColors();
@@ -51,7 +55,7 @@ public class DartBoardGraphic extends JPanel {
         Graphics2D dartBoardTwoD = (Graphics2D) g;
 
         widthHeightInit();
-        adjustedMAXBoardDiameter = (int) (Math.min(panelWidth, panelHeight) * (BOARDSIZE_PANELSIZE_RELATION)); // Board-Durchmesser relativ zur Panelgröße // bestimmt boarddurchmesser, anhand ob x oder y-wert kleiner ist, da sonst das board mit Rand überlappen würde 
+        adjustedMAXBoardDiameter = (int) (Math.min(panelWidth, panelHeight) * (BOARDSIZE_PANELSIZE_RELATION)); // Board diameter relative to panel size, ensuring no overlap with panel edges
         adjustedBoardDiameters = diameterScaling();
         
         dartBoardNumbersFont = textScaling();
@@ -62,6 +66,8 @@ public class DartBoardGraphic extends JPanel {
         drawBoundaryLinesAndLabels(dartBoardTwoD);
         drawBullseye(dartBoardTwoD);
         drawBoundaryCircles(dartBoardTwoD);
+        drawHitPoint(dartBoardTwoD);
+        
     }
     
     private void widthHeightInit() {
@@ -135,7 +141,7 @@ public class DartBoardGraphic extends JPanel {
     		int textWidth = targetPlace.getFontMetrics().stringWidth(NUMBERS[i]);
     		int textHeight = targetPlace.getFontMetrics().getHeight();
 
-    		targetPlace.drawString(NUMBERS[i], x_number - textWidth / 2, y_number + textHeight / 3); 
+    		targetPlace.drawString(NUMBERS[i], x_number - textWidth / 2, y_number + textHeight / 4); 
     	}
     }
     
@@ -144,5 +150,38 @@ public class DartBoardGraphic extends JPanel {
         for (int diameter : adjustedBoardDiameters) {
         	targetPlace.drawOval(CenterX - diameter / 2, CenterY - diameter / 2, diameter, diameter);
         }
+    }
+    
+    public void setDartHitCoordinates(double xDart, double yDart) {
+        double scalingFactor = (double)this.adjustedBoardDiameters[2] / (170.0 * 2.0);
+        double scalingX = CenterX + (xDart * scalingFactor);
+        double scalingY = CenterY - (yDart * scalingFactor);
+        
+        this.lastHitX = (int) Math.round(scalingX);
+        this.lastHitY = (int) Math.round(scalingY);     
+        repaint();
+    }
+    
+    public void clearDartHit() {
+        this.lastHitX = null;
+        this.lastHitY = null;
+        repaint();
+    }
+    
+    private void drawHitPoint(Graphics2D dartBoardTwoD) {
+        if (lastHitX != null && lastHitY != null) {
+            int sizeHit = 5;
+            dartBoardTwoD.setColor(colorHit);
+            dartBoardTwoD.drawLine(lastHitX - sizeHit, lastHitY - sizeHit, lastHitX + sizeHit, lastHitY + sizeHit);
+            dartBoardTwoD.drawLine(lastHitX - sizeHit, lastHitY + sizeHit, lastHitX + sizeHit, lastHitY - sizeHit);
+        }
+    }
+    
+    public int[] getAdjustedBoardDiameters() {
+    	return adjustedBoardDiameters;
+    }
+    
+    public void setColorHit(Color colorHit) {
+    	this.colorHit = colorHit;
     }
 }
